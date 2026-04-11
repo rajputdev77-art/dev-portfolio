@@ -8,10 +8,10 @@ export default function Contact() {
           Let&apos;s Talk
         </h2>
         <p className="text-lg text-ink/80 max-w-2xl mb-10">
-          I&apos;m currently exploring roles in client operations, project
-          management, and customer success — particularly with European or
-          globally distributed teams. If you are building something interesting,
-          reach out.
+          I&apos;m looking for AI automation, workflow engineering, and applied
+          AI roles — particularly with European or globally distributed teams.
+          Full-time or contract. If you need someone who can design an AI
+          pipeline and also make sure it actually runs in production, reach out.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <a

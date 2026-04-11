@@ -3,7 +3,7 @@ import { Mail, ExternalLink } from "lucide-react";
 export const metadata = {
   title: "About — Dev Rajput",
   description:
-    "MBA graduate, client operations specialist, builder of local AI systems, performer turned operator.",
+    "AI automation builder with an operations background. I design pipelines that qualify leads, produce content, and run agents — all end-to-end.",
 };
 
 export default function AboutPage() {
@@ -16,36 +16,37 @@ export default function AboutPage() {
 
         <div className="space-y-6 text-lg leading-relaxed text-ink/80">
           <p>
-            I spent the last three years inside a real estate operation learning
-            how to make things work across sales, legal, finance, and technical
-            teams. At County Group in Noida, I owned the post-sale lifecycle for
-            300+ residential units across 3 projects and 7 towers — everything
-            from client queries to possession handovers to registry
-            coordination.
+            I build AI automation systems that do real work. My most recent
+            projects include an AI-powered lead qualification pipeline using n8n
+            and Groq&apos;s LLaMA 3.3, a fully autonomous YouTube content system
+            that publishes daily videos with zero human intervention, and a
+            local voice-first assistant I call JARVIS. I work with n8n, Python,
+            Groq, local LLMs, Edge TTS, FFmpeg, and whatever else gets a
+            pipeline from idea to production fastest.
           </p>
 
           <p>
-            Before that, I was directing plays, making short films, and hosting
-            international events. I acted in a Zee TV serial, emceed conferences
-            with 90+ attendees, and managed cross-functional teams of 7 people
-            on tight budgets. That world taught me something operations later
-            reinforced: every system eventually comes down to the trust people
-            place in the person running it.
+            Before AI, I spent three years running client operations at County
+            Group in Noida — managing the post-sale lifecycle for 300+
+            residential units across 3 projects and 7 towers. I coordinated
+            across sales, legal, finance, and technical teams daily. I
+            redesigned client query SOPs that cut resolution time by 35% and
+            built an audit process that achieved zero handover rejections across
+            300+ units.
           </p>
 
           <p>
-            Lately I have been building local AI agents, n8n automations, a
-            YouTube content pipeline that runs itself, and a personal assistant I
-            call JARVIS. I run models locally, wire them into workflows, and
-            treat every break as a design lesson. The fastest way to understand
-            how intelligence scales is to build it yourself.
+            That operations background is why my AI systems actually work. I
+            think in failure modes, not happy paths. I design for crash
+            recovery, not just first-run success. And I know that the hardest
+            part of any automation is the human decision still hiding inside it.
           </p>
 
           <p>
-            I am an MBA graduate from Ambedkar University Delhi, based in Delhi
-            NCR. I am currently exploring client operations, project management,
-            and customer success roles — particularly with European or globally
-            distributed teams.
+            Before operations, I lived on stage — directing plays, acting in a
+            Zee TV serial, making short films, and emceeing international events
+            with 90+ attendees. Performance taught me how to read a room, run a
+            team under pressure, and communicate clearly when it matters most.
           </p>
 
           <h2 className="font-serif text-2xl font-semibold text-ink mt-12 mb-4">
@@ -56,29 +57,30 @@ export default function AboutPage() {
             <li className="flex gap-2">
               <span className="text-teal-primary mt-1 shrink-0">•</span>
               <span>
-                Operations experience across real estate, events, and HR — with
-                real numbers behind it
+                AI automation: I design and ship end-to-end pipelines — lead
+                qualification, content generation, voice assistants, workflow
+                orchestration
               </span>
             </li>
             <li className="flex gap-2">
               <span className="text-teal-primary mt-1 shrink-0">•</span>
               <span>
-                Systems thinking: I design processes that prevent problems, not
-                just fix them
+                Operations rigor: 3 years of cross-functional coordination,
+                SOP design, and process optimization — with real metrics
               </span>
             </li>
             <li className="flex gap-2">
               <span className="text-teal-primary mt-1 shrink-0">•</span>
               <span>
-                Technical fluency: I build AI agents, automate workflows, and
-                understand the tools my teams will use
+                Systems thinking: I design for failure modes, crash recovery,
+                and production reliability — not just demos
               </span>
             </li>
             <li className="flex gap-2">
               <span className="text-teal-primary mt-1 shrink-0">•</span>
               <span>
-                Communication: stage training means I can present, host, and
-                run a room under pressure
+                Communication: stage training means I can present, document,
+                and align stakeholders under pressure
               </span>
             </li>
           </ul>
@@ -88,6 +90,11 @@ export default function AboutPage() {
           <h2 className="font-serif text-2xl font-semibold mb-6">
             Get in Touch
           </h2>
+          <p className="text-ink/70 mb-6">
+            Looking for AI automation, workflow engineering, and applied AI
+            roles — European or globally distributed teams, full-time or
+            contract.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="mailto:rajputdev77@gmail.com"

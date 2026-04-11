@@ -6,23 +6,37 @@ Drop-in replacement copy. Paste directly into LinkedIn.
 
 ## Headline
 
-Client Operations & Coordination Executive | MBA | Building Local AI Systems & Automations | Project Management | Customer Success
+AI Automation Builder | n8n Workflow Engineer | Python | LLMs & Applied AI | Operations Background | MBA
 
 ---
 
 ## About
 
-I build systems that make complex things run quietly — across operations, automation, and the spaces where people and technology meet.
+I build AI automation systems that do real work — not demos.
 
-For the past three years, I have owned the post-sale client lifecycle at County Group, managing possession handovers, documentation audits, and cross-functional coordination for 300+ residential units across 7 towers. I redesigned client query SOPs to cut resolution time by 35% and drove a 20% improvement in satisfaction scores through structured service interventions.
+Recent projects: an AI-powered lead qualification pipeline (n8n + Groq LLaMA 3.3 + Google Sheets + WhatsApp) that scores leads in real time and alerts sales teams instantly. A fully autonomous YouTube content system (Python, FFmpeg, Edge TTS, Pexels API) that researches trends, generates scripts, assembles narrated videos, and uploads daily — zero human intervention, $0 cost. A local voice-first assistant (JARVIS) built from scratch with speech-to-text, model inference, and tool orchestration.
 
-Before operations, I spent years on stage — directing plays, acting in a Zee TV serial, making short films, and emceeing international events with 90+ attendees. That world taught me how to read a room, run a team under pressure, and earn trust in real time.
+Before AI, I spent three years in client operations at County Group — managing 300+ unit handovers across 7 towers, coordinating across sales, legal, finance, and technical teams daily, and redesigning SOPs that cut resolution time by 35%. That operations background is why my AI systems survive contact with reality: I design for failure modes, crash recovery, and production reliability — not just happy paths.
 
-Now I am also building: local AI agents with n8n workflows, a fully automated YouTube content pipeline, and a voice-first personal assistant I call JARVIS. I run models locally, design systems end-to-end, and treat every broken workflow as a design lesson.
+Tools I work with: n8n, Python, Groq, LLaMA, Edge TTS, FFmpeg, Google APIs, Twilio, local LLM inference.
 
-MBA from Ambedkar University Delhi. Based in Delhi NCR. Currently exploring client operations, project management, and customer success roles — particularly with European or globally distributed teams.
+MBA from Ambedkar University Delhi. Based in Delhi NCR. Looking for AI automation, workflow engineering, and applied AI roles — European or globally distributed teams, full-time or contract.
 
-Open to connecting. Reach me at rajputdev77@gmail.com.
+Portfolio: https://dev-portfolio-dun-theta.vercel.app
+Email: rajputdev77@gmail.com
+
+---
+
+## Experience — AI Automation Builder (Self-initiated)
+
+**AI Automation & Workflow Engineering**
+Independent · Delhi NCR, India
+2025 – Present
+
+- Built an AI-powered lead qualification system using n8n, Groq LLaMA 3.3 70B, Twilio WhatsApp, Google Sheets, and Gmail — scoring leads as HOT/WARM/COLD in real time with instant sales alerts
+- Designed a fully autonomous YouTube content pipeline (2,911 lines of Python) — trend research, AI scriptwriting, TTS narration, video assembly with FFmpeg, and auto-upload — 6 videos published in 5 days at $0 cost
+- Building JARVIS, a local voice-first AI assistant with speech-to-text, local model inference, tool use, and text-to-speech orchestration
+- Stack: Python, n8n, Groq, LLaMA 3.3, Edge TTS, FFmpeg, Pexels API, YouTube Data API, Twilio, Google Service Accounts
 
 ---
 
@@ -47,8 +61,7 @@ Freelance · Delhi, India
 Oct 2022 – Apr 2023
 
 - Managed full lifecycle of an international panel event with 90+ attendees, delivering 97% attendee satisfaction
-- Led budgeting, vendor negotiation, and logistics for events under tight time and resource constraints
-- Directed a 7-person cross-functional team with clear ownership lines and weekly milestone accountability
+- Directed 7-person cross-functional team under significant resource constraints
 - Served as on-stage emcee for international conferences, managing live audience engagement and program flow
 
 ---

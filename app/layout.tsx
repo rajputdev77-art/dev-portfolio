@@ -16,9 +16,9 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Dev Rajput — Operations, Automation, Systems",
+  title: "Dev Rajput — AI Automation & Workflow Engineering",
   description:
-    "I build systems that make complex things run quietly — across operations, automation, and the spaces where people and technology meet.",
+    "I design AI systems and automated workflows that solve real business problems — lead qualification, content pipelines, and intelligent agents that run without you.",
 };
 
 export default function RootLayout({
