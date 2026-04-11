@@ -4,7 +4,7 @@ slug: "local-ai-agents-n8n"
 outcome: "Automated lead scoring pipeline — form to AI qualification to sales alert in under 30 seconds"
 role: "Self-initiated builder"
 timeline: "2025-2026"
-order: 1
+order: 2
 ---
 
 ## Context

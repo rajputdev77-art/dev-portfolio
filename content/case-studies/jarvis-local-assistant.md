@@ -4,7 +4,7 @@ slug: "jarvis-local-assistant"
 outcome: "A working personal AI assistant running fully on my own machine"
 role: "Self-initiated builder"
 timeline: "2025-2026"
-order: 2
+order: 3
 ---
 
 ## Context
