@@ -16,9 +16,14 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Dev Rajput — AI Automation & Workflow Engineering",
+  title: "Dev Rajput — AI Operations Specialist",
   description:
-    "I design AI systems and automated workflows that solve real business problems — lead qualification, content pipelines, and intelligent agents that run without you.",
+    "AI Operations Specialist building, deploying, and scaling agentic workflows in n8n, Claude, and Python. Available for remote-first global roles.",
+  openGraph: {
+    title: "Dev Rajput — AI Operations Specialist",
+    description:
+      "AI Operations Specialist building, deploying, and scaling agentic workflows in n8n, Claude, and Python. Available for remote-first global roles.",
+  },
 };
 
 export default function RootLayout({

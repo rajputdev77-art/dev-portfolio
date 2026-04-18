@@ -4,7 +4,7 @@ slug: "youtube-automation-system"
 outcome: "Daily video uploads with zero manual touch"
 role: "Self-initiated builder"
 timeline: "2025-2026"
-order: 4
+order: 6
 ---
 
 ## Context

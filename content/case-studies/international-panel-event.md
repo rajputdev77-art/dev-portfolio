@@ -4,7 +4,7 @@ slug: "international-panel-event"
 outcome: "97% attendee satisfaction with a 7-person team and end-to-end ownership"
 role: "Special Event Manager & Emcee (Freelance)"
 timeline: "2022-2023"
-order: 6
+order: 7
 ---
 
 ## Context

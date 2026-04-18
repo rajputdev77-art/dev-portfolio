@@ -1,5 +1,5 @@
 ---
-title: "Building JARVIS: A Local Voice-First Assistant"
+title: "JARVIS — Local Voice Assistant on an Open-Source LLM Stack"
 slug: "jarvis-local-assistant"
 outcome: "A working personal AI assistant running fully on my own machine"
 role: "Self-initiated builder"

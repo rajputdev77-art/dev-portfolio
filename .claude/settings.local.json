@@ -5,7 +5,15 @@
       "mcp__Claude_Preview__preview_start",
       "Bash(npx next:*)",
       "Bash(node -e \"const l = require\\('lucide-react'\\); console.log\\(Object.keys\\(l\\).filter\\(k => k.toLowerCase\\(\\).includes\\('linkedin'\\)\\)\\)\")",
-      "Bash(node -e \"const l = require\\('lucide-react'\\); console.log\\(Object.keys\\(l\\).filter\\(k => k.toLowerCase\\(\\).includes\\('link'\\)\\)\\)\")"
+      "Bash(node -e \"const l = require\\('lucide-react'\\); console.log\\(Object.keys\\(l\\).filter\\(k => k.toLowerCase\\(\\).includes\\('link'\\)\\)\\)\")",
+      "Bash(gh auth:*)",
+      "Bash(gh repo:*)",
+      "Bash(npx vercel:*)",
+      "Bash(npm list:*)",
+      "Bash(npm install:*)",
+      "Bash(vercel --version)",
+      "Bash(vercel login:*)",
+      "Bash(vercel --yes --prod)"
     ]
   }
 }

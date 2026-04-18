@@ -1,9 +1,9 @@
 ---
-title: "Rebuilding the Possession Handover Process"
+title: "Operations Leadership — Real Estate (2023–Present)"
 slug: "possession-handover-audit"
-outcome: "Zero handover rejections across 300+ residential units"
+outcome: "Zero handover rejections across 300+ residential units; 35% faster query resolution; 20% CSAT lift"
 role: "Client Operations & Coordination Executive, County Group"
-timeline: "2024-2025"
+timeline: "2023-Present"
 order: 5
 ---
 

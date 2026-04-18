@@ -1,10 +1,10 @@
 ---
-title: "Soul in Motion: A 9-Platform Content Engine from a Single Word File"
+title: "Multi-Channel Content Automation Engine — One Input, 9+ Output Channels"
 slug: "soul-in-motion"
 outcome: "One journal file in, professional content across 9 platforms out — zero manual work, 11 minutes end-to-end"
 role: "Self-initiated builder"
 timeline: "2026"
-order: 1
+order: 2
 ---
 
 ## Context
