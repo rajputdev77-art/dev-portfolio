@@ -4,7 +4,7 @@ slug: "possession-handover-audit"
 outcome: "Zero handover rejections across 300+ residential units; 35% faster query resolution; 20% CSAT lift"
 role: "Client Operations & Coordination Executive, County Group"
 timeline: "2023-Present"
-order: 5
+order: 6
 ---
 
 ## Context

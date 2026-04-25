@@ -4,7 +4,7 @@ slug: "personal-knowledge-system"
 outcome: "A Second Brain that captures, processes, and compounds everything I learn — eliminating context amnesia across AI sessions"
 role: "Self-initiated builder"
 timeline: "2026"
-order: 4
+order: 5
 ---
 
 ## Case study coming soon.

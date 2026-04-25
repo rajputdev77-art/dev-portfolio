@@ -4,7 +4,7 @@ slug: "soul-in-motion"
 outcome: "One journal file in, professional content across 9 platforms out — zero manual work, 11 minutes end-to-end"
 role: "Self-initiated builder"
 timeline: "2026"
-order: 2
+order: 3
 ---
 
 ## Context
