@@ -1,10 +1,22 @@
 ---
-title: "A YouTube Automation System That Runs Itself"
+title: "YouTube Automation System"
 slug: "youtube-automation-system"
-outcome: "Daily video uploads with zero manual touch"
+outcome: "Daily video uploads with zero manual touch."
 role: "Self-initiated builder"
 timeline: "2025-2026"
 order: 7
+kind: "metric"
+tag: "Python · Edge TTS · FFmpeg · n8n"
+metrics:
+  - num: "6"
+    unit: "v"
+    label: "in 5 days"
+  - num: "$0"
+    unit: ""
+    label: "cost / video"
+  - num: "100"
+    unit: "%"
+    label: "automated"
 ---
 
 ## Context

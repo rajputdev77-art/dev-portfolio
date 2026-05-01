@@ -1,10 +1,12 @@
 ---
-title: "JARVIS — Voice-First Personal AI Assistant"
+title: "JARVIS — Voice-First Assistant"
 slug: "jarvis-local-assistant"
-outcome: "A 24/7 voice assistant that wakes on command, holds long-term memory, and runs WhatsApp, Gmail, and system control end-to-end — $0/month, fully on my own machine"
+outcome: "24/7 voice assistant with long-term memory — $0/mo, fully on-machine."
 role: "Self-initiated builder"
 timeline: "2025-2026"
-order: 4
+order: 6
+kind: "log"
+tag: "Local LLM · WhatsApp · Gmail · system control"
 ---
 
 ## Context

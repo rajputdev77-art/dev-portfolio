@@ -1,10 +1,12 @@
 ---
-title: "Jarvis — LLM-in-the-Loop Paper-Trading Agent"
+title: "JARVIS Trading Agent"
 slug: "jarvis-trading-agent"
-outcome: "Two autonomous trading bots (crypto + US equities) calling Gemini every hour with self-healing infra — $0/month, zero manual intervention, public live dashboard"
+outcome: "Two autonomous bots, hourly LLM calls, self-healing infra. $0/mo."
 role: "Self-initiated builder"
 timeline: "2026 — built in 2 days"
-order: 2
+order: 3
+kind: "log"
+tag: "Gemini · Crypto + US equities"
 ---
 
 ## Context

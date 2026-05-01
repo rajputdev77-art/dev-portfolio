@@ -1,10 +1,22 @@
 ---
-title: "Delivering a 90-Person International Panel Event"
+title: "International Panel Event"
 slug: "international-panel-event"
-outcome: "97% attendee satisfaction with a 7-person team and end-to-end ownership"
+outcome: "97% attendee satisfaction with end-to-end ownership."
 role: "Special Event Manager & Emcee (Freelance)"
 timeline: "2022-2023"
-order: 8
+order: 4
+kind: "metric"
+tag: "Stagecraft · 90+ attendees · 7-person team"
+metrics:
+  - num: "97"
+    unit: "%"
+    label: "satisfaction"
+  - num: "90"
+    unit: "+"
+    label: "attendees"
+  - num: "7"
+    unit: "p"
+    label: "team led"
 ---
 
 ## Context

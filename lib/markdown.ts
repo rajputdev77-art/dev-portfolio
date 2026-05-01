@@ -14,6 +14,10 @@ export interface CaseStudy {
   timeline: string;
   order: number;
   content: string;
+  // New fields
+  kind?: "diagram" | "log" | "metric";
+  tag?: string;
+  metrics?: { num: string; unit: string; label: string }[];
 }
 
 export interface Essay {
@@ -23,6 +27,7 @@ export interface Essay {
   description: string;
   order: number;
   content: string;
+  read?: string;
 }
 
 export function getCaseStudies(): CaseStudy[] {
@@ -41,6 +46,9 @@ export function getCaseStudies(): CaseStudy[] {
       role: data.role,
       timeline: data.timeline,
       order: data.order || 99,
+      kind: data.kind,
+      tag: data.tag,
+      metrics: data.metrics,
       content,
     };
   });
@@ -80,6 +88,7 @@ export function getEssays(): Essay[] {
       date: data.date,
       description: data.description,
       order: data.order || 99,
+      read: data.read,
       content,
     };
   });

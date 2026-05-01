@@ -1,46 +1,54 @@
-import { Mail, ExternalLink, FileDown } from "lucide-react";
+import { contact } from "@/content/site";
 
 export default function Contact() {
+  // Render headline with the italic word getting the gradient treatment
+  function renderHeadline() {
+    const out: React.ReactNode[] = [];
+    contact.headline.forEach((line, i) => {
+      const idx = line.indexOf(contact.italicWord);
+      if (idx >= 0) {
+        out.push(
+          <span key={`pre-${i}`}>{line.slice(0, idx)}</span>,
+          <em key={`em-${i}`}>{contact.italicWord}</em>
+        );
+      } else {
+        out.push(<span key={i}>{line}</span>);
+      }
+      if (i < contact.headline.length - 1) out.push(<br key={`br-${i}`} />);
+    });
+    return out;
+  }
+
   return (
-    <section id="contact" className="py-20">
-      <div className="max-w-5xl mx-auto px-6">
-        <h2 className="font-serif text-3xl md:text-4xl font-semibold mb-8">
-          Let&apos;s build something that runs itself.
-        </h2>
-        <p className="text-lg text-ink/80 max-w-2xl mb-10">
-          I&apos;m currently available for remote-first AI Operations,
-          Solutions Engineering, and Automation roles at global companies. Also
-          open to consulting engagements and founding-team positions at
-          early-stage AI startups.
-        </p>
-        <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-          <a
-            href="mailto:rajputdev77@gmail.com"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-teal-primary text-white rounded-lg font-medium hover:bg-teal-light transition-colors"
-          >
-            <Mail size={18} />
-            rajputdev77@gmail.com
-          </a>
-          <a
-            href="https://www.linkedin.com/in/devrajput07/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-teal-primary text-teal-primary rounded-lg font-medium hover:bg-teal-primary hover:text-white transition-colors"
-          >
-            <ExternalLink size={18} />
-            LinkedIn
-          </a>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-teal-primary text-teal-primary rounded-lg font-medium hover:bg-teal-primary hover:text-white transition-colors"
-          >
-            <FileDown size={18} />
-            Download Resume
-          </a>
-        </div>
+    <section id="contact" className="oc-contact">
+      <div className="oc-act-marker">
+        <span>{contact.act}</span>
+        <span className="oc-eyebrow-rule" />
+        <span>{contact.actSub}</span>
       </div>
+      <h2 className="oc-contact-h">{renderHeadline()}</h2>
+      <p className="oc-contact-sub">{contact.sub}</p>
+      <div className="oc-contact-grid">
+        {contact.cards.map((c) => (
+          <a
+            key={c.label}
+            className={`oc-contact-card${c.primary ? " oc-contact-primary" : ""}`}
+            href={c.href}
+            style={c.primary ? { background: "var(--accent)" } : undefined}
+            target={c.href.startsWith("http") || c.href.startsWith("/resume") ? "_blank" : undefined}
+            rel={c.href.startsWith("http") ? "noreferrer" : undefined}
+          >
+            <span className="oc-contact-k">{c.label}</span>
+            <span className="oc-contact-v">{c.value}</span>
+            <span className="oc-contact-arrow">↗</span>
+          </a>
+        ))}
+      </div>
+      <footer className="oc-foot">
+        <span>{contact.footer.left}</span>
+        <span className="oc-foot-mid">&ldquo;{contact.footer.middle}&rdquo;</span>
+        <span>{contact.footer.right}</span>
+      </footer>
     </section>
   );
 }

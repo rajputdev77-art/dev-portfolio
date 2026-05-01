@@ -1,9 +1,10 @@
 ---
-title: "Why I Built an AI Lead Qualifier Instead of Using One"
+title: "Why I Built an AI Lead Qualifier Instead of Using One."
 slug: "designing-ai-lead-qualifier"
-date: "2026-04-11"
-description: "The design decisions, tradeoffs, and lessons from building an AI-powered lead qualification pipeline from scratch."
+date: "April 2026"
+description: "Design decisions, tradeoffs, and lessons from building an AI-powered lead qualification pipeline from scratch — n8n, Groq LLaMA 3.3, and a hard look at where 'off-the-shelf' stops working."
 order: 1
+read: "12 min"
 ---
 
 ## Why I Built an AI Lead Qualifier Instead of Using One

@@ -1,10 +1,12 @@
 ---
-title: "Personal Knowledge Management System — Obsidian + Claude Code + n8n"
+title: "Personal Knowledge System"
 slug: "personal-knowledge-system"
-outcome: "A Second Brain that captures, processes, and compounds everything I learn — eliminating context amnesia across AI sessions"
+outcome: "A Second Brain that compounds — eliminating context amnesia across AI sessions."
 role: "Self-initiated builder"
 timeline: "2026"
-order: 5
+order: 8
+kind: "diagram"
+tag: "Obsidian · Claude Code · n8n"
 ---
 
 ## Case study coming soon.

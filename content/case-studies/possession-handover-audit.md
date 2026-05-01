@@ -1,10 +1,22 @@
 ---
-title: "Operations Leadership — Real Estate (2023–Present)"
+title: "Real-Estate Operations Leadership"
 slug: "possession-handover-audit"
-outcome: "Zero handover rejections across 300+ residential units; 35% faster query resolution; 20% CSAT lift"
+outcome: "Zero handover rejections. −35% resolution time. +20% CSAT."
 role: "Client Operations & Coordination Executive, County Group"
 timeline: "2023-Present"
-order: 6
+order: 2
+kind: "metric"
+tag: "300+ units · 7 towers · 3 projects"
+metrics:
+  - num: "−35"
+    unit: "%"
+    label: "resolution time"
+  - num: "+20"
+    unit: "%"
+    label: "CSAT"
+  - num: "300"
+    unit: "u"
+    label: "portfolio"
 ---
 
 ## Context

@@ -1,10 +1,12 @@
 ---
-title: "AI Lead Qualification Pipeline — n8n + Claude"
+title: "AI Lead Qualification Pipeline"
 slug: "local-ai-agents-n8n"
-outcome: "Automated lead scoring pipeline — form to AI qualification to sales alert in under 30 seconds"
+outcome: "Form to AI qualification to sales alert in under 30 seconds."
 role: "Self-initiated builder"
 timeline: "2025-2026"
 order: 1
+kind: "diagram"
+tag: "n8n · Claude · Groq LLaMA 3.3"
 ---
 
 ## Context

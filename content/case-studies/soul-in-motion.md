@@ -1,10 +1,12 @@
 ---
-title: "Multi-Channel Content Automation Engine — One Input, 9+ Output Channels"
+title: "Multi-Channel Content Engine"
 slug: "soul-in-motion"
-outcome: "One journal file in, professional content across 9 platforms out — zero manual work, 11 minutes end-to-end"
+outcome: "One journal in, content across 9 platforms out — 11 min end-to-end."
 role: "Self-initiated builder"
 timeline: "2026"
-order: 3
+order: 5
+kind: "diagram"
+tag: "n8n · GPT-4 · 9+ platforms"
 ---
 
 ## Context
