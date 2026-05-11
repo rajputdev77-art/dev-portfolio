@@ -1,194 +1,190 @@
 \documentclass[a4paper,10pt]{article}
 
 % ─────────────────────────────────────────────────────────────────────────────
-%  Debu Rajput — CV
-%  ATS-friendly. Single-column. Clean, modern, no exotic fonts.
-%  Compile on Overleaf with pdfLaTeX.
+%  Debu Rajput — CV  (2-page target)
+%  Single-column · ATS-friendly · pdfLaTeX on Overleaf
 % ─────────────────────────────────────────────────────────────────────────────
 
-\usepackage[margin=0.55in,a4paper]{geometry}
+\usepackage[margin=0.5in,a4paper]{geometry}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{xcolor}
-\usepackage{fontawesome5}
-\usepackage{array}
 \usepackage{microtype}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage{array}
+\usepackage{tabularx}
 
-\definecolor{accent}{HTML}{0d7377}
-\definecolor{ink}{HTML}{1a1a1a}
-\definecolor{rule}{HTML}{888888}
+\definecolor{accent}{HTML}{0D7377}
+\definecolor{ink}{HTML}{222222}
+\definecolor{muted}{HTML}{6E6E6E}
+\definecolor{rule}{HTML}{B8B8B8}
 
+% Section title — small caps, accent color, ruled line on the same baseline
 \titleformat{\section}
-  {\large\scshape\color{accent}}
-  {}{0pt}{}[\vspace{-6pt}\color{rule}\titlerule\vspace{2pt}]
-\titlespacing*{\section}{0pt}{10pt}{4pt}
+  {\vspace{2pt}\large\scshape\color{accent}}
+  {}{0pt}
+  {}
+  [\vspace{-7pt}{\color{rule}\titlerule[0.4pt]}\vspace{2pt}]
+\titlespacing*{\section}{0pt}{8pt}{3pt}
 
-\setlist[itemize]{leftmargin=*,topsep=2pt,itemsep=1pt,parsep=0pt}
+\setlist[itemize]{
+  leftmargin=14pt,
+  topsep=2pt,
+  itemsep=0pt,
+  parsep=2pt,
+  label={\color{accent}\textbullet}
+}
 
 \pagenumbering{gobble}
 \setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
 
-% Helper: experience block (company, role, dates, location)
+\renewcommand{\arraystretch}{1.0}
+
+% ─── Helpers ─────────────────────────────────────────────────────────────────
+
+% Experience header — company (bold) + dates (right);  role (italic) + location (right)
 \newcommand{\experience}[4]{%
-  \noindent\textbf{#1} \hfill \textit{#3}\\
-  \textit{#2} \hfill \textit{#4}\\[2pt]
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1} & \textit{\color{muted}#3} \\
+    \textit{#2} & \textit{\color{muted}#4} \\
+  \end{tabularx}\vspace{2pt}%
 }
 
-% Helper: education block
+% Education — institution + dates;  degree below
 \newcommand{\education}[3]{%
-  \noindent\textbf{#1} \hfill \textit{#3}\\
-  \textit{#2}\\[2pt]
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1} & \textit{\color{muted}#3} \\
+  \end{tabularx}\\[-1pt]
+  \textit{#2}\vspace{3pt}%
 }
 
-% Helper: project block (name, one-liner, stack)
+% Project — one entry: name, one-line description, stack on a dimmed line below
 \newcommand{\project}[3]{%
-  \noindent\textbf{#1} \textcolor{rule}{---} #2\\
-  \textcolor{rule}{\small\textit{Stack:} #3}\\[3pt]
+  \textbf{#1}\,{\color{muted}---}\,#2\\[-1pt]
+  {\footnotesize\color{muted}\textit{Stack:} #3}\vspace{4pt}%
 }
 
+% ─── Document ────────────────────────────────────────────────────────────────
 \begin{document}
 
-% ─────────────────────────────────────────────────────────────────────────────
-%  Header
-% ─────────────────────────────────────────────────────────────────────────────
+% ─── Header ──────────────────────────────────────────────────────────────────
 \begin{center}
-  {\Huge\bfseries Debu Rajput}\\[4pt]
-  {\small +91-9810893714 \quad\textbar\quad rajputdev77@gmail.com \quad\textbar\quad linkedin.com/in/devrajput07 \quad\textbar\quad Delhi NCR, India}\\[3pt]
-  {\small\itshape Client Operations \& CRM Management \quad\textbar\quad AI Automation \& Workflow Engineering \quad\textbar\quad MBA}
+  {\Huge\bfseries Debu Rajput}\\[3pt]
+  {\small +91-9810893714 \, \textbar \, rajputdev77@gmail.com \, \textbar \, linkedin.com/in/devrajput07 \, \textbar \, Delhi NCR, India}\\[2pt]
+  {\small\itshape\color{accent}Client Operations \& CRM Management \, \textbar \, AI Automation \& Workflow Engineering \, \textbar \, MBA}
 \end{center}
 
-\vspace{-4pt}
+\vspace{-2pt}
 
-% ─────────────────────────────────────────────────────────────────────────────
-%  Professional Summary
-% ─────────────────────────────────────────────────────────────────────────────
+% ─── Summary ─────────────────────────────────────────────────────────────────
 \section*{Professional Summary}
-Results-oriented Client Operations \& CRM professional with an MBA and 3+ years of experience owning end-to-end operational workflows, multi-stakeholder coordination, and client lifecycle management across large-scale projects. Demonstrated ability to design process improvements that measurably reduce resolution time and improve client satisfaction at scale. Recently extended this operations rigor into AI automation, building and shipping 10+ production AI systems across n8n, Python, Claude, Groq, and Gemini --- workflow engineering, lead qualification pipelines, content automation engines, and voice-first AI assistants. Skilled communicator, public speaker, and cross-functional collaborator with a track record of turning operational complexity into structured, repeatable outcomes.
+Client Operations \& CRM professional with an MBA and 3+ years owning end-to-end operational workflows, multi-stakeholder coordination, and client lifecycle management across large-scale projects. Demonstrated track record of redesigning SOPs that measurably cut resolution time and lift CSAT at scale. Recently extended this operations rigor into AI automation --- building and shipping 10+ production AI systems across n8n, Python, Claude, Groq, and Gemini for workflow engineering, lead qualification, content automation, knowledge management, and voice-first AI assistants.
 
-% ─────────────────────────────────────────────────────────────────────────────
-%  Core Competencies
-% ─────────────────────────────────────────────────────────────────────────────
+% ─── Core Competencies ───────────────────────────────────────────────────────
 \section*{Core Competencies}
-Stakeholder \& Client Management \textperiodcentered{} CRM Operations \& Team Leadership \textperiodcentered{} End-to-End Process Ownership \textperiodcentered{} SOP Design \& Optimization \textperiodcentered{} Cross-functional Coordination \textperiodcentered{} Project Lifecycle Management \textperiodcentered{} AI Automation \& Workflow Engineering (n8n, Python) \textperiodcentered{} LLM Integration (Claude, Groq, Gemini, Ollama) \textperiodcentered{} Compliance \& Documentation \textperiodcentered{} Public Speaking \& Communication \textperiodcentered{} Data Integrity \& Reporting \textperiodcentered{} Escalation Management \textperiodcentered{} Data-Driven Decision Making
+\small
+Stakeholder \& Client Management $\cdot$ CRM Operations \& Team Leadership $\cdot$ End-to-End Process Ownership $\cdot$ SOP Design \& Optimization $\cdot$ Cross-functional Coordination $\cdot$ Project Lifecycle Management $\cdot$ AI Automation \& Workflow Engineering (n8n, Python) $\cdot$ LLM Integration (Claude, Groq, Gemini, Ollama) $\cdot$ Compliance \& Documentation $\cdot$ Public Speaking \& Communication $\cdot$ Data Integrity \& Reporting $\cdot$ Escalation Management $\cdot$ Data-Driven Decision Making
+\normalsize
 
-% ─────────────────────────────────────────────────────────────────────────────
-%  Professional Experience
-% ─────────────────────────────────────────────────────────────────────────────
+% ─── Professional Experience ────────────────────────────────────────────────
 \section*{Professional Experience}
 
 \experience{Paras Buildtech}{Assistant Manager --- CRM}{Apr 2026 -- Present}{Gurgaon, Haryana}
 \begin{itemize}
-  \item Manage day-to-day operations of the CRM team, overseeing performance, workload allocation, and adherence to service-level standards across the post-sale client lifecycle.
-  \item Coordinate cross-functional processes between sales, finance, legal, and technical teams to resolve client queries and eliminate handoff bottlenecks across the residential project portfolio.
-  \item Oversee CRM system usage and team performance --- monitor query resolution time, escalation patterns, and customer satisfaction KPIs to drive continuous process improvement.
-  \item Ensure data integrity and reporting standards across CRM records, enabling clean leadership-level reporting on operational health and client lifecycle status.
+  \item Manage day-to-day operations of the CRM team --- overseeing performance, workload allocation, and adherence to service-level standards across the post-sale client lifecycle.
+  \item Coordinate cross-functional processes between sales, finance, legal, and technical teams to resolve client queries and eliminate handoff bottlenecks.
+  \item Oversee CRM system usage and team performance --- monitor query resolution time, escalation patterns, and CSAT KPIs to drive continuous process improvement.
+  \item Ensure data integrity and reporting standards across CRM records, enabling clean leadership-level reporting on operational health.
 \end{itemize}
 
-\vspace{2pt}
+\vspace{4pt}
 
 \experience{County Group}{Client Operations \& Coordination Executive}{Jul 2023 -- Apr 2026}{Noida, Uttar Pradesh}
 \begin{itemize}
-  \item Owned the complete post-sale operational lifecycle for 300+ residential units across 3 active projects spanning 7 towers --- from booking confirmation through final possession handover --- managing all documentation, customer communications, legal compliance checks, and inter-departmental coordination.
-  \item Served as the single operational point of contact for clients from unit booking to registry, coordinating simultaneously with sales, finance, legal, and technical teams to resolve cross-functional dependencies and eliminate process bottlenecks.
-  \item Led the end-to-end possession handover process --- audited unit files for documentation completeness, legal compliance, and pending clearances before escalating to senior management approval and registry team, ensuring zero handover rejections.
-  \item Designed and implemented SOP-driven workflow improvements across client query management, achieving a \textbf{35\% reduction in resolution time} and measurably improving operational efficiency at scale.
-  \item Drove a \textbf{20\% improvement in client satisfaction scores} through structured service interventions, proactive client communication frameworks, and data-backed escalation resolution strategies.
-  \item Built and maintained CRM dashboards tracking key service performance KPIs, enabling leadership-level visibility into operational health and informing company-wide service policy decisions.
-  \item Presented operational insights and process recommendations directly to senior leadership, influencing strategic revisions to client service workflows.
+  \item Owned the complete post-sale operational lifecycle for \textbf{300+ residential units across 3 active projects spanning 7 towers} --- documentation, customer communications, legal compliance checks, and inter-departmental coordination from booking to possession.
+  \item Served as single operational point of contact for clients from booking to registry; coordinated daily with sales, finance, legal, and technical teams to resolve cross-functional dependencies.
+  \item Led the end-to-end possession handover process --- audited unit files for documentation, compliance, and clearances before escalation; achieved \textbf{zero handover rejections}.
+  \item Designed SOP-driven workflow improvements across client query management --- \textbf{35\% reduction in resolution time}.
+  \item Drove a \textbf{20\% improvement in client satisfaction scores} through structured service interventions and proactive client communication frameworks.
+  \item Built and maintained CRM dashboards tracking service-performance KPIs; presented operational insights to senior leadership, influencing strategic revisions to client service workflows.
 \end{itemize}
 
-\vspace{2pt}
+\vspace{4pt}
 
 \experience{Freelance}{Special Event Manager \& Emcee}{Oct 2022 -- Apr 2023}{Delhi, India}
 \begin{itemize}
-  \item Led full project lifecycle management for an international panel event (90+ attendees) --- including budgeting, vendor negotiations, logistics, and multi-stakeholder coordination --- delivering \textbf{97\% attendee satisfaction}.
-  \item Directed a 7-member cross-functional team, ensuring on-time, high-quality delivery under significant time and resource constraints.
-  \item Served as Emcee for an international conference, demonstrating advanced public communication, adaptability, and executive presence under pressure.
+  \item Led full project lifecycle of an international panel event (90+ attendees) --- budgeting, vendor negotiations, logistics, multi-stakeholder coordination --- delivering \textbf{97\% attendee satisfaction}.
+  \item Directed a 7-member cross-functional team under significant time and resource constraints; served as Emcee for an international conference.
 \end{itemize}
 
-\vspace{2pt}
+\vspace{4pt}
 
 \experience{Conscient Infrastructure Pvt. Ltd.}{Human Resources Intern}{Oct 2019 -- Apr 2020}{Gurugram, Haryana}
 \begin{itemize}
-  \item Supported onboarding operations and ERP-based data management, improving HR process efficiency.
-  \item Streamlined internal communication workflows, contributing to a \textbf{20\% reduction in internal escalations}.
+  \item Supported onboarding operations and ERP-based data management; streamlined internal communication workflows --- \textbf{20\% reduction in internal escalations}.
 \end{itemize}
 
-% ─────────────────────────────────────────────────────────────────────────────
-%  Selected Projects — AI Automation & Workflow Engineering
-% ─────────────────────────────────────────────────────────────────────────────
+% ─── Selected Projects ──────────────────────────────────────────────────────
 \section*{Selected Projects --- AI Automation \& Workflow Engineering}
 
-\project{Soul in Motion --- 9-Platform Content Automation Engine}{Zero-touch content engine. One Word file with timestamped journal entries is parsed, expanded by AI into 5 formats, rendered into an animated reel, and auto-published to 9 platforms (LinkedIn, Dev.to, Hashnode, WordPress, Blogger, Instagram, YouTube Short + Video, Medium queue). First live end-to-end run on 2026-04-11.}{Python 3, Groq (Llama 3.3 70B), MoviePy, Cloudinary, Instagram Graph API, YouTube Data API v3, Blogger \& WordPress OAuth2, n8n, Windows Task Scheduler}
+\project{Soul in Motion --- 9-Platform Content Automation Engine}{One Word file with timestamped journal entries is parsed, expanded by AI into 5 content formats, rendered into an animated reel, and auto-published to 9 platforms (LinkedIn, Dev.to, Hashnode, WordPress, Blogger, Instagram, YouTube Short + Video, Medium). First live end-to-end run April 2026.}{Python 3, Groq Llama 3.3 70B, MoviePy, Cloudinary, Instagram Graph API, YouTube Data API v3, Blogger \& WordPress OAuth2, n8n}
 
-\project{Hyperliquid Jarvis --- LLM-in-the-Loop Paper-Trading Agent}{Autonomous paper-trading agent for Hyperliquid perpetuals + Alpaca US equities. Pulls live market data, computes indicators (EMA, RSI, MACD, ATR), asks Gemini 2.5 Flash for buy/sell/hold per asset, validates against hard risk limits, fills into a local SQLite PaperBroker. Self-healing Cloudflare tunnel, \$0/month infra, public live dashboard.}{Python 3.13, hyperliquid-python-sdk, alpaca-py, google-genai, FastAPI, SQLite, Cloudflare Tunnel, Next.js 14 (Vercel dashboard)}
+\project{Hyperliquid Jarvis --- LLM-in-the-Loop Paper-Trading Agent}{Autonomous paper-trading agent for Hyperliquid perpetuals + Alpaca US equities. Hourly Gemini calls validated against hard risk limits; SQLite PaperBroker; self-healing Cloudflare tunnel; \$0/month infra; public live dashboard.}{Python 3.13, hyperliquid-python-sdk, alpaca-py, google-genai, FastAPI, SQLite, Cloudflare Tunnel, Next.js 14 (Vercel)}
 
-\project{Job Application Agent}{Fully automated job pipeline. 5 scrapers (LinkedIn, Naukri, Indeed, Welcome to the Jungle, Tier 1 career pages) run every 4-6h; local Qwen 2.5 7B scores each job 0-100; matches $\geq$70 get a tailored CV + cover letter; three executor agents auto-submit via Playwright. Every application logged to Google Sheets with a local HTML dashboard.}{n8n (11 workflows), Ollama + Qwen 2.5 7B, Playwright + Chromium, Node.js, Python, Google Sheets API}
+\project{Job Application Agent}{Fully automated job pipeline. 5 scrapers run every 4--6h; local Qwen 2.5 7B scores each job 0--100; matches $\geq$70 get a tailored CV + cover letter; three executor agents auto-submit via Playwright; everything logged to Google Sheets.}{n8n (11 workflows), Ollama + Qwen 2.5 7B, Playwright + Chromium, Node.js, Python, Google Sheets API}
 
-\project{AI Lead Qualification Pipeline}{Form-to-AI-qualification-to-sales-alert in under 30 seconds. AI scores inbound leads as HOT/WARM/COLD with rationale, writes the score back to Google Sheets, and triggers email alerts on hot leads. Built as a repeatable freelance service for real-estate, insurance, and education clients.}{n8n, Groq (Llama 3.3 70B), Google Sheets, Twilio WhatsApp, Gmail API}
+\project{AI Lead Qualification Pipeline}{Form-to-AI-qualification-to-sales-alert in under 30 seconds. Scores inbound leads HOT/WARM/COLD with rationale; writes back to Google Sheets; triggers email alerts on hot leads. Repeatable freelance service for real-estate, insurance, and education clients.}{n8n, Groq Llama 3.3 70B, Google Sheets, Twilio WhatsApp, Gmail API}
 
-\project{JARVIS --- Voice-First Personal AI Assistant}{24/7 voice assistant. Wake-word listener, 18-intent AI classifier, long-term memory across sessions, browser automation for WhatsApp and Gmail, system-level controls via Win32 API. Built from scratch in Python 3.11, runs entirely on local hardware. \$0/month, fully on-machine.}{Python 3.11, Groq (Llama 3.3 70B), edge-tts, Mem0 + Qdrant, Playwright, ctypes (Win32 API), SpeechRecognition}
+\project{JARVIS --- Voice-First Personal AI Assistant}{24/7 voice assistant. Wake-word listener, 18-intent classifier, long-term memory across sessions, browser automation for WhatsApp and Gmail, system-level controls via Win32 API. Runs entirely on local hardware, \$0/month.}{Python 3.11, Groq Llama 3.3 70B, edge-tts, Mem0 + Qdrant, Playwright, ctypes (Win32 API)}
 
-\project{AI News Daily --- YouTube + LinkedIn Pipeline}{Fully autonomous daily content pipeline. Researches trending news (Google Trends + Reddit + NewsAPI), Groq writes a 4-5 min script, Edge TTS narrates, Pexels pulls visuals, FFmpeg assembles a 1080p video, YouTube Data API uploads it, LinkedIn REST API auto-posts a promo. Runs daily via Windows Task Scheduler.}{Python 3.14, Groq, Microsoft Edge TTS, Pexels API, NewsAPI, FFmpeg 8.1, YouTube Data API v3, LinkedIn REST API}
+\project{AI News Daily --- YouTube + LinkedIn Pipeline}{Autonomous daily content pipeline. Researches trending news (Google Trends + Reddit + NewsAPI), Groq writes a 4--5 min script, Edge TTS narrates, Pexels pulls visuals, FFmpeg assembles 1080p video, YouTube + LinkedIn auto-post.}{Python 3.14, Groq, Edge TTS, Pexels API, NewsAPI, FFmpeg 8.1, YouTube Data API v3, LinkedIn REST API}
 
-\project{Second Brain --- Personal Knowledge System}{3-layer compounding knowledge system: CLAUDE.md auto-memory + Obsidian vault with smart-connections MCP + ingestion pipeline. 8 n8n workflows for Telegram capture, YouTube transcription, Whisper voice processing, bookmark watching, daily and weekly digests.}{Obsidian (smart-connections, qmd MCP servers), n8n, Telegram Bot API, Python (Whisper, yt-dlp), Flask, Claude API + MCP}
+\project{Second Brain --- Personal Knowledge System}{3-layer compounding knowledge system: CLAUDE.md auto-memory + Obsidian vault with smart-connections MCP + ingestion pipeline. 8 n8n workflows handle Telegram capture, YouTube transcription, Whisper voice notes, bookmarks, and weekly digests.}{Obsidian (smart-connections, qmd MCP), n8n, Telegram Bot API, Python (Whisper, yt-dlp), Flask, Claude API + MCP}
 
-\project{Aura --- Eternal Planet Guardian}{Stateful AI environmental coach built for DEV Weekend Challenge (Earth Day 2026, targeting Backboard prize). Three-column chat UI; remembers habits, streaks, and honest moments; computes a pure, weighted, log-scaled impactScore. Client-only, no backend.}{React + Vite, Tailwind CSS, Google Gemini 2.5 Flash, Backboard SDK, Vercel}
+\project{Aura --- Eternal Planet Guardian}{Stateful AI climate coach built for DEV Weekend Challenge (Earth Day 2026). Three-column chat UI; remembers habits and streaks; computes a pure, weighted, log-scaled impactScore. Client-only, deployed on Vercel.}{React + Vite, Tailwind CSS, Google Gemini 2.5 Flash, Backboard SDK, Vercel}
 
-\project{Instagram Growth System}{AI-powered analyzer + content engine. 12-dimension content analysis (engagement, hooks, hashtags, timing, hook$\rightarrow$tension$\rightarrow$payoff scoring on each reel); generates 5 reel structures with beat-by-beat scripts and a 7-day content calendar; renders an HTML dashboard. Connection priority cascade: Graph API $\rightarrow$ Playwright scraper $\rightarrow$ cached data.}{Python, Instagram Graph API, Playwright + Chromium, Google Drive API, HTML dashboard}
+\project{Instagram Growth System}{AI-powered analyzer + content engine. 12-dimension analysis (engagement, hooks, hashtags, timing, hook$\rightarrow$tension$\rightarrow$payoff scoring); generates 5 reel structures with beat-by-beat scripts and a 7-day content calendar.}{Python, Instagram Graph API, Playwright + Chromium, Google Drive API, HTML dashboard}
 
-\project{Content Machine --- 30-Day Launch System \textcolor{accent}{(Product)}}{Buyer-facing digital product. 30 days of pre-written Instagram + LinkedIn content (hooks, captions, hashtags, reel scripts, Story scripts, LinkedIn long-form versions, 10 DM templates) paired with 4 importable n8n workflows + Python orchestrator. Launches on Gumroad.}{Markdown content kit, n8n workflows, Python orchestrator, Gumroad}
+\project{Content Machine --- 30-Day Launch System \textnormal{\color{accent}(Product)}}{Buyer-facing digital product. 30 days of pre-written Instagram + LinkedIn content (hooks, captions, hashtags, reel scripts, DM templates) paired with 4 importable n8n workflows + Python orchestrator. Launches on Gumroad.}{Markdown content kit, n8n workflows, Python orchestrator, Gumroad}
 
-% ─────────────────────────────────────────────────────────────────────────────
-%  Key Achievements
-% ─────────────────────────────────────────────────────────────────────────────
+% ─── Key Achievements ───────────────────────────────────────────────────────
 \section*{Key Achievements}
 \begin{itemize}
-  \item \textbf{35\% faster resolution time} --- Redesigned client query SOPs at County Group, improving operational throughput across 300+ active units.
-  \item \textbf{20\% CSAT improvement} --- Implemented structured client service interventions across 3 residential projects.
-  \item \textbf{97\% event satisfaction} --- Delivered a complex international panel event with 90+ attendees, 7-person team, and full P\&L ownership.
-  \item \textbf{Zero possession handover rejections} --- Led file audit and compliance verification process for unit handovers, ensuring clean registry escalations.
-  \item \textbf{10+ AI systems shipped in production} --- Built and deployed AI automation pipelines across content generation, lead qualification, knowledge management, voice assistants, and autonomous trading.
+  \item \textbf{35\% faster resolution time} --- Redesigned client query SOPs at County Group, improving throughput across 300+ active units.
+  \item \textbf{20\% CSAT improvement} --- Structured client service interventions across 3 residential projects.
+  \item \textbf{97\% event satisfaction} --- International panel event with 90+ attendees and 7-person team.
+  \item \textbf{Zero possession handover rejections} --- File audit and compliance verification process.
+  \item \textbf{10+ AI systems shipped in production} --- Across content generation, lead qualification, knowledge management, voice assistants, and autonomous trading.
 \end{itemize}
 
-% ─────────────────────────────────────────────────────────────────────────────
-%  Technical Skills
-% ─────────────────────────────────────────────────────────────────────────────
+% ─── Technical Skills ───────────────────────────────────────────────────────
 \section*{Technical Skills}
-\noindent\textbf{AI \& Automation:} n8n, Claude API, Claude Code, Groq, Google Gemini, Ollama (local LLMs), prompt engineering, AI agent design, RAG, vector memory (Mem0, Qdrant)\\[2pt]
-\textbf{Development:} Python 3, JavaScript, TypeScript, Next.js, React, FastAPI, Node.js\\[2pt]
-\textbf{Automation \& Browser:} Playwright + Chromium, FFmpeg, MoviePy, watchdog, BeautifulSoup\\[2pt]
-\textbf{Data \& Integrations:} Google Sheets API, Instagram Graph API, YouTube Data API v3, Twilio WhatsApp, Gmail API, LinkedIn REST API, OAuth2, REST, GraphQL, SQLite\\[2pt]
-\textbf{Cloud \& Infra:} Vercel, Railway, Cloudflare Tunnel, GitHub Actions, Docker, Windows Task Scheduler\\[2pt]
-\textbf{Tools:} Obsidian (knowledge management), Git/GitHub, Telegram Bots, Notion, MCP servers\\[2pt]
-\textbf{Business \& Operations:} CRM operations \& team management, product thinking, workflow design, SOP design, stakeholder management, compliance \& documentation, CRM dashboards
+\small
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+  \textbf{AI \& Automation:} & n8n, Claude API, Claude Code, Groq, Gemini, Ollama, prompt engineering, AI agent design, RAG, vector memory (Mem0, Qdrant) \\[2pt]
+  \textbf{Development:} & Python 3, JavaScript, TypeScript, Next.js, React, FastAPI, Node.js \\[2pt]
+  \textbf{Browser \& Media:} & Playwright + Chromium, FFmpeg, MoviePy, watchdog, BeautifulSoup \\[2pt]
+  \textbf{Integrations:} & Google Sheets / YouTube Data API v3 / Gmail / Instagram Graph, Twilio WhatsApp, LinkedIn REST, OAuth2, GraphQL, SQLite \\[2pt]
+  \textbf{Cloud \& Infra:} & Vercel, Railway, Cloudflare Tunnel, GitHub Actions, Docker, Windows Task Scheduler \\[2pt]
+  \textbf{Tools:} & Obsidian, Git/GitHub, Telegram Bots, Notion, MCP servers \\[2pt]
+  \textbf{Business:} & CRM operations \& team management, product thinking, workflow design, SOP design, compliance, dashboards \\
+\end{tabularx}
+\normalsize
 
-% ─────────────────────────────────────────────────────────────────────────────
-%  Education
-% ─────────────────────────────────────────────────────────────────────────────
+% ─── Education ──────────────────────────────────────────────────────────────
 \section*{Education}
 \education{Ambedkar University, Delhi}{Master of Business Administration (MBA) --- Innovation, Entrepreneurship \& Venture Development}{Dec 2021 -- Nov 2023}
 \education{Ramanujan College, University of Delhi}{B.A. (Hons) Philosophy}{Jul 2016 -- Jun 2019}
 
-% ─────────────────────────────────────────────────────────────────────────────
-%  Certifications
-% ─────────────────────────────────────────────────────────────────────────────
-\section*{Certifications}
-Developing Interpersonal Skills \quad\textbar\quad Active Listening: Enhancing Communication Skills \quad\textbar\quad Introduction to Events Management
-
-% ─────────────────────────────────────────────────────────────────────────────
-%  Languages
-% ─────────────────────────────────────────────────────────────────────────────
-\section*{Languages}
-\textbf{English} --- Full Professional Proficiency \quad\textbar\quad \textbf{Hindi} --- Native / Bilingual \quad\textbar\quad \textbf{Spanish} --- Elementary
-
-% ─────────────────────────────────────────────────────────────────────────────
-%  Additional
-% ─────────────────────────────────────────────────────────────────────────────
-\section*{Additional}
-State-level Cricket player; multi-award winner in performing arts (First Prize, Best Production, Most Original Adaptation) --- demonstrates competitive drive, teamwork, and stage presence.
+% ─── Certifications · Languages · Additional (one compact section) ──────────
+\section*{Certifications \, $\cdot$ \, Languages \, $\cdot$ \, Additional}
+\small
+\textbf{Certifications:} Developing Interpersonal Skills \, $\cdot$ \, Active Listening \, $\cdot$ \, Introduction to Events Management \\[2pt]
+\textbf{Languages:} English (Full Professional) \, $\cdot$ \, Hindi (Native) \, $\cdot$ \, Spanish (Elementary) \\[2pt]
+\textbf{Additional:} State-level Cricket player; multi-award winner in performing arts (First Prize, Best Production, Most Original Adaptation) --- competitive drive, teamwork, stage presence.
+\normalsize
 
 \end{document}
