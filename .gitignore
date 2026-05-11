@@ -41,3 +41,4 @@ seed-main
 next-env.d.ts
 
 .vercel
+.claude/worktrees/
