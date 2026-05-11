@@ -95,7 +95,7 @@ export const manifest = {
 export const cases = {
   act: "ACT III",
   actSub: "Systems shipped",
-  headline: ["Eight things I built that", "kept running after I left the room."],
+  headline: ["Twelve things I've shipped that", "kept running after I left the room."],
 };
 
 // Thinking — Act IV — essay section header

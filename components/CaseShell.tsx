@@ -6,6 +6,7 @@ export default function CaseShell({
   tag,
   outcome,
   href,
+  isProduct,
   children,
 }: {
   n: string;
@@ -13,6 +14,7 @@ export default function CaseShell({
   tag: string;
   outcome: string;
   href: string;
+  isProduct?: boolean;
   children: React.ReactNode;
 }) {
   return (
@@ -20,11 +22,16 @@ export default function CaseShell({
       <article className="oc-case">
         <div className="oc-case-art">{children}</div>
         <div className="oc-case-meta">
-          <span className="oc-case-n">{n}</span>
+          <span className="oc-case-n">
+            {n}
+            {isProduct && <span className="oc-case-badge">Product</span>}
+          </span>
           <h3 className="oc-case-title">{title}</h3>
           <p className="oc-case-tag">{tag}</p>
           <p className="oc-case-outcome">{outcome}</p>
-          <span className="oc-case-cta">Read the build →</span>
+          <span className="oc-case-cta">
+            {isProduct ? "See the product →" : "Read the build →"}
+          </span>
         </div>
       </article>
     </Link>

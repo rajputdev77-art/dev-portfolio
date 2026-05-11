@@ -18,6 +18,7 @@ export interface CaseStudy {
   kind?: "diagram" | "log" | "metric";
   tag?: string;
   metrics?: { num: string; unit: string; label: string }[];
+  type?: "product";
 }
 
 export interface Essay {
@@ -49,6 +50,7 @@ export function getCaseStudies(): CaseStudy[] {
       kind: data.kind,
       tag: data.tag,
       metrics: data.metrics,
+      type: data.type,
       content,
     };
   });

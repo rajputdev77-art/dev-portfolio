@@ -12,6 +12,7 @@ export default function CaseMetric(props: {
   tag: string;
   outcome: string;
   href: string;
+  isProduct?: boolean;
   metrics?: { num: string; unit: string; label: string }[];
 }) {
   const metrics = props.metrics?.length ? props.metrics : DEFAULT_METRICS;

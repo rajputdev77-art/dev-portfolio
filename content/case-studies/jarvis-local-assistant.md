@@ -4,7 +4,7 @@ slug: "jarvis-local-assistant"
 outcome: "24/7 voice assistant with long-term memory — $0/mo, fully on-machine."
 role: "Self-initiated builder"
 timeline: "2025-2026"
-order: 6
+order: 9
 kind: "log"
 tag: "Local LLM · WhatsApp · Gmail · system control"
 ---

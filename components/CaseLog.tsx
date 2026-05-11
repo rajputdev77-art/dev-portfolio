@@ -7,6 +7,7 @@ export default function CaseLog(props: {
   tag: string;
   outcome: string;
   href: string;
+  isProduct?: boolean;
 }) {
   const lines = [
     "[ok]   ingest ▸ google-doc       1 input",

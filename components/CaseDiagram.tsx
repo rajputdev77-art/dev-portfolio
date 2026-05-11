@@ -8,6 +8,7 @@ export default function CaseDiagram(props: {
   tag: string;
   outcome: string;
   href: string;
+  isProduct?: boolean;
 }) {
   const [pulse, setPulse] = useState(0);
   useEffect(() => {

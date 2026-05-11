@@ -34,6 +34,7 @@ export default function CaseStudies() {
             tag: c.tag || c.role || "",
             outcome: c.outcome,
             href: `/case-studies/${c.slug}`,
+            isProduct: c.type === "product",
           };
           if (c.kind === "log") return <CaseLog key={c.slug} {...props} />;
           if (c.kind === "metric")
