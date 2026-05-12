@@ -1,7 +1,7 @@
 ---
 title: "Aura — Eternal Planet Guardian"
 slug: "aura-eternal-planet-guardian"
-outcome: "Stateful AI climate coach with weighted impact scoring — DEV Weekend Challenge entry, Earth Day 2026"
+outcome: "Stateful AI climate coach with weighted impact scoring and habit memory — deployed on Vercel. Built for DEV Weekend Challenge, Earth Day 2026."
 role: "Self-initiated builder"
 timeline: "April 2026 — one weekend"
 order: 10

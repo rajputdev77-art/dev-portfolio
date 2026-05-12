@@ -103,24 +103,10 @@ export const thinking = {
   act: "ACT IV",
   actSub: "How I think",
   headline: ["Notes from the", "operations underground."],
-  // Essays #2 and #3 here are placeholders — when you're ready to publish them,
-  // create real files in /content/essays/ and they'll replace these.
-  placeholderEssays: [
-    {
-      n: "02",
-      title: "The unsexy middle layer.",
-      desc: "Why the part of the AI stack nobody posts about — orchestration, retries, schemas, the audit log — is the only part with a moat.",
-      read: "9 min",
-      date: "Coming soon",
-    },
-    {
-      n: "03",
-      title: "Stagecraft for systems.",
-      desc: "What directing plays taught me about designing workflows: blocking, beats, the dramatic value of a held silence in a Slack thread.",
-      read: "6 min",
-      date: "Coming soon",
-    },
-  ],
+  // No placeholders — only published essays appear in the grid.
+  placeholderEssays: [] as Array<{ n: string; title: string; desc: string; read: string; date: string }>,
+  // Shown below the essay grid when there are fewer than 3 essays.
+  more: "More essays in progress — follow on LinkedIn for updates.",
 };
 
 // Path — Act V — experience timeline
@@ -131,10 +117,17 @@ export const path = {
   sub: "An unusual sequence. The throughline is the same: _build the system, mind the humans inside it._",
   rows: [
     {
-      year: "2023 →",
+      year: "2026 →",
+      role: "Assistant Manager — CRM",
+      org: "Paras Buildtech · Gurgaon, Haryana",
+      note: "Managing day-to-day CRM team operations across the post-sale client lifecycle — overseeing workload allocation, resolution KPIs, and cross-functional coordination between sales, finance, legal, and technical teams.",
+      tag: "Current",
+    },
+    {
+      year: "2023–26",
       role: "Client Operations & Coordination",
       org: "County Group · Noida",
-      note: "Owned post-sale lifecycle for 300+ residential units. Redesigned client query SOPs. −35% resolution time. +20% CSAT.",
+      note: "Owned post-sale lifecycle for 300+ residential units. Redesigned client query SOPs. −35% resolution time. +20% CSAT. Jul 2023 – Apr 2026.",
       tag: "Operations",
     },
     {
@@ -179,13 +172,18 @@ export const contact = {
   headline: ["Let's build something", "that runs itself."],
   // The word "runs itself" gets the italic gradient treatment
   italicWord: "runs itself.",
-  sub: "Looking for AI automation, workflow engineering, and applied AI roles — European or globally distributed teams, full-time or contract. Also open to consulting and founding-team positions at early-stage AI startups.",
+  sub: "Open to AI automation, workflow engineering, and applied AI roles — full-time, contract, or founding-team. Remote-first and global teams preferred.",
   cards: [
     {
       label: "Email",
       value: "rajputdev77@gmail.com",
       href: "mailto:rajputdev77@gmail.com",
       primary: true,
+    },
+    {
+      label: "Book a call",
+      value: "Book 15 mins →",
+      href: "https://calendly.com/rajputdev77",
     },
     {
       label: "LinkedIn",

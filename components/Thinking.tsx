@@ -5,7 +5,6 @@ import { thinking } from "@/content/site";
 export default function Thinking() {
   const realEssays = getEssays();
 
-  // Real essays first; fill remaining slots with placeholders.
   const slots: Array<{
     n: string;
     title: string;
@@ -76,6 +75,9 @@ export default function Thinking() {
           );
         })}
       </div>
+      {thinking.more && (
+        <p className="oc-essays-more">{thinking.more}</p>
+      )}
     </section>
   );
 }

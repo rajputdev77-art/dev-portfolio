@@ -759,6 +759,16 @@ body::after {
 }
 .oc-essay:hover .oc-essay-arrow { transform: translateX(4px); color: var(--accent); }
 .oc-essay-arrow { transition: transform 0.25s, color 0.25s; }
+.oc-essays-more {
+  max-width: 1380px;
+  margin: 28px auto 0;
+  padding: 0 48px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink-3);
+  text-align: center;
+}
 
 /* ───── path / timeline ───── */
 .oc-path {
@@ -867,10 +877,13 @@ body::after {
 .oc-contact-sub { font-family: var(--serif); font-size: 19px; line-height: 1.5; color: var(--ink-2); max-width: 36em; margin: 0; }
 .oc-contact-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   width: 100%;
   margin-top: 20px;
+}
+@media (max-width: 1100px) {
+  .oc-contact-grid { grid-template-columns: repeat(2, 1fr); }
 }
 .oc-contact-card {
   display: grid;
