@@ -3,6 +3,15 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Topbar from "@/components/Topbar";
 import Nav from "@/components/Nav";
+import LiveStats from "@/components/LiveStats";
+
+// Map case-study slugs → live-data source + public dashboard URL.
+// Listed slugs render a live status panel under the outcome line.
+const LIVE_SOURCES: Record<string, { source: "soul-in-motion" | "youtube-pipeline" | "trading"; dashboardUrl?: string }> = {
+  "soul-in-motion":           { source: "soul-in-motion",   dashboardUrl: "https://soul-in-motion-dashboard.vercel.app" },
+  "youtube-automation-system":{ source: "youtube-pipeline", dashboardUrl: "https://youtube-pipeline-dashboard.vercel.app" },
+  "jarvis-trading-agent":     { source: "trading",          dashboardUrl: "https://dashboard-sigma-nine-63.vercel.app" },
+};
 
 export async function generateStaticParams() {
   const studies = getCaseStudies();
@@ -53,6 +62,13 @@ export default async function CaseStudyPage({
             </>
           )}
         </div>
+
+        {LIVE_SOURCES[params.slug] && (
+          <LiveStats
+            source={LIVE_SOURCES[params.slug].source}
+            dashboardUrl={LIVE_SOURCES[params.slug].dashboardUrl}
+          />
+        )}
 
         <div
           className="oc-detail-body"
