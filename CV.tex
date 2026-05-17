@@ -3,7 +3,6 @@
 % ─────────────────────────────────────────────────────────────────────────────
 %  Debu Rajput — CV
 %  Single-column · ATS-friendly · pdfLaTeX on Overleaf
-%  Designed for readability: 11pt base, generous spacing, rules sit BELOW titles
 % ─────────────────────────────────────────────────────────────────────────────
 
 \usepackage[a4paper,margin=0.65in,top=0.55in,bottom=0.6in]{geometry}
@@ -22,16 +21,14 @@
 \definecolor{muted}{HTML}{6A6A6A}
 \definecolor{rule}{HTML}{C0C0C0}
 
-% ─── Section heading: small caps, accent color, rule BELOW with breathing room
 \titleformat{\section}
-  {\Large\scshape\color{accent}}   % font style for the title
-  {}                                % label (none)
-  {0pt}                             % space between label and title
-  {}                                % code before the title
-  [\vspace{3pt}{\color{rule}\titlerule[0.6pt]}]   % AFTER title: rule beneath
+  {\Large\scshape\color{accent}}
+  {}
+  {0pt}
+  {}
+  [\vspace{3pt}{\color{rule}\titlerule[0.6pt]}]
 \titlespacing*{\section}{0pt}{14pt}{6pt}
 
-% ─── Itemize: gentle indent, real breathing room between bullets
 \setlist[itemize]{
   leftmargin=16pt,
   topsep=4pt,
@@ -45,9 +42,6 @@
 \setlength{\parskip}{0pt}
 \linespread{1.08}
 
-% ─── Helpers ─────────────────────────────────────────────────────────────────
-
-% Experience header — company (bold) + dates (right);  role (italic) + location (right)
 \newcommand{\experience}[4]{%
   \begin{tabularx}{\linewidth}{@{}X r@{}}
     \textbf{#1} & \textit{\color{muted}#3} \\
@@ -55,7 +49,6 @@
   \end{tabularx}\vspace{3pt}%
 }
 
-% Education — institution (bold) + dates (right);  degree on the line below
 \newcommand{\education}[3]{%
   \begin{tabularx}{\linewidth}{@{}X r@{}}
     \textbf{#1} & \textit{\color{muted}#3} \\
@@ -63,33 +56,29 @@
   \textit{#2}\vspace{6pt}%
 }
 
-% Project — name, description, then a dimmed Stack line
 \newcommand{\project}[3]{%
   \textbf{#1}\,{\color{muted}---}\,#2\\[1pt]%
   {\small\color{muted}\textit{Stack:} #3}\vspace{8pt}%
 }
 
-% ─── Document ────────────────────────────────────────────────────────────────
 \begin{document}
 
-% ─── Header ──────────────────────────────────────────────────────────────────
 \begin{center}
   {\Huge\bfseries Debu Rajput}\\[6pt]
   +91-9810893714 \ \ \textbar \ \ \href{mailto:rajputdev77@gmail.com}{rajputdev77@gmail.com} \ \ \textbar \ \ \href{https://www.linkedin.com/in/devrajput07/}{\color{accent}linkedin.com/in/devrajput07} \ \ \textbar \ \ \href{https://dev-portfolio-dun-theta.vercel.app}{\color{accent}dev-portfolio-dun-theta.vercel.app} \ \ \textbar \ \ Delhi NCR, India\\[4pt]
-  \textit{\color{accent}AI Automation \& Workflow Engineering \ \ \textbar \ \ Client Operations \& CRM Management \ \ \textbar \ \ MBA}
+  \textit{\color{accent}AI Automation Engineer \ \ \textbar \ \ Production Cloud Infrastructure \ \ \textbar \ \ Client Operations \& CRM (MBA)}
 \end{center}
 
 \vspace{2pt}
 
-% ─── Summary ─────────────────────────────────────────────────────────────────
 \section*{Professional Summary}
-Client Operations \& CRM professional with an MBA and 3+ years owning end-to-end operational workflows, multi-stakeholder coordination, and client lifecycle management across large-scale projects. Demonstrated track record of redesigning SOPs that measurably cut resolution time and lift CSAT at scale. Recently extended this operations rigor into AI automation --- building and shipping 10+ production AI systems across n8n, Python, Claude, Groq, and Gemini for workflow engineering, lead qualification, content automation, knowledge management, and voice-first AI assistants. Portfolio of 12 production AI systems: \href{https://dev-portfolio-dun-theta.vercel.app}{\color{accent}dev-portfolio-dun-theta.vercel.app}
+AI Automation Engineer who ships production systems --- not prototypes. Designed, built, and deployed a portfolio of autonomous AI workflows running 24/7 on self-hosted cloud infrastructure (Oracle Cloud ARM, \$0/month) with CI/CD, HTTPS, monitoring, auto-restart, and self-healing token refresh. Background as a CRM \& Client Operations professional (MBA, 3+ years owning end-to-end workflows across 300+ residential units) gives me a structural eye for processes, SOPs, and where automation actually creates leverage versus theatre. I build systems that survive crashes, network blips, and OAuth-token expirations at 3 AM --- not just sunny-day demos. Live portfolio: \href{https://dev-portfolio-dun-theta.vercel.app}{\color{accent}dev-portfolio-dun-theta.vercel.app}
 
-% ─── Core Competencies ───────────────────────────────────────────────────────
 \section*{Core Competencies}
-Stakeholder \& Client Management $\cdot$ CRM Operations \& Team Leadership $\cdot$ End-to-End Process Ownership $\cdot$ SOP Design \& Optimization $\cdot$ Cross-functional Coordination $\cdot$ Project Lifecycle Management $\cdot$ AI Automation \& Workflow Engineering (n8n, Python) $\cdot$ LLM Integration (Claude, Groq, Gemini, Ollama) $\cdot$ Compliance \& Documentation $\cdot$ Public Speaking \& Communication $\cdot$ Data Integrity \& Reporting $\cdot$ Escalation Management $\cdot$ Data-Driven Decision Making
+\textbf{Engineering:} AI Agent Design $\cdot$ Workflow Engineering (n8n, Python) $\cdot$ LLM Integration (Claude, Gemini, Groq, Ollama/Qwen) $\cdot$ Self-Hosted Cloud Infrastructure $\cdot$ Linux Systems (Ubuntu, systemd) $\cdot$ CI/CD (GitHub Actions) $\cdot$ Nginx + Let's Encrypt + HTTPS $\cdot$ Production Monitoring \& Self-Healing Systems $\cdot$ OAuth2 \& API Integration $\cdot$ SQLite, FastAPI, Next.js
 
-% ─── Professional Experience ────────────────────────────────────────────────
+\textbf{Operations:} Stakeholder \& Client Lifecycle Management $\cdot$ CRM Operations \& Team Leadership $\cdot$ End-to-End Process Ownership $\cdot$ SOP Design \& Optimization $\cdot$ Cross-Functional Coordination $\cdot$ Compliance \& Documentation $\cdot$ Data Integrity \& Reporting $\cdot$ Escalation Management
+
 \section*{Professional Experience}
 
 \experience{Paras Buildtech}{Assistant Manager --- CRM}{Apr 2026 -- Present}{Gurgaon, Haryana}
@@ -127,60 +116,54 @@ Stakeholder \& Client Management $\cdot$ CRM Operations \& Team Leadership $\cdo
   \item Supported onboarding operations and ERP-based data management; streamlined internal communication workflows --- \textbf{20\% reduction in internal escalations}.
 \end{itemize}
 
-% ─── Selected Projects ──────────────────────────────────────────────────────
-\section*{Selected Projects --- AI Automation \& Workflow Engineering}
+\section*{Production AI Systems --- Self-Hosted on Cloud, 24/7}
 
-\project{Soul in Motion --- 9-Platform Content Automation Engine}{One Word file with timestamped journal entries is parsed, expanded by AI into 5 content formats, rendered into an animated reel, and auto-published to 9 platforms (LinkedIn, Dev.to, Hashnode, WordPress, Blogger, Instagram, YouTube Short + Video, Medium). First live end-to-end run April 2026.}{Python 3, Groq Llama 3.3 70B, MoviePy, Cloudinary, Instagram Graph API, YouTube Data API v3, OAuth2, n8n}
-\vspace{-4pt}{\small\color{accent}\textit{Outcome:} Full end-to-end run in 11 minutes --- one input, nine platforms, zero manual steps.}\vspace{8pt}\\
+\textit{The three flagship systems below run continuously on Oracle Cloud ARM (Ubuntu 22.04, 4 vCPU, 24 GB RAM) with systemd auto-restart, nginx + Let's Encrypt HTTPS, GitHub Actions auto-deploy on push, and a custom monitoring dashboard at \href{https://rajputdev77.duckdns.org}{\color{accent}rajputdev77.duckdns.org}. Total infrastructure cost: \$0/month, indefinitely.}
 
-\project{Hyperliquid Jarvis --- LLM-in-the-Loop Paper-Trading Agent}{Autonomous paper-trading agent for Hyperliquid perpetuals + Alpaca US equities. Hourly Gemini calls validated against hard risk limits; SQLite PaperBroker; self-healing Cloudflare tunnel; \$0/month infra; public live dashboard.}{Python 3.13, hyperliquid-python-sdk, alpaca-py, google-genai, FastAPI, SQLite, Next.js 14}
+\vspace{8pt}
 
-\project{Job Application Agent}{Fully automated job pipeline. 5 scrapers run every 4--6h; local Qwen 2.5 7B scores each job 0--100; matches $\geq$70 get a tailored CV + cover letter; three executor agents auto-submit via Playwright; everything logged to Google Sheets.}{n8n (11 workflows), Ollama + Qwen 2.5 7B, Playwright + Chromium, Python, Google Sheets API}
-\vspace{-4pt}{\small\color{accent}\textit{Outcome:} Eliminated 4+ hours of daily manual job searching --- fully autonomous pipeline.}\vspace{8pt}\\
+\project{Multi-Channel Content Automation Engine --- ``Soul in Motion''}{Word file with timestamped journal entries → AI expansion into 5 content formats (mini-blog, video script, Instagram pack, LinkedIn post, master blog) → animated 1080×1920 reel rendered frame-by-frame in MoviePy → auto-publish across 9 platforms (LinkedIn, Dev.to, Hashnode, WordPress, Blogger, Instagram, YouTube Short + Video, Medium). End-to-end run in 11 minutes from save to all 9 platforms live. Migrated from Windows laptop to Oracle Cloud ARM May 2026 --- writing a cross-platform process-management shim (\texttt{psutil}-based) and using Syncthing for peer-to-peer laptop\textrightarrow cloud journal sync.}{Python 3, Groq Llama 3.3 70B, MoviePy + FFmpeg, Cloudinary, Instagram Graph API, YouTube Data API v3, OAuth2, n8n (self-hosted), Syncthing, systemd}
+\vspace{-4pt}{\small\color{accent}\textit{Outcome:} 11-minute end-to-end content pipeline; 9 platforms; zero-manual; \$0/month infra; 24/7 uptime.}\vspace{8pt}\\
 
-\project{AI Lead Qualification Pipeline}{Form-to-AI-qualification-to-sales-alert in under 30 seconds. Scores inbound leads HOT/WARM/COLD with rationale; writes back to Google Sheets; triggers email alerts on hot leads. Repeatable freelance service for real-estate, insurance, and education clients.}{n8n, Groq Llama 3.3 70B, Google Sheets, Twilio WhatsApp, Gmail API}
-\vspace{-4pt}{\small\color{accent}\textit{Outcome:} Sub-30-second lead scoring --- deployed as repeatable freelance service for real-estate and education clients.}\vspace{8pt}\\
+\project{Hyperliquid Jarvis --- Two-Market Paper-Trading Agent}{Two autonomous LLM-driven paper-trading bots (Hyperliquid crypto perps + Alpaca US equities) sharing a single \texttt{PaperBroker} core. Hourly decisions validated against hard risk limits before execution; SQLite paper broker; \textit{class-boundary} isolation (the live \texttt{Exchange} module is never imported in paper code) makes real-money orders structurally impossible. Migrated from Gemini cloud (20-req/day free-tier limit) to self-hosted Ollama with Qwen 2.5 Coder 14B on the Oracle ARM VM --- unlimited inference at \$0/month. Provisioning the free ARM VM took 145 OCI CLI retry attempts; built a documented capacity-retry script that works overnight.}{Python 3.13, hyperliquid-python-sdk, alpaca-py, Ollama + Qwen 2.5 Coder 14B, FastAPI, SQLite, Next.js 14 dashboard, GitHub Actions CI/CD}
+\vspace{-4pt}{\small\color{accent}\textit{Outcome:} 2 markets, 1 codebase, public live dashboard, \$0/month, 24/7. Live: \href{https://dashboard-sigma-nine-63.vercel.app}{\color{accent}dashboard-sigma-nine-63.vercel.app}.}\vspace{8pt}\\
 
-\project{JARVIS --- Voice-First Personal AI Assistant}{24/7 voice assistant. Wake-word listener, 18-intent classifier, long-term memory across sessions, browser automation for WhatsApp and Gmail, system-level controls via Win32 API. Runs entirely on local hardware, \$0/month.}{Python 3.11, Groq Llama 3.3 70B, edge-tts, Mem0 + Qdrant, Playwright, ctypes (Win32 API)}
+\project{AI News Daily --- Autonomous YouTube + LinkedIn Pipeline}{6-stage state-checkpointed pipeline: aggregates trending news from 3 sources (Google Trends + Reddit + NewsAPI) with cross-source scoring → Groq writes a 4--5 min script → Edge TTS narrates → Pexels pulls visuals → FFmpeg assembles 1080p video → YouTube + LinkedIn auto-post. State persistence means a failure at stage 4 resumes from stage 4, not from scratch. Migrated to Oracle Cloud May 2026 to fix a 5-day silent failure where an OAuth token expired unnoticed --- now pushes run status to a public live-data repo every cycle, making failures visible immediately.}{Python 3.14, Groq Llama 3.3 70B, Edge TTS, Pexels API, NewsAPI, FFmpeg 8.1, YouTube Data API v3 (resumable upload), systemd timers, GitHub Actions}
+\vspace{-4pt}{\small\color{accent}\textit{Outcome:} Daily videos, zero-touch, observable failure modes, 100\% uptime since cloud migration.}\vspace{8pt}\\
 
-\project{AI News Daily --- YouTube + LinkedIn Pipeline}{Autonomous daily content pipeline. Researches trending news (Google Trends + Reddit + NewsAPI), Groq writes a 4--5 min script, Edge TTS narrates, Pexels pulls visuals, FFmpeg assembles 1080p video, YouTube + LinkedIn auto-post.}{Python 3.14, Groq, Edge TTS, Pexels API, NewsAPI, FFmpeg 8.1, YouTube Data API v3}
+\project{AI Lead Qualification Pipeline}{Form-to-AI-qualification-to-sales-alert in under 30 seconds. Scores inbound leads HOT/WARM/COLD with rationale; writes back to Google Sheets; triggers email + WhatsApp alerts on hot leads. Repeatable freelance service deployed for real-estate and education clients.}{n8n, Groq Llama 3.3 70B, Google Sheets, Twilio WhatsApp, Gmail API}
+\vspace{-4pt}{\small\color{accent}\textit{Outcome:} Sub-30-second lead scoring; deployed as a repeatable freelance service.}\vspace{8pt}\\
 
-\project{Second Brain --- Personal Knowledge System}{3-layer compounding knowledge system: CLAUDE.md auto-memory + Obsidian vault with smart-connections MCP + ingestion pipeline. 8 n8n workflows handle Telegram capture, YouTube transcription, Whisper voice notes, bookmarks, and weekly digests.}{Obsidian (MCP), n8n, Telegram Bot API, Python (Whisper, yt-dlp), Flask, Claude API}
+\project{Job Application Agent}{Fully automated job pipeline. 5 scrapers (Playwright + Chromium) run every 4--6 hours; local Qwen 2.5 7B scores each job 0--100 against my profile; matches \(\geq\)70 get a tailored CV + cover letter; three executor agents auto-submit via Playwright; every step logged to Google Sheets for audit.}{n8n (11 workflows), Ollama + Qwen 2.5 7B, Playwright + Chromium, Python, Google Sheets API}
+\vspace{-4pt}{\small\color{accent}\textit{Outcome:} Replaced 4+ hours/day of manual job searching with a fully autonomous local pipeline.}\vspace{8pt}\\
 
-\project{Aura --- Eternal Planet Guardian}{Stateful AI climate coach built for DEV Weekend Challenge (Earth Day 2026). Three-column chat UI; remembers habits and streaks; computes a pure, weighted, log-scaled impactScore. Client-only, deployed on Vercel.}{React + Vite, Tailwind CSS, Google Gemini 2.5 Flash, Backboard SDK, Vercel}
+\project{Second Brain --- Personal Knowledge System}{3-layer compounding knowledge system: a CLAUDE.md auto-memory file the agent edits as it learns + an Obsidian vault with the smart-connections MCP + an ingestion pipeline that captures from Telegram, YouTube transcripts, Whisper voice notes, and bookmarks --- routed into the vault for retrieval-augmented context on every conversation.}{Obsidian (MCP), n8n (8 workflows), Telegram Bot API, Python (Whisper, yt-dlp), Flask, Claude API}
 
-\project{Instagram Growth System}{AI-powered analyzer + content engine. 12-dimension analysis (engagement, hooks, hashtags, timing, hook$\rightarrow$tension$\rightarrow$payoff scoring); generates 5 reel structures with beat-by-beat scripts and a 7-day content calendar.}{Python, Instagram Graph API, Playwright + Chromium, Google Drive API}
-
-\project{Content Machine --- 30-Day Launch System \textnormal{\color{accent}(Product)}}{Buyer-facing digital product. 30 days of pre-written Instagram + LinkedIn content (hooks, captions, hashtags, reel scripts, DM templates) paired with 4 importable n8n workflows + Python orchestrator. Launches on Gumroad.}{Markdown content kit, n8n workflows, Python orchestrator, Gumroad}
-
-% ─── Key Achievements ───────────────────────────────────────────────────────
 \section*{Key Achievements}
 \begin{itemize}
+  \item \textbf{3 production AI systems running 24/7 on free Oracle Cloud ARM} with HTTPS, CI/CD, auto-restart, self-healing token refresh --- \$0/month total infrastructure.
   \item \textbf{35\% faster resolution time} --- Redesigned client query SOPs at County Group, improving throughput across 300+ active units.
   \item \textbf{20\% CSAT improvement} --- Structured client service interventions across 3 residential projects.
-  \item \textbf{97\% event satisfaction} --- International panel event with 90+ attendees and 7-person team.
+  \item \textbf{97\% event satisfaction} --- International panel event with 90+ attendees and a 7-person team.
   \item \textbf{Zero possession handover rejections} --- File audit and compliance verification process.
-  \item \textbf{10+ AI systems shipped in production} --- Across content generation, lead qualification, knowledge management, voice assistants, and autonomous trading.
+  \item \textbf{10+ AI systems shipped in production} --- Content automation, lead qualification, autonomous trading, knowledge management, daily video pipelines.
 \end{itemize}
 
-% ─── Technical Skills ───────────────────────────────────────────────────────
 \section*{Technical Skills}
 \begin{tabularx}{\linewidth}{@{}p{0.18\linewidth} X@{}}
-  \textbf{AI \& Automation} & n8n, Claude API, Claude Code, Groq, Gemini, Ollama, prompt engineering, AI agent design, RAG, vector memory (Mem0, Qdrant) \\[4pt]
-  \textbf{Development} & Python 3, JavaScript, TypeScript, Next.js, React, FastAPI, Node.js \\[4pt]
-  \textbf{Browser \& Media} & Playwright + Chromium, FFmpeg, MoviePy, watchdog, BeautifulSoup \\[4pt]
-  \textbf{Integrations} & Google Sheets / YouTube Data API v3 / Gmail / Instagram Graph, Twilio WhatsApp, LinkedIn REST, OAuth2, GraphQL, SQLite \\[4pt]
-  \textbf{Cloud \& Infra} & Vercel, Railway, Cloudflare Tunnel, GitHub Actions, Docker, Windows Task Scheduler \\[4pt]
-  \textbf{Tools} & Obsidian, Git/GitHub, Telegram Bots, Notion, MCP servers \\[4pt]
-  \textbf{Business} & CRM operations \& team management, product thinking, workflow design, SOP design, compliance, dashboards \\
+  \textbf{AI \& LLM} & Claude API, Groq, Gemini, Ollama + Qwen, OpenAI; prompt engineering, structured-output (JSON-mode), agent design, RAG, vector memory (Mem0, Qdrant) \\[4pt]
+  \textbf{Workflow / Agents} & n8n (50+ workflows shipped), Playwright + Chromium, watchdog, scheduling (cron + systemd timers) \\[4pt]
+  \textbf{Development} & Python 3, JavaScript, TypeScript, Next.js, React, FastAPI, Node.js, Bash \\[4pt]
+  \textbf{Cloud \& DevOps} & Oracle Cloud (Always Free ARM), Vercel, GitHub Actions (CI/CD), Cloudflare, Linux/Ubuntu, systemd, nginx, Let's Encrypt/certbot, UFW + fail2ban, SSH key management, OCI CLI \\[4pt]
+  \textbf{Integrations} & Google Sheets, YouTube Data API v3, Gmail, Instagram Graph, Twilio WhatsApp, LinkedIn REST + n8n nodes, OAuth2, GraphQL, SQLite, MoviePy + FFmpeg media pipelines \\[4pt]
+  \textbf{Tools} & Obsidian + smart-connections MCP, Git/GitHub (incl.\ \texttt{filter-branch} for history rewriting), Telegram Bots, Notion, MCP server design, Syncthing \\[4pt]
+  \textbf{Business} & CRM team management, product thinking, workflow design, SOP design, compliance, KPI dashboards, vendor coordination \\
 \end{tabularx}
 
-% ─── Education ──────────────────────────────────────────────────────────────
 \section*{Education}
 \education{Ambedkar University, Delhi}{Master of Business Administration (MBA) --- Innovation, Entrepreneurship \& Venture Development}{Dec 2021 -- Nov 2023}
 \education{Ramanujan College, University of Delhi}{B.A. (Hons) Philosophy}{Jul 2016 -- Jun 2019}
 
-% ─── Certifications · Languages · Additional ────────────────────────────────
 \section*{Certifications, Languages \& Additional}
 \textbf{Certifications:} Google AI Essentials --- Google (7-course program) $\cdot$ AI Capabilities and Limitations --- Anthropic $\cdot$ AI Fluency: Framework \& Foundations --- Anthropic $\cdot$ Developing Interpersonal Skills --- IBM
 
