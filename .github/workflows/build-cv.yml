@@ -1,0 +1,43 @@
+name: Compile CV.tex → resume.pdf
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'CV.tex'
+      - '.github/workflows/build-cv.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: CV.tex
+          latexmk_use_xelatex: false
+          args: -pdf -interaction=nonstopmode -halt-on-error
+
+      - name: Move PDF to public/
+        run: |
+          mkdir -p public
+          mv CV.pdf public/resume.pdf
+
+      - name: Commit updated resume.pdf
+        run: |
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions"
+          git add public/resume.pdf
+          if git diff --cached --quiet; then
+            echo "No changes in resume.pdf — skipping commit"
+          else
+            git commit -m "ci: auto-recompile resume.pdf from CV.tex [skip ci]"
+            git push
+          fi
