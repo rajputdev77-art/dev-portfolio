@@ -49,10 +49,26 @@ A live, autonomous, two-market paper-trading system running on a home laptop wit
 - $0/month infrastructure cost
 - 0 manual interventions per week (target, verified over multi-day uptime)
 
+## Update: Migrated to Oracle Cloud + Local Ollama — laptop now optional
+
+May 2026 — moved both bots from my laptop to an Oracle Cloud Always Free ARM A1 VM (4 cores, 24 GB RAM, Mumbai). Provisioning the VM took **145 retry attempts** (Oracle's free ARM capacity is famously scarce) — solved by writing an OCI CLI auto-retry script that polled the launch API every 60 seconds until capacity opened up. The script logged every attempt; success came at 02:00 AM IST.
+
+Two architectural wins from the migration:
+
+- **Switched both bots from Gemini cloud to self-hosted Ollama.** With 24 GB RAM I can run `qwen2.5-coder:14b-instruct-q4_K_M` locally on the ARM cores — designed for structured JSON output, perfect for trading decisions. No more 429 rate-limit errors from the 20-req/day Gemini free tier. Code change was minimal: a new `OllamaDecisionMaker` class mirroring the Gemini one, plus a `make_decision_maker()` factory in `src/agent/__init__.py` that picks based on `LLM_PROVIDER` env var. Laptop still defaults to Gemini for testing; cloud uses Ollama.
+- **Killed the Cloudflare tunnel + keeper-script complexity.** Direct HTTPS via DuckDNS subdomain + Let's Encrypt cert on nginx. The dashboard now points at `https://rajputdev77.duckdns.org/trading/crypto/` — a stable URL that never rotates. `tunnel-keeper.ps1` is retired, ~200 lines of PowerShell deleted.
+
+Plus:
+- **GitHub Actions auto-deploy:** every push to `feat/scanner-alpaca` SSHs into the VM, `git pull`, `pip install`, restarts `jarvis-crypto` + `jarvis-stocks` via systemd.
+- **systemd everywhere:** `jarvis-crypto.service` and `jarvis-stocks.service` survive crashes, reboots, OOMs. No more Windows Task Scheduler.
+- **Live data feed unchanged:** trading bots still push snapshots to the `live-data` GitHub repo via SSH deploy key. Vercel dashboard reads the same raw JSON URL it always did.
+
+Live dashboard URL still the same: [dashboard-sigma-nine-63.vercel.app](https://dashboard-sigma-nine-63.vercel.app). Laptop can go to sleep now.
+
 ## What I Learned
 
 - **Secret hygiene is not a one-time check.** Mid-build, an API key got committed to a public hosting doc. Caught it, made the repo private, rewrote git history with `git filter-branch`, force-pushed, rotated the key, verified the old SHA returned 404 from `raw.githubusercontent.com`, and saved a permanent "never hardcode secrets" note to memory. The lesson: complacency after a fix is when the next leak happens. Every commit needs a regex scan.
-- **Hosting is overrated for personal projects.** I tried Oracle Cloud (double-charged, VM errored), Render and Railway (require credit cards), Fly.io (finicky deploy). The cheapest path that actually worked: laptop + Cloudflare quick tunnel + Vercel for the static dashboard. $0 cost, $0 maintenance.
-- **The LLM matters less than I thought.** Gemini 2.5 Flash Lite is the free-tier weak model. It still produces structurally valid JSON 99% of the time, follows the schema, and writes coherent rationales. For a paper system at 1-hour cycles, the difference between Flash Lite and Claude Sonnet 4.5 is mostly cosmetic. The bottleneck is risk management and execution, not model intelligence.
+- **The LLM matters less than I thought, until quota does.** Gemini 2.5 Flash Lite was structurally correct ~99% of the time at 1-hour cycles. The actual production blocker was its 20-req/day free tier — easily hit by a stocks bot with 10 symbols. Self-hosted Qwen 2.5 Coder 14B on Oracle's ARM cores solves it permanently. Slower per call (~2-3 tok/s on ARM CPU), but the trading cycle is 4 hours — speed is irrelevant.
 - **Class boundaries beat config flags for safety-critical isolation.** A flag is fragile; an import boundary is structural. The only way to send a real order is to write entirely new code that imports the live `Exchange` class — which would be obvious in any review.
-- **Free infrastructure can be production-grade if you design for ephemerality.** The Vercel URL never breaks because the keeper script makes the tunnel rotation invisible. Self-healing infra is worth more than expensive infra that doesn't.
+- **Free infrastructure can be production-grade if you design for ephemerality.** The Vercel URL never breaks because the keeper script made the tunnel rotation invisible; now Oracle Cloud + DuckDNS makes the URL truly stable.
+- **Oracle Always Free ARM is the best free-tier deal in cloud computing — once you actually get capacity.** 4 vCPU / 24 GB RAM forever for ₹0/month is unmatched anywhere. The price is the capacity lottery. Build a retry script and you have permanent infrastructure that costs nothing.

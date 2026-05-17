@@ -48,9 +48,25 @@ Built a 6-stage sequential pipeline in Python (2,911 lines across 10 files) that
 
 6 videos published in the first 5 days with zero manual intervention. Average pipeline runtime: 4 minutes 22 seconds per video. Total cost per video: $0.00 — the entire stack runs on free-tier APIs (Groq, Pexels, NewsAPI, Edge TTS, YouTube Data API v3). The system integrates 5 external APIs, handles crash recovery automatically, and has maintained 100% uptime since the scheduler was finalized. The channel ("AI News Daily") is live and accumulating a content library in the News & Politics niche.
 
+## Update: Migrated to Oracle Cloud — no more laptop-on requirement
+
+May 2026 — the system was running on my laptop with Windows Task Scheduler. Two problems became annoying: (a) if my laptop was off, that day's video wasn't published — breaking the streak; (b) a YouTube OAuth token expired silently in early May and the pipeline failed 5 days in a row before I noticed.
+
+Fixed both by migrating to Oracle Cloud Always Free ARM A1:
+
+- **`scheduler.py` now runs as a systemd service** (`youtube-pipeline.service`) on the VM. Same Python code — the scheduler library is OS-agnostic. systemd handles restart-on-failure and start-on-boot.
+- **State checkpoint files survive reboots.** Already designed for this on Windows; works identically on Linux at `/home/ubuntu/projects/youtube-pipeline/data/pipeline_state.json`.
+- **YouTube OAuth token monitoring:** The pipeline pushes status to a public `live-data` GitHub repo after every run (success or failure with error message). A `youtube-pipeline-dashboard` on Vercel reads from that and shows the last-run status — making token expirations visible immediately instead of after 5 days.
+- **GitHub Actions auto-deploy:** push to `master` → workflow SSHs into VM → `git pull` → restart service. Code changes ship in ~20 seconds.
+
+The OAuth token issue itself: I added a `reauth.py` script that walks through a fresh Google OAuth flow when needed. Future token expirations are now a 30-second fix, not a 5-day silent failure.
+
+Live status: [youtube-pipeline-dashboard.vercel.app](https://youtube-pipeline-dashboard.vercel.app) · Channel: AI News Daily.
+
 ## What I Learned
 
 - Build-and-forget systems require you to anticipate failure more, not less
 - Automation exposes every weakness in a manual process that was previously hidden
 - The hardest part of any automation is the human decision still hiding inside it
 - Shipping a system that runs without you is the closest thing to leverage a single person can have
+- **Silent failures are the worst class of automation bug.** A pipeline that fails loudly gets fixed in an hour. A pipeline that quietly fails for 5 days breaks trust in the whole system. The fix is always external observability — push status somewhere that's not the failing system itself.

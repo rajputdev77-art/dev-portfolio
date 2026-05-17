@@ -48,6 +48,20 @@ First live run on April 11, 2026: a real journal entry was detected at 11:43 AM 
 
 The tech stack runs at $0/month: Groq free tier for AI, Cloudinary free tier for video hosting, all platform APIs on free tiers, Windows Task Scheduler for orchestration.
 
+## Update: Migrated to Oracle Cloud — 24/7 on ARM, ₹0/month
+
+May 2026 — moved the entire stack off my laptop onto an Oracle Cloud Always Free ARM A1 instance (4 cores, 24 GB RAM, Mumbai). The Windows-only assumptions had to come out first:
+
+- **Cross-platform process management:** Replaced `wmic`, `schtasks`, `taskkill` in `health_check.py` and `recovery.py` with a new `process_compat.py` module built on `psutil`. Same code now picks systemd on Linux or Task Scheduler on Windows.
+- **FFmpeg discovery:** Added `/usr/bin/ffmpeg` and `/usr/local/bin/ffmpeg` to the search path before falling back to `shutil.which`.
+- **Journal input source:** Replaced the OneDrive watcher with a `JOURNAL_DIR` env var. On the cloud it points at `/home/ubuntu/journal/`, fed by **Syncthing** peer-to-peer sync from a folder on my Windows laptop. Save a `.docx` locally, it appears on the VM in under 10 seconds. No cloud middleman, no OneDrive, free forever.
+- **Token auto-refresh as systemd timers:** Instagram (every 50 days) and WordPress (every 12 days) now auto-rotate via `instagram-token-refresh.timer` and `wordpress-token-refresh.timer` — no more manual re-auth.
+- **n8n self-hosted on the same VM** at `https://rajputdev77.duckdns.org/n8n/` behind nginx + Let's Encrypt. The local n8n LinkedIn credential was transferred by copying the encryption key from `~/.n8n/config` and re-inserting the encrypted credential row.
+- **GitHub Actions auto-deploy:** every push to `main` triggers a workflow that SSHs into the VM, `git pull`, restarts `soul-in-motion-watcher`. Zero-touch deploys.
+- **HTTPS + free domain:** DuckDNS (`rajputdev77.duckdns.org`) + Let's Encrypt with auto-renew. A `duckdns-updater.timer` keeps the A-record pointed at the VM's IP every 5 minutes in case Oracle rotates it.
+
+Live URL: [https://rajputdev77.duckdns.org/](https://rajputdev77.duckdns.org/) — control center page with real-time service status, RAM/CPU graphs, and links to all 9 publishing endpoints.
+
 ## What I Learned
 
 - The hardest part of multi-platform publishing is that every platform has different authentication architecture — OAuth2, API keys, bearer tokens, webhooks, GraphQL — and each one has non-obvious gotchas that only surface at build time
@@ -55,3 +69,4 @@ The tech stack runs at $0/month: Groq free tier for AI, Cloudinary free tier for
 - A system that works when you're watching it is not a system — a system that works when you're asleep is a system
 - The health monitoring agent is not optional — it's what makes the difference between a project and a product
 - Frame-by-frame video rendering is slow (~10 minutes) but gives you total creative control that no template tool can match
+- Moving Windows-tied infra to Linux is mostly a process-management abstraction problem, not a code problem — once you have a cross-platform shim for `wmic`/`schtasks`/`taskkill`, the rest of the codebase ports over cleanly
