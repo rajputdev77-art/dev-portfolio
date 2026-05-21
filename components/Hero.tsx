@@ -1,88 +1,89 @@
 "use client";
-import { hero } from "@/content/site";
-import { renderInline } from "./utils";
-import WorkflowDiagram from "./WorkflowDiagram";
-import TelemetryLog from "./TelemetryLog";
-import { useTweaks } from "./TweaksPanel";
+import { useState, useEffect } from "react";
+import { hero, slabs, pivotDate } from "@/content/site";
 
 export default function Hero() {
-  const { t } = useTweaks();
-  const { motion, heroVariant } = t;
+  const [headlineIdx, setHeadlineIdx] = useState(0);
+  const [days, setDays] = useState<string>("—");
+
+  useEffect(() => {
+    const anchor = new Date(pivotDate).getTime();
+    const d = Math.floor((Date.now() - anchor) / 86400000);
+    setDays(d > 0 ? String(d) : "0");
+  }, []);
+
+  const h = hero.headlines[headlineIdx];
 
   return (
-    <header id="top" className="oc-hero">
-      <aside className="oc-hero-l">
-        <div className="oc-eyebrow">
-          <span>{hero.act}</span>
-          <span className="oc-eyebrow-rule" />
-          <span>{hero.actSub}</span>
-        </div>
+    <>
+      <section className="hero" id="top">
+        <div className="hero-inner">
+          <div className="hero-meta">
+            <span><b>NODE</b> ▸ {hero.metaNode}</span>
+            <span>{hero.metaLocation}</span>
+            <span className="blink">{hero.metaBadge}</span>
+            <span><b>VOL.</b> III · NO. 042</span>
+          </div>
 
-        <h1 className="oc-h1">
-          {hero.headline.map((line, i) => (
-            <span
-              key={i}
-              className={`oc-h1-line${line.muted ? " oc-h1-muted" : ""}`}
-            >
-              {line.italic ? <em>{line.text}</em> : line.text}
-            </span>
-          ))}
-        </h1>
+          <div className="hero-shuffle" title="Cycle headline">
+            {hero.headlines.map((_, i) => (
+              <button
+                key={i}
+                className={i === headlineIdx ? "on" : ""}
+                onClick={() => setHeadlineIdx(i)}
+                title={`Variant ${i + 1}`}
+              >
+                {String(i + 1).padStart(2, "0")}
+              </button>
+            ))}
+          </div>
 
-        <p className="oc-lede">{renderInline(hero.lede)}</p>
+          <h1 className="hero-headline">
+            <span className="l1" dangerouslySetInnerHTML={{ __html: h[0] }} />
+            <span className="l2" dangerouslySetInnerHTML={{ __html: h[1] }} />
+            <span className="l3" dangerouslySetInnerHTML={{ __html: h[2] }} />
+          </h1>
 
-        <div className="oc-cta-row">
-          <a
-            href={hero.primaryHref}
-            className="oc-cta oc-cta-primary"
-            style={{ background: "var(--accent)" }}
-          >
-            <span>{hero.primaryCta}</span>
-            <span className="oc-cta-arrow">→</span>
-          </a>
-          <a href={hero.ghostHref} className="oc-cta oc-cta-ghost">
-            <span>{hero.ghostCta}</span>
-          </a>
-        </div>
+          <p className="hero-deck" dangerouslySetInnerHTML={{ __html: hero.deck.html }} />
 
-        <dl className="oc-hero-stats">
-          {hero.stats.map((s, i) => (
-            <div key={i}>
-              <dt>{s.label}</dt>
-              {"stack" in s && s.stack ? (
-                <dd className="oc-hero-stack">{s.stack}</dd>
-              ) : (
-                <dd>
-                  {s.value}
-                  <span>{s.suffix}</span>
-                </dd>
-              )}
-            </div>
-          ))}
-        </dl>
-      </aside>
-
-      <section className="oc-hero-r">
-        {heroVariant === "log" ? (
-          <TelemetryLog motion={motion} />
-        ) : (
-          <WorkflowDiagram motion={motion} />
-        )}
-        <div className="oc-hero-caption">
-          <span className="oc-caption-num">Fig. 01</span>
-          <span>
-            {heroVariant === "log"
-              ? "live trace of an agentic lead-qualifier in production"
-              : "a typical agentic workflow — Webhook → Enrich → Score → Route → Sync → Log"}
-          </span>
+          <div className="hero-actions">
+            <a className="btn" href={hero.primaryCta.href}>
+              {hero.primaryCta.label} <span className="arr">→</span>
+            </a>
+            <a className="btn alt" href={hero.ghostCta.href}>
+              {hero.ghostCta.label} ↗
+            </a>
+          </div>
         </div>
       </section>
 
-      <a href="#story" className="oc-scroll-hint" aria-label="Scroll to story">
-        <span />
-        <em style={{ fontStyle: "normal" }}>{hero.scrollHint}</em>
-        <span />
-      </a>
-    </header>
+      <div className="slabs">
+        {slabs.map((s, i) => {
+          const isPivot = s.kind === "pivot";
+          const value = isPivot ? days : s.value;
+          const suffix = isPivot ? "d" : s.suffix;
+          return (
+            <div key={i} className={`slab${isPivot ? " pivot" : ""}`}>
+              <div className="l">{s.label}</div>
+              {s.multi ? (
+                <div
+                  className="v"
+                  style={{ fontSize: "30px", lineHeight: 1.1 }}
+                  dangerouslySetInnerHTML={{ __html: value.replace(/\n/g, "<br/>") }}
+                />
+              ) : s.small ? (
+                <div className="v" style={{ fontSize: "54px" }}>{value}</div>
+              ) : (
+                <div className="v">
+                  {value}
+                  {suffix && <em>{suffix}</em>}
+                </div>
+              )}
+              <div className="s">{s.note}</div>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }

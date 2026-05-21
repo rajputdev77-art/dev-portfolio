@@ -1,67 +1,55 @@
-import { now } from "@/content/site";
-import { getNowData, type NowEntry } from "@/lib/markdown";
-
-function Column({
-  label,
-  items,
-}: {
-  label: string;
-  items: NowEntry[];
-}) {
-  return (
-    <article className="oc-now-card">
-      <header className="oc-now-h">
-        <i />
-        <span>{label}</span>
-      </header>
-      <ul className="oc-now-list">
-        {items.map((item, i) => (
-          <li key={i}>
-            {item.title}
-            <span>{item.note}</span>
-          </li>
-        ))}
-      </ul>
-    </article>
-  );
-}
+import { now, extras, githubUser } from "@/content/site";
+import { getNowData } from "@/lib/markdown";
+import DeckStrip from "./DeckStrip";
 
 export default function Now() {
   const data = getNowData();
+  const colData: Record<string, any[]> = {
+    building: data.building,
+    learning: data.learning,
+    thinking: data.thinking,
+  };
 
   return (
-    <section id="now" className="oc-now">
-      <header className="oc-section-head">
-        <div className="oc-act-marker">
-          <span>{now.act}</span>
-          <span className="oc-eyebrow-rule" />
-          <span>{now.actSub}</span>
+    <section className="b" id="now">
+      <div className="secline">
+        <div className="lhs">
+          <span className="n">{now.act}</span>
+          <span className="ttl">{now.actSub}</span>
         </div>
-        <h2 className="oc-h2">
-          {now.headline.map((line, i) => (
-            <span key={i}>
-              {line}
-              {i < now.headline.length - 1 && <br />}
-            </span>
-          ))}
-        </h2>
-        <p className="oc-section-sub">{now.sub}</p>
-      </header>
-
-      <div className="oc-now-grid" style={{ maxWidth: 1380, margin: "0 auto", padding: "0 48px" }}>
-        <Column label="Currently building" items={data.building} />
-        <Column label="Currently learning" items={data.learning} />
-        <Column label="Thinking about" items={data.thinking} />
+        <span className="rhs">{now.rhs}</span>
       </div>
 
-      {data.updated && (
-        <p
-          className="oc-now-updated"
-          style={{ maxWidth: 1380, margin: "32px auto 0", padding: "0 48px" }}
-        >
-          Last updated · <em>{data.updated}</em>
-        </p>
-      )}
+      <div className="secbody" data-n={now.act}>
+        <div className="now-grid">
+          {now.cols.map((col) => (
+            <div key={col.id} className={`now-col ${col.colorClass}`}>
+              <h3>
+                <sup>{col.sup}</sup>
+                {col.title}
+              </h3>
+              <ul>
+                {(colData[col.id] || []).map((item, i) => (
+                  <li key={i}>
+                    <b>{item.title}</b>
+                    <i>{item.note}</i>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="now-foot">
+          <span>
+            {now.footLeft} <b>{data.updated}</b>
+          </span>
+          <span>{now.footMid}</span>
+          <span>{now.footRight}</span>
+        </div>
+
+        <DeckStrip extras={extras} githubUser={githubUser} />
+      </div>
     </section>
   );
 }

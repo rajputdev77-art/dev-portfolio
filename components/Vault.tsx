@@ -12,10 +12,12 @@ export default function Vault() {
     read: string;
     date: string;
     href?: string;
-    tag?: string;
+    pinned?: boolean;
+    badge?: string;
   }> = [];
 
   realEssays.forEach((e, i) => {
+    const pinned = vault.pinned.includes(e.slug);
     slots.push({
       n: String(i + 1).padStart(2, "0"),
       title: e.title,
@@ -23,63 +25,63 @@ export default function Vault() {
       read: e.read || "",
       date: e.date || "",
       href: `/essays/${e.slug}`,
-      tag: e.source === "vault" ? "From the vault" : "Essay",
+      pinned,
+      badge: pinned ? "PINNED" : e.source === "vault" ? "VAULT" : "ESSAY",
     });
   });
 
-  // Pad to at least 3 with placeholders.
   vault.placeholders.forEach((p) => {
-    if (slots.length < 3) slots.push({ ...p });
+    if (slots.length < 3) slots.push({ ...p, badge: "SOON" });
   });
 
   return (
-    <section id="vault" className="oc-thinking">
-      <header className="oc-section-head">
-        <div className="oc-act-marker">
-          <span>{vault.act}</span>
-          <span className="oc-eyebrow-rule" />
-          <span>{vault.actSub}</span>
+    <section className="b" id="vault">
+      <div className="secline">
+        <div className="lhs">
+          <span className="n">{vault.act}</span>
+          <span className="ttl">{vault.actSub}</span>
         </div>
-        <h2 className="oc-h2">
-          {vault.headline.map((line, i) => (
-            <span key={i}>
-              {line}
-              {i < vault.headline.length - 1 && <br />}
-            </span>
-          ))}
-        </h2>
-      </header>
-      <div className="oc-essays">
-        {slots.map((e) => {
-          const inner = (
-            <>
-              <span className="oc-essay-n" style={{ color: "var(--accent)" }}>
-                {e.n}
-              </span>
-              <h3 className="oc-essay-title">{e.title}</h3>
-              <p className="oc-essay-desc">{e.desc}</p>
-              <span className="oc-essay-meta">
-                <span>
-                  {e.date}
-                  {e.read ? ` · ${e.read}` : ""}
-                  {e.tag ? ` · ${e.tag}` : ""}
-                </span>
-                <span className="oc-essay-arrow">→</span>
-              </span>
-            </>
-          );
-          return e.href ? (
-            <Link key={e.n} href={e.href} className="oc-essay">
-              {inner}
-            </Link>
-          ) : (
-            <article key={e.n} className="oc-essay">
-              {inner}
-            </article>
-          );
-        })}
+        <span className="rhs">{vault.rhs}</span>
       </div>
-      {vault.more && <p className="oc-essays-more">{vault.more}</p>}
+
+      <div className="secbody" data-n={vault.act}>
+        <div className="vault-list">
+          {slots.map((e) => {
+            // Try to format date as "MMM YYYY".
+            let dateLabel = e.date;
+            if (e.date && /^\d{4}-\d{2}/.test(e.date)) {
+              const d = new Date(e.date);
+              if (!isNaN(d.getTime())) {
+                dateLabel = d.toLocaleDateString("en-US", { month: "short", year: "numeric" }).toUpperCase();
+              }
+            }
+            const inner = (
+              <>
+                <div className="num">{e.n}</div>
+                <div>
+                  <h4>{e.title}</h4>
+                  <p>{e.desc}</p>
+                </div>
+                <div className="meta">
+                  <b>{e.badge}</b>
+                  {dateLabel}
+                  {e.read ? <><br />{e.read.toUpperCase()}</> : null}
+                </div>
+              </>
+            );
+            const cls = `vc${e.pinned ? " pin" : ""}`;
+            return e.href ? (
+              <Link key={e.n} href={e.href} className={cls}>
+                {inner}
+              </Link>
+            ) : (
+              <article key={e.n} className={cls}>
+                {inner}
+              </article>
+            );
+          })}
+        </div>
+      </div>
     </section>
   );
 }

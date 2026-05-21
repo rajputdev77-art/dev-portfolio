@@ -1,17 +1,8 @@
 import { getCaseStudies, getCaseStudyBySlug } from "@/lib/markdown";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import Topbar from "@/components/Topbar";
 import Nav from "@/components/Nav";
-import LiveStats from "@/components/LiveStats";
-
-// Map case-study slugs → live-data source + public dashboard URL.
-// Listed slugs render a live status panel under the outcome line.
-const LIVE_SOURCES: Record<string, { source: "soul-in-motion" | "youtube-pipeline" | "trading"; dashboardUrl?: string }> = {
-  "soul-in-motion":           { source: "soul-in-motion",   dashboardUrl: "https://soul-in-motion-dashboard.vercel.app" },
-  "youtube-automation-system":{ source: "youtube-pipeline", dashboardUrl: "https://youtube-pipeline-dashboard.vercel.app" },
-  "jarvis-trading-agent":     { source: "trading",          dashboardUrl: "https://dashboard-sigma-nine-63.vercel.app" },
-};
+import ClocksBar from "@/components/ClocksBar";
 
 export async function generateStaticParams() {
   const studies = getCaseStudies();
@@ -26,9 +17,18 @@ export async function generateMetadata({
   const study = await getCaseStudyBySlug(params.slug);
   if (!study) return { title: "Not Found" };
   return {
-    title: `${study.title} — Dev Rajput`,
+    title: `CS · ${study.title} — Dev Rajput`,
     description: study.outcome,
   };
+}
+
+function statusClass(s?: string) {
+  if (!s) return "";
+  const low = s.toLowerCase();
+  if (low.includes("progress")) return "prog";
+  if (low.includes("paused")) return "paused";
+  if (low.includes("product")) return "prod";
+  return "";
 }
 
 export default async function CaseStudyPage({
@@ -39,42 +39,81 @@ export default async function CaseStudyPage({
   const study = await getCaseStudyBySlug(params.slug);
   if (!study) notFound();
 
+  // Build index lookup for the CS · NN label.
+  const all = getCaseStudies();
+  const idx = all.findIndex((s) => s.slug === params.slug);
+  const num = String(idx + 1).padStart(2, "0");
+
+  const stLabel =
+    study.type === "product"
+      ? "PRODUCT"
+      : (study.status || "LIVE").toUpperCase();
+  const stCls = statusClass(study.status || (study.type === "product" ? "PRODUCT" : "LIVE"));
+
+  // Split tags by " · " for the chip row.
+  const tags = study.tag
+    ? study.tag.split(/\s*·\s*/).filter(Boolean)
+    : [];
+
   return (
     <>
       <Topbar />
       <Nav />
-      <main className="oc-detail">
-        <Link href="/#work" className="oc-detail-back">
-          ← Back to systems shipped
-        </Link>
-
-        <div className="oc-detail-eyebrow">CASE STUDY</div>
-        <h1>{study.title}</h1>
-        <p className="oc-detail-outcome">{study.outcome}</p>
-        <div className="oc-detail-meta">
-          <span>{study.role}</span>
-          <span>·</span>
-          <span>{study.timeline}</span>
-          {study.tag && (
-            <>
-              <span>·</span>
-              <span>{study.tag}</span>
-            </>
-          )}
+      <div className="csb-back">
+        <a className="home" href="/#work">← BACK TO INDEX</a>
+        <div className="crumbs">
+          CS · {num} <b>{study.title.toUpperCase()}</b>
         </div>
+      </div>
 
-        {LIVE_SOURCES[params.slug] && (
-          <LiveStats
-            source={LIVE_SOURCES[params.slug].source}
-            dashboardUrl={LIVE_SOURCES[params.slug].dashboardUrl}
-          />
+      <section className="cs-hero">
+        <div className="cs-meta">
+          <span className="id">CASE STUDY <b>{num}</b></span>
+          <span className={`st ${stCls}`}>{stLabel}</span>
+          {study.timeline && <span className="id">{study.timeline.toUpperCase()}</span>}
+        </div>
+        <h1 className="cs-title">
+          {study.title.toUpperCase().split(/\s+/).map((w, i) => (
+            <span className="l" key={i}>{w} </span>
+          ))}
+        </h1>
+        <p className="cs-deck">{study.outcome}</p>
+        {tags.length > 0 && (
+          <div className="cs-tags">
+            {tags.map((t, i) => (
+              <span key={i} className={i < 2 ? "k" : ""}>{t.toUpperCase()}</span>
+            ))}
+          </div>
         )}
+      </section>
 
-        <div
-          className="oc-detail-body"
-          dangerouslySetInnerHTML={{ __html: study.content }}
-        />
-      </main>
+      {study.metrics && study.metrics.length > 0 && (
+        <div className="cs-slabs">
+          {study.metrics.slice(0, 4).map((m, i) => (
+            <div key={i} className="cs-slab">
+              <div className="l">{m.label}</div>
+              <div className="v">{m.num}{m.unit && <em>{m.unit}</em>}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="sline">
+        <div className="lhs">
+          <span className="n">01</span>
+          <span className="t">THE BUILD</span>
+        </div>
+        <span className="r">// CONTEXT + STACK + WHAT BROKE</span>
+      </div>
+
+      <main className="sbody" dangerouslySetInnerHTML={{ __html: study.content }} />
+
+      <div className="csb-back">
+        <a className="home" href="/#work">← BACK TO INDEX</a>
+        <a className="home" href="/#connect" style={{ background: "var(--red)", color: "var(--paper)", borderColor: "var(--red)" }}>CONNECT ↗</a>
+      </div>
+
+      <ClocksBar />
     </>
   );
 }

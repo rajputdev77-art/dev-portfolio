@@ -1,77 +1,119 @@
+"use client";
+import { useRef } from "react";
 import { path } from "@/content/site";
-import { renderInline } from "./utils";
 
 export default function Path() {
+  const curtainRef = useRef<HTMLDivElement | null>(null);
+  const msgRef = useRef<HTMLDivElement | null>(null);
+
+  function fireCurtain(idx: number) {
+    const c = curtainRef.current;
+    const m = msgRef.current;
+    if (!c || !m) return;
+    m.innerHTML =
+      path.curtainMessages[idx] || path.curtainMessages[path.curtainMessages.length - 1];
+    c.classList.add("in");
+    window.setTimeout(() => c.classList.remove("in"), 950);
+  }
+
+  // Split the headline: "PHILOSOPHY <arr/> MBA <arr/> <em>OPS → AI.</em>"
+  // We'll render the pieces between <arr/> as React, and arrows as buttons.
+  const segments = path.headline.split(/<arr\/?>/);
+
   return (
-    <section id="path" className="oc-path">
-      <header className="oc-section-head">
-        <div className="oc-act-marker">
-          <span>{path.act}</span>
-          <span className="oc-eyebrow-rule" />
-          <span>{path.actSub}</span>
+    <section className="b" id="path">
+      <div className="secline">
+        <div className="lhs">
+          <span className="n">{path.act}</span>
+          <span className="ttl">{path.actSub}</span>
         </div>
-        <h2 className="oc-h2">
-          {path.headline.map((line, i) => (
+        <span className="rhs">{path.rhs}</span>
+      </div>
+
+      <div className="secbody" data-n={path.act}>
+        <h2 className="tl-headline">
+          {segments.map((seg, i) => (
             <span key={i}>
-              {line}
-              {i < path.headline.length - 1 && <br />}
+              <span dangerouslySetInnerHTML={{ __html: seg }} />
+              {i < segments.length - 1 && (
+                <span
+                  className="arr"
+                  role="button"
+                  tabIndex={0}
+                  onClick={(e) => {
+                    const t = e.currentTarget;
+                    t.classList.add("spin");
+                    setTimeout(() => t.classList.remove("spin"), 600);
+                    fireCurtain(i);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      const t = e.currentTarget;
+                      t.classList.add("spin");
+                      setTimeout(() => t.classList.remove("spin"), 600);
+                      fireCurtain(i);
+                    }
+                  }}
+                >
+                  →
+                </span>
+              )}
             </span>
           ))}
         </h2>
-        <p className="oc-section-sub">{renderInline(path.sub)}</p>
-      </header>
 
-      <dl className="oc-path-highlights">
-        <div className="oc-path-hl">
-          <dt>Currently</dt>
-          <dd>{path.highlights.current}</dd>
-        </div>
-        <div className="oc-path-hl">
-          <dt>Education</dt>
-          <dd>{path.highlights.education}</dd>
-        </div>
-        <div className="oc-path-hl">
-          <dt>Core skills</dt>
-          <dd>{path.highlights.skills}</dd>
-        </div>
-        <ul className="oc-path-hl-wins">
-          {path.highlights.wins.map((w, i) => (
-            <li key={i}>{w}</li>
+        <div className="quicks">
+          {path.quicks.map((q, i) => (
+            <div key={i}>
+              <em>{q.num}</em>
+              {q.body}
+            </div>
           ))}
-        </ul>
-      </dl>
+        </div>
 
-      <ol className="oc-path-list">
-        {path.rows.map((p, i) => (
-          <li key={i} className="oc-path-row">
-            <div className="oc-path-year">{p.year}</div>
-            <div className="oc-path-spine">
-              <span
-                className="oc-path-tick"
-                style={{ background: "var(--accent)" }}
-              />
-              <span className="oc-path-line" />
-            </div>
-            <div className="oc-path-body">
-              <span className="oc-path-tag">{p.tag}</span>
-              <h3 className="oc-path-role">{p.role}</h3>
-              <p className="oc-path-org">{p.org}</p>
-              <p className="oc-path-note">{p.note}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
+        <div className="roles">
+          {path.rows.map((r, i) => {
+            const cls = `role${r.current ? " current" : ""}${r.origin ? " origin" : ""}`;
+            return (
+              <div key={i} className={cls}>
+                <div className="yr">
+                  {r.year}
+                  <small>{r.yearTag}</small>
+                </div>
+                <div>
+                  <h4 dangerouslySetInnerHTML={{ __html: r.role }} />
+                  <div className="org" dangerouslySetInnerHTML={{ __html: r.org }} />
+                  <p>{r.note}</p>
+                </div>
+                {r.gradPolo && (
+                  <div className="grad-polo">
+                    <span className="tape">{r.gradPolo.tape}</span>
+                    <img src={r.gradPolo.src} alt="Graduation" />
+                    <div className="cap">
+                      <b dangerouslySetInnerHTML={{ __html: r.gradPolo.title }} />
+                      {r.gradPolo.caption}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
 
-      <div className="oc-path-cta-row">
-        <a
-          className="oc-path-cta"
-          href={path.cv.href}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <span>{path.cv.label}</span>
-          <span>↓</span>
-        </a>
+        <div className="cv-cta-row">
+          <a className="btn" href={path.cv.href} target="_blank" rel="noreferrer">
+            {path.cv.label} <span className="arr">↓</span>
+          </a>
+        </div>
+      </div>
+
+      {/* Stage curtain easter egg — fixed overlay */}
+      <div className="curtain" ref={curtainRef}>
+        <div className="pl" />
+        <div className="pr" />
+        <div className="msg" ref={msgRef}>
+          SCENE<br />CHANGE.
+        </div>
       </div>
     </section>
   );
