@@ -5,6 +5,7 @@ outcome: "A 3-layer compounding knowledge system across CLAUDE.md, Obsidian, and
 role: "Self-initiated builder"
 timeline: "2026"
 order: 8
+status: "Live"
 kind: "diagram"
 tag: "Obsidian · Claude Code · n8n · Telegram · Whisper"
 ---

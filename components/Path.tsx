@@ -20,6 +20,27 @@ export default function Path() {
         </h2>
         <p className="oc-section-sub">{renderInline(path.sub)}</p>
       </header>
+
+      <dl className="oc-path-highlights">
+        <div className="oc-path-hl">
+          <dt>Currently</dt>
+          <dd>{path.highlights.current}</dd>
+        </div>
+        <div className="oc-path-hl">
+          <dt>Education</dt>
+          <dd>{path.highlights.education}</dd>
+        </div>
+        <div className="oc-path-hl">
+          <dt>Core skills</dt>
+          <dd>{path.highlights.skills}</dd>
+        </div>
+        <ul className="oc-path-hl-wins">
+          {path.highlights.wins.map((w, i) => (
+            <li key={i}>{w}</li>
+          ))}
+        </ul>
+      </dl>
+
       <ol className="oc-path-list">
         {path.rows.map((p, i) => (
           <li key={i} className="oc-path-row">
@@ -40,6 +61,18 @@ export default function Path() {
           </li>
         ))}
       </ol>
+
+      <div className="oc-path-cta-row">
+        <a
+          className="oc-path-cta"
+          href={path.cv.href}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span>{path.cv.label}</span>
+          <span>↓</span>
+        </a>
+      </div>
     </section>
   );
 }

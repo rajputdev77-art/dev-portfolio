@@ -5,6 +5,7 @@ outcome: "One journal in, content across 9 platforms out — 11 min end-to-end."
 role: "Self-initiated builder"
 timeline: "2026"
 order: 5
+status: "Live"
 kind: "diagram"
 tag: "n8n · GPT-4 · 9+ platforms"
 ---

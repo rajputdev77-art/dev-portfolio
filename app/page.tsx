@@ -1,11 +1,12 @@
 import Topbar from "@/components/Topbar";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import Manifest from "@/components/Manifest";
+import Story from "@/components/Story";
 import CaseStudies from "@/components/CaseStudies";
-import Thinking from "@/components/Thinking";
+import Vault from "@/components/Vault";
+import Now from "@/components/Now";
+import Proof from "@/components/Proof";
 import Path from "@/components/Path";
-import Speaking from "@/components/Speaking";
 import Contact from "@/components/Contact";
 import TweaksPanel from "@/components/TweaksPanel";
 
@@ -15,11 +16,12 @@ export default function Home() {
       <Topbar />
       <Nav />
       <Hero />
-      <Manifest />
+      <Story />
       <CaseStudies />
-      <Thinking />
+      <Vault />
+      <Now />
+      <Proof />
       <Path />
-      <Speaking />
       <Contact />
       <TweaksPanel />
     </>

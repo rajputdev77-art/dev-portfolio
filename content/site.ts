@@ -9,11 +9,11 @@
 
 // Topbar — the strip across the very top of the page
 export const topbar = {
-  status: "SYSTEM ONLINE",
-  node: "NODE ▸ dev-rajput.ops",
+  status: "BUILDING IN PUBLIC",
+  node: "NODE ▸ dev-rajput.build",
   // Italic quote shown center
-  quote: "The real product is the system, not the output.",
-  location: "NOIDA · IST",
+  quote: "Philosophy trained the mind. AI gave me the tools. Now I build.",
+  location: "INDIA · IST · GLOBAL",
 };
 
 // Nav — the row right below the topbar
@@ -21,107 +21,165 @@ export const nav = {
   // The italic glyph in the small box
   glyph: "D/R",
   name: "DEV RAJPUT",
-  tagline: "OPERATIONS · AI · SYSTEMS",
+  tagline: "AI OPS · AUTOMATION · BUILDER",
   // Right-side button
-  ctaLabel: "Open a thread",
+  ctaLabel: "Let's connect",
 };
 
 // Hero — the first big section
 export const hero = {
-  // Top "ACT I — The Operator" eyebrow
-  act: "ACT I",
-  actSub: "The Operator",
+  // Top eyebrow
+  act: "01",
+  actSub: "The pivot, in motion",
   // The five lines of the H1. Lines wrapped in { italic: true } become italic+gradient.
   // Lines wrapped in { muted: true } become muted gray.
   headline: [
-    { text: "I architect the" },
-    { text: "middle layer", italic: true },
-    { text: "of the AI stack —" },
-    { text: "where models", muted: true },
-    { text: "meet payroll.", muted: true },
+    { text: "Philosophy trained" },
+    { text: "my mind." },
+    { text: "AI gave me", muted: true },
+    { text: "the tools.", muted: true },
+    { text: "Now I build.", italic: true },
   ],
   // The lede paragraph. Use **bold** and _italic_ markers (we render them).
-  lede: "Three years running client operations for **300+ residential units across 7 towers** taught me one thing: a workflow that runs once in a demo is a toy. A workflow that survives Tuesday morning is a system. _I ship systems._",
+  lede: "**AI Operations & Automation** — building agents, workflows, and systems from scratch. _Self-taught. Building in public. Available globally._",
   // Buttons
-  primaryCta: "See systems shipped",
+  primaryCta: "See what I'm building",
   primaryHref: "#work",
-  ghostCta: "Hire the operator",
-  ghostHref: "#contact",
-  // Bottom 4-stat strip
+  ghostCta: "Let's connect",
+  ghostHref: "#connect",
+  // Bottom 4-stat strip — builder stats, not ops stats
   stats: [
-    { label: "Units operated", value: "300", suffix: "+" },
-    { label: "Resolution time", value: "−35", suffix: "%" },
-    { label: "CSAT lift", value: "+20", suffix: "%" },
+    { label: "Projects shipped", value: "12", suffix: "+" },
+    { label: "Years operating", value: "3", suffix: "+" },
+    { label: "Days building", value: "Daily", suffix: "" },
     // The final stat is special: rendered as plain mono text instead of a big number
-    { label: "Stack", stack: "n8n · Claude · Py" },
+    { label: "Stack", stack: "Python · n8n · Claude" },
+  ],
+  scrollHint: "Scroll",
+};
+
+// Story — Act II — the narrative of how he got here
+export const story = {
+  act: "02",
+  actSub: "The story",
+  // Pull quote, headlined on the left side
+  quote: {
+    text: "I don't have a CS degree. I have a philosophy degree, an MBA, and a refusal to stay _average_.",
+    attribution: "Dev Rajput",
+    work: "The throughline",
+  },
+  // 3 short paragraphs of prose — first person
+  paragraphs: [
+    "I came up the long way. A BA in Philosophy. Then an MBA in Innovation & Entrepreneurship. Then three years running real-estate operations — 300+ residential units, 7 towers, the kind of work where a missed email costs someone their home. The frameworks were sharp. The thinking was there. But for a long time, none of it felt like the right arena.",
+    "AI changed the equation. Not as a buzzword — as a genuine leverage multiplier. I stopped using other people's tools and started building my own. n8n workflows. WhatsApp automations. AI lead scoring. A local voice assistant. An autonomous knowledge system. Trading agents. A content engine. Zero CS background. Pure systems thinking and a refusal to be average.",
+    "Right now, I'm pivoting full-time into AI Operations & Automation — building daily, shipping in public, and writing about every step. This site is the proof of that pivot. Each project here is one I built, one I broke, and one I'd build again.",
+  ],
+  // Image placeholder — replace with /public/me.jpg
+  photo: {
+    src: "",
+    alt: "Dev Rajput",
+    caption: "Add a photo to /public/me.jpg — referenced from content/site.ts",
+  },
+};
+
+// What I'm Building — Act III — case studies
+export const cases = {
+  act: "03",
+  actSub: "What I'm building",
+  headline: ["Things I've actually built —", "every one of them, no resume gloss."],
+};
+
+// From the Vault — Act IV — surfaced notes + essays
+export const vault = {
+  act: "04",
+  actSub: "From the vault",
+  headline: ["Notes from the build —", "what I'm thinking about as I work."],
+  // Placeholder slots shown only when there are fewer than 3 published notes.
+  placeholders: [
+    { n: "01", title: "Why I left the 'thinker only' lane", desc: "Coming soon — notes on the moment the build started.", read: "—", date: "Soon" },
+    { n: "02", title: "The middle layer is the product", desc: "Coming soon — on orchestration, schemas, and the boring parts that matter.", read: "—", date: "Soon" },
+    { n: "03", title: "Building in public is a forcing function", desc: "Coming soon — on showing the work before it's polished.", read: "—", date: "Soon" },
+  ],
+  more: "More notes get published as they're written. The vault is alive.",
+};
+
+// Right Now — Act V — live, file-driven status board.
+// The actual content is in /content/now.md (manually editable).
+export const now = {
+  act: "05",
+  actSub: "Right now",
+  headline: ["What I'm working on,", "this week, this month."],
+  sub: "A live dashboard, not a blog post. Updated by hand — when it changes, this changes.",
+};
+
+// See the Work — Act VI — Proof: live deployments + GitHub
+export const proof = {
+  act: "06",
+  actSub: "See the work",
+  headline: ["Repos. Demos.", "Things you can actually click."],
+  links: [
+    {
+      label: "GitHub",
+      value: "github.com/rajputdev77-art",
+      href: "https://github.com/rajputdev77-art",
+      note: "Source code · daily commits",
+    },
+    {
+      label: "JARVIS",
+      value: "Voice assistant · local",
+      href: "https://github.com/rajputdev77-art",
+      note: "Python · Whisper · Anthropic API",
+    },
+    {
+      label: "Second Brain",
+      value: "Obsidian + Claude + n8n",
+      href: "https://github.com/rajputdev77-art",
+      note: "Autonomous knowledge system",
+    },
+    {
+      label: "This site",
+      value: "dev-portfolio repo",
+      href: "https://github.com/rajputdev77-art/dev-portfolio",
+      note: "Next.js · TypeScript · deployed on Vercel",
+    },
   ],
 };
 
-// Manifest — Act II — the four philosophy rows
-export const manifest = {
-  act: "ACT II",
-  actSub: "The Method",
-  // The big italic epigraph on the left
-  quote: {
-    text: "We are what we _repeatedly_ do. Excellence, then, is not an act, but a habit.",
-    attribution: "Aristotle",
-    work: "Nicomachean Ethics",
+// Experience & Background — Act VII — career timeline + CV
+export const path = {
+  act: "07",
+  actSub: "Experience & background",
+  headline: ["Philosophy → MBA →", "ops → AI."],
+  sub: "The sequence looks unusual. The throughline is the same: _build the system, mind the humans inside it._",
+  // Top highlights row — short, scannable
+  highlights: {
+    current: "AI Operations & Automation — building agents and workflows full-time",
+    education: "MBA, Innovation & Entrepreneurship · BA, Philosophy",
+    skills: "AI Ops · n8n · Python · Claude / OpenAI APIs · CRM · Prompt engineering · Voice/agent pipelines",
+    wins: [
+      "300+ residential units operated across 7 towers · 3 years",
+      "−35% client query resolution time · zero handover rejections",
+      "12+ AI/automation projects shipped in 12 months, zero CS degree",
+    ],
+  },
+  cv: {
+    label: "Download full CV",
+    href: "/resume.pdf",
   },
   rows: [
     {
-      n: "01",
-      title: "Reliability over novelty.",
-      body: "A workflow that runs once is a demo. A workflow that runs every Tuesday at 9:14 a.m., handles three malformed payloads and a flaky API, logs each failure with context, and escalates only when humans actually need to look — that is a system. I think in failure modes, not happy paths.",
+      year: "2026 →",
+      role: "AI Operations & Automation — building independently",
+      org: "Self-directed · Building in public · Open to global roles",
+      note: "Shipping JARVIS, Second Brain, content systems, lead-qual pipelines, and trading agents. Writing about every step. Targeting AI Ops / Automation Engineer roles, remote-first, Europe-priority.",
+      tag: "Current",
     },
-    {
-      n: "02",
-      title: "The middle layer is the product.",
-      body: "Models are commodity. Prompts are commodity. The thing that survives is the orchestration, the retries, the schemas, the audit log, the human-in-the-loop checkpoints. I design for crash recovery — not just first-run success.",
-    },
-    {
-      n: "03",
-      title: "Operations rigor — with real metrics.",
-      body: "Three years coordinating 300+ residential units across 7 towers, daily, between sales, legal, finance, and technical teams. SOPs that cut resolution time 35%. An audit process with zero handover rejections. The hardest part of any automation is the human decision still hiding inside it.",
-    },
-    {
-      n: "04",
-      title: "Stagecraft applies.",
-      body: "I directed plays before I shipped flows. Stage taught me to read a room, run a team under pressure, and communicate clearly when it matters most. Every system is a trust exercise — and trust is built in the tiny moments when something could have gone wrong and didn't.",
-    },
-  ],
-};
-
-// Case studies section header (Act III)
-export const cases = {
-  act: "ACT III",
-  actSub: "Systems shipped",
-  headline: ["Twelve things I've shipped that", "kept running after I left the room."],
-};
-
-// Thinking — Act IV — essay section header
-export const thinking = {
-  act: "ACT IV",
-  actSub: "How I think",
-  headline: ["Notes from the", "operations underground."],
-  // No placeholders — only published essays appear in the grid.
-  placeholderEssays: [] as Array<{ n: string; title: string; desc: string; read: string; date: string }>,
-  // Shown below the essay grid when there are fewer than 3 essays.
-  more: "More essays in progress — follow on LinkedIn for updates.",
-};
-
-// Path — Act V — experience timeline
-export const path = {
-  act: "ACT V",
-  actSub: "The Path",
-  headline: ["Philosophy → theatre →", "operations → AI."],
-  sub: "An unusual sequence. The throughline is the same: _build the system, mind the humans inside it._",
-  rows: [
     {
       year: "2026 →",
       role: "Assistant Manager — CRM",
       org: "Paras Buildtech · Gurgaon, Haryana",
-      note: "Managing day-to-day CRM team operations across the post-sale client lifecycle — overseeing workload allocation, resolution KPIs, and cross-functional coordination between sales, finance, legal, and technical teams.",
-      tag: "Current",
+      note: "Managing the day-to-day CRM team across the post-sale client lifecycle — workload allocation, resolution KPIs, cross-functional coordination between sales, finance, legal, and technical teams.",
+      tag: "Day job",
     },
     {
       year: "2023–26",
@@ -146,33 +204,22 @@ export const path = {
     },
     {
       year: "Earlier",
-      role: "Director · Actor · Philosopher in training",
-      org: "Theatre · Zee TV · MBA (Entrepreneurship)",
-      note: "Three years on stage and a degree in entrepreneurship. The CV is hybrid because the work is hybrid.",
+      role: "MBA · BA Philosophy · Theatre · Television",
+      org: "MBA in Innovation & Entrepreneurship · BA Philosophy · Stage director · Zee TV role",
+      note: "Three years on stage, a philosophy degree, and an MBA in entrepreneurship. The CV is hybrid because the work is hybrid.",
       tag: "Origin",
     },
   ],
 };
 
-// Speaking interlude
-export const speaking = {
-  act: "INTERMISSION",
-  headline: ["Before operations,", "I lived on stage."],
-  paragraphs: [
-    "I directed plays. Acted in a Zee TV serial. Made short films. Emceed international events.",
-    "Public performance taught me what operations later reinforced: _every system is a trust exercise_, and trust is built in the tiny moments when something could have gone wrong and didn't.",
-  ],
-  signature: "— still posting on Instagram, regularly.",
-};
-
-// Contact / Finale
+// Connect / Finale
 export const contact = {
-  act: "FINALE",
-  actSub: "The Ask",
-  headline: ["Let's build something", "that runs itself."],
-  // The word "runs itself" gets the italic gradient treatment
-  italicWord: "runs itself.",
-  sub: "Open to AI automation, workflow engineering, and applied AI roles — full-time, contract, or founding-team. Remote-first and global teams preferred.",
+  act: "08",
+  actSub: "Connect",
+  headline: ["Building in public.", "Open to the right room."],
+  // The word that gets the italic gradient treatment
+  italicWord: "the right room.",
+  sub: "Open to AI Operations & Automation roles — full-time, contract, or founding-team. Remote-first, Europe priority. Also open to collaborations and good conversations.",
   cards: [
     {
       label: "Email",
@@ -181,24 +228,25 @@ export const contact = {
       primary: true,
     },
     {
-      label: "Book a call",
-      value: "Book 15 mins →",
-      href: "https://calendly.com/rajputdev77",
-    },
-    {
       label: "LinkedIn",
       value: "/in/devrajput07",
       href: "https://www.linkedin.com/in/devrajput07/",
     },
     {
+      label: "GitHub",
+      value: "github.com/rajputdev77-art",
+      href: "https://github.com/rajputdev77-art",
+    },
+    {
       label: "Document",
-      value: "Resume.pdf",
+      value: "Download CV",
       href: "/resume.pdf",
     },
   ],
   footer: {
-    left: "© 2026 Dev Rajput · Noida · IST",
+    left: "© 2026 Dev Rajput · India · IST",
     middle: "Build the system. Mind the humans inside it.",
-    right: "Last deploy · v3.2.1 · all green",
+    right: "Last deploy · all green",
   },
 };
+

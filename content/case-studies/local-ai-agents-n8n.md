@@ -5,6 +5,7 @@ outcome: "Form to AI qualification to sales alert in under 30 seconds."
 role: "Self-initiated builder"
 timeline: "2025-2026"
 order: 1
+status: "Live"
 kind: "diagram"
 tag: "n8n · Claude · Groq LLaMA 3.3"
 ---

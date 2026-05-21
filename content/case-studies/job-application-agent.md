@@ -5,6 +5,7 @@ outcome: "Fully automated job pipeline — 5 scrapers, local Qwen 7B scoring, Pl
 role: "Self-initiated builder"
 timeline: "2026"
 order: 6
+status: "Live"
 kind: "log"
 tag: "n8n · Ollama · Qwen 2.5 7B · Playwright · Google Sheets"
 ---

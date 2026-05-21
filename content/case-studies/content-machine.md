@@ -5,6 +5,7 @@ outcome: "Complete launch kit — 30 days of pre-written Instagram + LinkedIn co
 role: "Founder · Product builder"
 timeline: "2026"
 order: 12
+status: "Live"
 kind: "metric"
 tag: "Product · Markdown kit · n8n · Gumroad"
 type: "product"

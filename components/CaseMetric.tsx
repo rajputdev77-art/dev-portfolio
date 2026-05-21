@@ -14,6 +14,7 @@ export default function CaseMetric(props: {
   href: string;
   isProduct?: boolean;
   metrics?: { num: string; unit: string; label: string }[];
+  status?: string;
 }) {
   const metrics = props.metrics?.length ? props.metrics : DEFAULT_METRICS;
   return (

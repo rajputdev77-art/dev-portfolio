@@ -5,6 +5,7 @@ outcome: "97% attendee satisfaction with end-to-end ownership."
 role: "Special Event Manager & Emcee (Freelance)"
 timeline: "2022-2023"
 order: 4
+status: "Live"
 kind: "metric"
 tag: "Stagecraft · 90+ attendees · 7-person team"
 metrics:

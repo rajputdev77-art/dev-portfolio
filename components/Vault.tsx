@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { getEssays } from "@/lib/markdown";
-import { thinking } from "@/content/site";
+import { vault } from "@/content/site";
 
-export default function Thinking() {
+export default function Vault() {
   const realEssays = getEssays();
 
   const slots: Array<{
@@ -12,6 +12,7 @@ export default function Thinking() {
     read: string;
     date: string;
     href?: string;
+    tag?: string;
   }> = [];
 
   realEssays.forEach((e, i) => {
@@ -22,26 +23,28 @@ export default function Thinking() {
       read: e.read || "",
       date: e.date || "",
       href: `/essays/${e.slug}`,
+      tag: e.source === "vault" ? "From the vault" : "Essay",
     });
   });
 
-  thinking.placeholderEssays.forEach((p) => {
+  // Pad to at least 3 with placeholders.
+  vault.placeholders.forEach((p) => {
     if (slots.length < 3) slots.push({ ...p });
   });
 
   return (
-    <section id="thinking" className="oc-thinking">
+    <section id="vault" className="oc-thinking">
       <header className="oc-section-head">
         <div className="oc-act-marker">
-          <span>{thinking.act}</span>
+          <span>{vault.act}</span>
           <span className="oc-eyebrow-rule" />
-          <span>{thinking.actSub}</span>
+          <span>{vault.actSub}</span>
         </div>
         <h2 className="oc-h2">
-          {thinking.headline.map((line, i) => (
+          {vault.headline.map((line, i) => (
             <span key={i}>
               {line}
-              {i < thinking.headline.length - 1 && <br />}
+              {i < vault.headline.length - 1 && <br />}
             </span>
           ))}
         </h2>
@@ -59,6 +62,7 @@ export default function Thinking() {
                 <span>
                   {e.date}
                   {e.read ? ` · ${e.read}` : ""}
+                  {e.tag ? ` · ${e.tag}` : ""}
                 </span>
                 <span className="oc-essay-arrow">→</span>
               </span>
@@ -75,9 +79,7 @@ export default function Thinking() {
           );
         })}
       </div>
-      {thinking.more && (
-        <p className="oc-essays-more">{thinking.more}</p>
-      )}
+      {vault.more && <p className="oc-essays-more">{vault.more}</p>}
     </section>
   );
 }

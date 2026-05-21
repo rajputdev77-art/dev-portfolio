@@ -8,6 +8,7 @@ export default function CaseLog(props: {
   outcome: string;
   href: string;
   isProduct?: boolean;
+  status?: string;
 }) {
   const lines = [
     "[ok]   ingest ▸ google-doc       1 input",

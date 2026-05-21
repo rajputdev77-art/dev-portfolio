@@ -3,7 +3,7 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 
 const STORAGE_KEY = "oc-tweaks-v1";
 const DEFAULTS = {
-  accent: "#7CD46B",
+  accent: "#3b82f6",
   theme: "dark" as "dark" | "light",
   motion: 70,
   heroVariant: "diagram" as "diagram" | "log",

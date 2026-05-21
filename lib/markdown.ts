@@ -19,6 +19,8 @@ export interface CaseStudy {
   tag?: string;
   metrics?: { num: string; unit: string; label: string }[];
   type?: "product";
+  status?: "Live" | "In Progress" | "Paused" | string;
+  link?: string;
 }
 
 export interface Essay {
@@ -29,6 +31,19 @@ export interface Essay {
   order: number;
   content: string;
   read?: string;
+  source?: "essay" | "vault";
+}
+
+export interface NowEntry {
+  title: string;
+  note: string;
+}
+
+export interface NowData {
+  updated: string;
+  building: NowEntry[];
+  learning: NowEntry[];
+  thinking: NowEntry[];
 }
 
 export function getCaseStudies(): CaseStudy[] {
@@ -51,6 +66,8 @@ export function getCaseStudies(): CaseStudy[] {
       tag: data.tag,
       metrics: data.metrics,
       type: data.type,
+      status: data.status,
+      link: data.link,
       content,
     };
   });
@@ -73,29 +90,44 @@ export async function getCaseStudyBySlug(
   };
 }
 
-export function getEssays(): Essay[] {
-  const dir = path.join(contentDirectory, "essays");
+function readEssaysFromDir(dir: string, source: "essay" | "vault"): Essay[] {
+  if (!fs.existsSync(dir)) return [];
   const filenames = fs
     .readdirSync(dir)
     .filter((f) => f.endsWith(".md") && f !== "README.md");
 
-  const essays = filenames.map((filename) => {
+  return filenames.map((filename) => {
     const filePath = path.join(dir, filename);
     const fileContents = fs.readFileSync(filePath, "utf8");
     const { data, content } = matter(fileContents);
 
     return {
       slug: data.slug || filename.replace(".md", ""),
-      title: data.title,
-      date: data.date,
-      description: data.description,
+      title: data.title || filename.replace(".md", ""),
+      date: data.date || "",
+      description: data.description || "",
       order: data.order || 99,
       read: data.read,
+      source,
       content,
     };
   });
+}
 
-  return essays.sort((a, b) => a.order - b.order);
+export function getEssays(): Essay[] {
+  // Combined: explicit essays + vault notes.
+  // Essays come first in the sort, then vault notes by date desc.
+  const essaysDir = path.join(contentDirectory, "essays");
+  const vaultDir = path.join(contentDirectory, "vault");
+
+  const essays = readEssaysFromDir(essaysDir, "essay");
+  const vault = readEssaysFromDir(vaultDir, "vault");
+
+  return [...essays, ...vault].sort((a, b) => {
+    // Sort by `order` if present, else by date desc.
+    if (a.order !== b.order) return a.order - b.order;
+    return (b.date || "").localeCompare(a.date || "");
+  });
 }
 
 export async function getEssayBySlug(slug: string): Promise<Essay | null> {
@@ -108,5 +140,20 @@ export async function getEssayBySlug(slug: string): Promise<Essay | null> {
   return {
     ...essay,
     content: processedContent.toString(),
+  };
+}
+
+export function getNowData(): NowData {
+  const filePath = path.join(contentDirectory, "now.md");
+  if (!fs.existsSync(filePath)) {
+    return { updated: "", building: [], learning: [], thinking: [] };
+  }
+  const fileContents = fs.readFileSync(filePath, "utf8");
+  const { data } = matter(fileContents);
+  return {
+    updated: data.updated || "",
+    building: data.building || [],
+    learning: data.learning || [],
+    thinking: data.thinking || [],
   };
 }

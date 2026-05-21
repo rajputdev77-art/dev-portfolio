@@ -5,6 +5,7 @@ outcome: "Zero handover rejections. −35% resolution time. +20% CSAT."
 role: "Client Operations & Coordination Executive, County Group"
 timeline: "2023-Present"
 order: 2
+status: "Live"
 kind: "metric"
 tag: "300+ units · 7 towers · 3 projects"
 metrics:

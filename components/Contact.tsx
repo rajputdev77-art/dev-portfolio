@@ -20,7 +20,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="oc-contact">
+    <section id="connect" className="oc-contact">
       <div className="oc-act-marker">
         <span>{contact.act}</span>
         <span className="oc-eyebrow-rule" />

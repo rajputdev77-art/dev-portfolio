@@ -5,6 +5,7 @@ outcome: "Stateful AI climate coach with weighted impact scoring and habit memor
 role: "Self-initiated builder"
 timeline: "April 2026 — one weekend"
 order: 10
+status: "Live"
 kind: "metric"
 tag: "React · Vite · Gemini 2.5 Flash · Backboard SDK · Vercel"
 metrics:

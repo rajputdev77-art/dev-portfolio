@@ -35,11 +35,13 @@ export default async function EssayPage({
       <Topbar />
       <Nav />
       <main className="oc-detail">
-        <Link href="/#thinking" className="oc-detail-back">
-          ← Back to thinking
+        <Link href="/#vault" className="oc-detail-back">
+          ← Back to the vault
         </Link>
 
-        <div className="oc-detail-eyebrow">ESSAY</div>
+        <div className="oc-detail-eyebrow">
+          {essay.source === "vault" ? "FROM THE VAULT" : "ESSAY"}
+        </div>
         <h1>{essay.title}</h1>
         {essay.date && (
           <div className="oc-detail-meta">

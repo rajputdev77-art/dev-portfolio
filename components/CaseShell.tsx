@@ -7,6 +7,7 @@ export default function CaseShell({
   outcome,
   href,
   isProduct,
+  status,
   children,
 }: {
   n: string;
@@ -15,8 +16,19 @@ export default function CaseShell({
   outcome: string;
   href: string;
   isProduct?: boolean;
+  status?: string;
   children: React.ReactNode;
 }) {
+  const statusClass = status
+    ? status.toLowerCase().includes("live")
+      ? "is-live"
+      : status.toLowerCase().includes("progress")
+      ? "is-progress"
+      : status.toLowerCase().includes("paused")
+      ? "is-paused"
+      : ""
+    : "";
+
   return (
     <Link href={href} className="oc-case-link">
       <article className="oc-case">
@@ -25,6 +37,9 @@ export default function CaseShell({
           <span className="oc-case-n">
             {n}
             {isProduct && <span className="oc-case-badge">Product</span>}
+            {status && (
+              <span className={`oc-case-status ${statusClass}`}>{status}</span>
+            )}
           </span>
           <h3 className="oc-case-title">{title}</h3>
           <p className="oc-case-tag">{tag}</p>

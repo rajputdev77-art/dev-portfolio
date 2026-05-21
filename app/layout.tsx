@@ -22,13 +22,13 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dev Rajput — AI Operations Specialist",
+  title: "Dev Rajput — Building AI Operations & Automation",
   description:
-    "AI Operations Specialist building, deploying, and scaling agentic workflows in n8n, Claude, and Python. Available for remote-first global roles.",
+    "Philosophy → MBA → real estate ops → AI. Self-taught AI builder shipping agents, workflows, and systems from scratch. Building in public, available globally.",
   openGraph: {
-    title: "Dev Rajput — AI Operations Specialist",
+    title: "Dev Rajput — Building AI Operations & Automation",
     description:
-      "AI Operations Specialist building, deploying, and scaling agentic workflows in n8n, Claude, and Python. Available for remote-first global roles.",
+      "Philosophy → MBA → real estate ops → AI. Self-taught AI builder shipping agents, workflows, and systems from scratch. Building in public, available globally.",
   },
 };
 

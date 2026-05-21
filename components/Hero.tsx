@@ -77,6 +77,12 @@ export default function Hero() {
           </span>
         </div>
       </section>
+
+      <a href="#story" className="oc-scroll-hint" aria-label="Scroll to story">
+        <span />
+        <em style={{ fontStyle: "normal" }}>{hero.scrollHint}</em>
+        <span />
+      </a>
     </header>
   );
 }

@@ -11,13 +11,13 @@ export default function Nav() {
         </span>
       </a>
       <ul className="oc-nav-links">
-        <li><a href="#manifest">Manifest</a></li>
-        <li><a href="#work">Systems shipped</a></li>
-        <li><a href="#thinking">Thinking</a></li>
-        <li><a href="#path">Path</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#work">Building</a></li>
+        <li><a href="#vault">Vault</a></li>
+        <li><a href="#now">Now</a></li>
+        <li><a href="#path">Background</a></li>
       </ul>
-      <a href="#contact" className="oc-nav-cta">
+      <a href="#connect" className="oc-nav-cta">
         <span>{nav.ctaLabel}</span>
         <span className="oc-arrow">↗</span>
       </a>

@@ -5,6 +5,7 @@ outcome: "Daily video uploads with zero manual touch."
 role: "Self-initiated builder"
 timeline: "2025-2026"
 order: 7
+status: "In Progress"
 kind: "metric"
 tag: "Python · Edge TTS · FFmpeg · n8n"
 metrics:
