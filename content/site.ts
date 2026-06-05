@@ -41,13 +41,22 @@ export const hero = {
   metaLocation: "IST · INDIA · GLOBAL",
   metaBadge: "ON AIR",
   metaVolume: "VOL. III · NO. 042",
-  // 5 alternate headline rotations (3 lines each).
+  // Alternate headline rotations (3 lines each). 01 is the default.
   headlines: [
-    ["PHILOSOPHY", "+&nbsp;AI&nbsp;=", "NOW I BUILD."],
-    ["PHILOSOPHY", "TRAINED MY MIND.", "NOW I BUILD."],
+    // 01 — the equation (default — now includes MBA)
+    ["PHILOSOPHY", "+&nbsp;MBA&nbsp;+&nbsp;AI&nbsp;=", "NOW I BUILD."],
+    // 02 — long form, hammer the pivot
+    ["PHILOSOPHY · MBA.", "OPS TRAINED MY HANDS.", "AI IS THE TOOL. NOW I BUILD."],
+    // 03 — manifesto, against permission culture
     ["NO CS DEGREE.", "NO PERMISSION.", "JUST BUILDS."],
+    // 04 — punch / cadence
     ["SHIP DAILY.", "BUILD LOUD.", "SLEEP LATER."],
+    // 05 — the throughline as one sentence
     ["STAGE · OPS", "· AI · NOW.", "BUILDING OUT LOUD."],
+    // 06 — three-word identity stack
+    ["THINKER.", "OPERATOR.", "BUILDER."],
+    // 07 — career path as the brag
+    ["BA · MBA ·", "OPS · AI.", "STILL SHIPPING."],
   ],
   deck: {
     // <b> wraps a black/yellow chip; <em> wraps red text.
