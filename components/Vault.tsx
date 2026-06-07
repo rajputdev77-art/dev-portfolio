@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getEssays } from "@/lib/markdown";
 import { vault } from "@/content/site";
+import TrackedLink from "./TrackedLink";
 
 export default function Vault() {
   const realEssays = getEssays();
@@ -71,9 +72,15 @@ export default function Vault() {
             );
             const cls = `vc${e.pinned ? " pin" : ""}`;
             return e.href ? (
-              <Link key={e.n} href={e.href} className={cls}>
+              <TrackedLink
+                key={e.n}
+                href={e.href}
+                className={cls}
+                event="vault_note_opened"
+                props={{ slug: e.href.split("/").pop() || "", position: parseInt(e.n, 10), pinned: !!e.pinned }}
+              >
                 {inner}
-              </Link>
+              </TrackedLink>
             ) : (
               <article key={e.n} className={cls}>
                 {inner}

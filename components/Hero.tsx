@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { hero, slabs, pivotDate } from "@/content/site";
+import { track } from "@/lib/track";
 
 export default function Hero() {
   const [headlineIdx, setHeadlineIdx] = useState(0);
@@ -30,7 +31,10 @@ export default function Hero() {
               <button
                 key={i}
                 className={i === headlineIdx ? "on" : ""}
-                onClick={() => setHeadlineIdx(i)}
+                onClick={() => {
+                  setHeadlineIdx(i);
+                  track("headline_shuffled", { variant: i + 1 });
+                }}
                 title={`Variant ${i + 1}`}
               >
                 {String(i + 1).padStart(2, "0")}
@@ -47,10 +51,18 @@ export default function Hero() {
           <p className="hero-deck" dangerouslySetInnerHTML={{ __html: hero.deck.html }} />
 
           <div className="hero-actions">
-            <a className="btn" href={hero.primaryCta.href}>
+            <a
+              className="btn"
+              href={hero.primaryCta.href}
+              onClick={() => track("cta_clicked", { cta: "see_the_work", location: "hero" })}
+            >
               {hero.primaryCta.label} <span className="arr">→</span>
             </a>
-            <a className="btn alt" href={hero.ghostCta.href}>
+            <a
+              className="btn alt"
+              href={hero.ghostCta.href}
+              onClick={() => track("cta_clicked", { cta: "lets_talk", location: "hero" })}
+            >
               {hero.ghostCta.label} ↗
             </a>
           </div>

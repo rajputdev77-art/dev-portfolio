@@ -1,4 +1,6 @@
+"use client";
 import { contact, footer } from "@/content/site";
+import { track } from "@/lib/track";
 
 export default function Contact() {
   return (
@@ -22,6 +24,15 @@ export default function Contact() {
                 href={c.href}
                 target={c.href.startsWith("http") || c.href.startsWith("/resume") ? "_blank" : undefined}
                 rel={c.href.startsWith("http") ? "noreferrer" : undefined}
+                onClick={() => {
+                  track("connect_card_clicked", {
+                    label: c.label.toLowerCase(),
+                    href: c.href,
+                  });
+                  if (c.label.toUpperCase() === "DOCUMENT") {
+                    track("cv_downloaded", { location: "connect_section" });
+                  }
+                }}
               >
                 <span>
                   <b>{c.label}</b>

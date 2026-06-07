@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { story } from "@/content/site";
+import { track } from "@/lib/track";
 
 function renderQuoteLine(line: string) {
   // <r>...</r> → red span, <s>...</s> → struck-through (red)
@@ -58,7 +59,10 @@ export default function Story() {
                 <button
                   key={t.id}
                   className={treatment.id === t.id ? "on" : ""}
-                  onClick={() => setTreatment(t)}
+                  onClick={() => {
+                    setTreatment(t);
+                    track("portrait_switched", { treatment: t.id });
+                  }}
                   dangerouslySetInnerHTML={{ __html: t.label }}
                 />
               ))}

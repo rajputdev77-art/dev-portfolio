@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { cases } from "@/content/site";
+import { track } from "@/lib/track";
 import type { CaseStudy } from "@/lib/markdown";
 
 // 12 case studies — first 2 are featured, next 4 are standard, last 6 are mini.
@@ -67,7 +68,10 @@ export default function CaseStudiesView({ studies }: { studies: CaseStudy[] }) {
             <button
               key={s}
               className={scheme === s ? "on" : ""}
-              onClick={() => setScheme(s)}
+              onClick={() => {
+                setScheme(s);
+                track("work_scheme_changed", { scheme: s });
+              }}
             >
               {s === "bold" ? "BOLD BLOCKS" : s.toUpperCase()}
             </button>
@@ -92,6 +96,14 @@ export default function CaseStudiesView({ studies }: { studies: CaseStudy[] }) {
                 key={c.slug}
                 href={`/case-studies/${c.slug}`}
                 className={`ws ${size}${dark}`}
+                onClick={() =>
+                  track("case_study_opened", {
+                    slug: c.slug,
+                    position: i + 1,
+                    scheme,
+                    size,
+                  })
+                }
               >
                 <div className="ws-tag">
                   <span className="ws-id">{idx}</span>

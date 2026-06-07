@@ -1,6 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { path } from "@/content/site";
+import { track } from "@/lib/track";
 
 export default function Path() {
   const curtainRef = useRef<HTMLDivElement | null>(null);
@@ -14,6 +15,7 @@ export default function Path() {
       path.curtainMessages[idx] || path.curtainMessages[path.curtainMessages.length - 1];
     c.classList.add("in");
     window.setTimeout(() => c.classList.remove("in"), 950);
+    track("cv_arrow_clicked", { arrow_index: idx });
   }
 
   // Split the headline: "PHILOSOPHY <arr/> MBA <arr/> <em>OPS → AI.</em>"
@@ -101,7 +103,13 @@ export default function Path() {
         </div>
 
         <div className="cv-cta-row">
-          <a className="btn" href={path.cv.href} target="_blank" rel="noreferrer">
+          <a
+            className="btn"
+            href={path.cv.href}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => track("cv_downloaded", { location: "path_section" })}
+          >
             {path.cv.label} <span className="arr">↓</span>
           </a>
         </div>

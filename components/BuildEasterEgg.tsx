@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { track } from "@/lib/track";
 
 export default function BuildEasterEgg() {
   const toastRef = useRef<HTMLDivElement | null>(null);
@@ -21,6 +22,7 @@ export default function BuildEasterEgg() {
         toastRef.current?.classList.add("show");
         setTimeout(() => document.body.classList.remove("glitch"), 600);
         setTimeout(() => toastRef.current?.classList.remove("show"), 1800);
+        track("build_easter_egg_fired", {});
         buf = "";
       }
     }

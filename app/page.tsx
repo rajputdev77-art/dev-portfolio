@@ -9,6 +9,7 @@ import Path from "@/components/Path";
 import Contact from "@/components/Contact";
 import ClocksBar from "@/components/ClocksBar";
 import BuildEasterEgg from "@/components/BuildEasterEgg";
+import SectionTracker from "@/components/SectionTracker";
 import { getCaseStudies } from "@/lib/markdown";
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
       <Contact />
       <ClocksBar />
       <BuildEasterEgg />
+      <SectionTracker />
     </>
   );
 }
