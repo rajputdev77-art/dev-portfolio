@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Anton, Archivo_Black, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const anton = Anton({
@@ -46,16 +49,42 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
+
   return (
     <html
       lang="en"
       className={`${anton.variable} ${archivoBlack.variable} ${spaceGrotesk.variable} ${jetBrainsMono.variable}`}
-      style={{
-        // expose CSS vars in case any component uses the Next font vars directly
-        // (we mostly use literal Google fonts in CSS via @import)
-      }}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+
+        {/* Vercel Analytics — page views, top pages, referrers, country, device.
+            Lives in your Vercel dashboard → Analytics tab. */}
+        <Analytics />
+
+        {/* Vercel Speed Insights — Web Vitals (LCP, FID, CLS, TTFB) per route. */}
+        <SpeedInsights />
+
+        {/* Microsoft Clarity — session replays + heatmaps. Only loads when the
+            env var is set. Set NEXT_PUBLIC_CLARITY_ID in Vercel → Project →
+            Settings → Environment Variables. Get the ID at clarity.microsoft.com. */}
+        {clarityId && (
+          <Script
+            id="ms-clarity"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function(c,l,a,r,i,t,y){
+                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+                })(window, document, "clarity", "script", "${clarityId}");
+              `,
+            }}
+          />
+        )}
+      </body>
     </html>
   );
 }
