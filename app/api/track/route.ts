@@ -76,7 +76,50 @@ export async function POST(req: NextRequest) {
   // eslint-disable-next-line no-console
   console.log("[track]", JSON.stringify(evt));
 
-  // Persist to KV if available.
+  // ── High-signal detection — runs regardless of storage ──
+  const isConnectHit =
+    evt.name === "section_viewed" && (evt.props as any)?.section === "connect";
+  const isCvDownload = evt.name === "cv_downloaded";
+  const isConnectCardClick = evt.name === "connect_card_clicked";
+  const isHighSignal = isConnectHit || isCvDownload || isConnectCardClick;
+
+  // ── Telegram alert — fires inline, NO database required ──
+  if (isHighSignal) {
+    const token = process.env.TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_CHAT_ID;
+    if (token && chatId) {
+      const label = isCvDownload
+        ? "📥 CV DOWNLOADED"
+        : isConnectCardClick
+        ? `📨 CONNECT CARD: ${(evt.props as any)?.label || "?"}`
+        : "👀 CONNECT SECTION HIT";
+      const where = [city, region, country].filter(Boolean).join(", ") || "—";
+      const text =
+        `*${label}*\n` +
+        `🌍 ${where}\n` +
+        `🔗 ${evt.ref || "direct"}\n` +
+        `🆔 session ${evt.sessionId}\n` +
+        `🕒 ${new Date(evt.ts).toISOString()}`;
+      try {
+        await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text,
+            parse_mode: "Markdown",
+            disable_web_page_preview: true,
+          }),
+        });
+      } catch {
+        /* noop */
+      }
+    }
+  }
+
+  // ── Persist to KV if available (optional — powers the /admin live feed) ──
+  // Works with ANY Upstash-compatible Redis: set KV_REST_API_URL + KV_REST_API_TOKEN
+  // (Upstash free tier gives these). No store? Everything above still works.
   const kv = await getKv();
   if (kv) {
     try {
@@ -88,43 +131,9 @@ export async function POST(req: NextRequest) {
       await kv.expire(`counts:${dayKey}:${evt.name}`, 60 * 60 * 24 * 90);
       await kv.sadd(`sessions:${dayKey}`, evt.sessionId);
       await kv.expire(`sessions:${dayKey}`, 60 * 60 * 24 * 90);
-
-      // High-signal notifications.
-      const isConnectHit =
-        evt.name === "section_viewed" && (evt.props as any)?.section === "connect";
-      const isCvDownload = evt.name === "cv_downloaded";
-      const isConnectCardClick = evt.name === "connect_card_clicked";
-      if (isConnectHit || isCvDownload || isConnectCardClick) {
+      if (isHighSignal) {
         await kv.lpush("alerts", JSON.stringify(evt));
         await kv.ltrim("alerts", 0, 99);
-
-        // Fire-and-forget Telegram alert.
-        const token = process.env.TELEGRAM_BOT_TOKEN;
-        const chatId = process.env.TELEGRAM_CHAT_ID;
-        if (token && chatId) {
-          const label = isCvDownload
-            ? "📥 CV DOWNLOADED"
-            : isConnectCardClick
-            ? `📨 CONNECT CARD: ${(evt.props as any)?.label || "?"}`
-            : "👀 CONNECT SECTION HIT";
-          const where = [city, region, country].filter(Boolean).join(", ") || "—";
-          const text =
-            `*${label}*\n` +
-            `🌍 ${where}\n` +
-            `🔗 ${evt.ref || "direct"}\n` +
-            `🆔 session ${evt.sessionId}\n` +
-            `🕒 ${new Date(evt.ts).toISOString()}`;
-          fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              chat_id: chatId,
-              text,
-              parse_mode: "Markdown",
-              disable_web_page_preview: true,
-            }),
-          }).catch(() => {});
-        }
       }
     } catch (err) {
       console.error("[track] kv error", err);
