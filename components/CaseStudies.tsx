@@ -47,6 +47,7 @@ function statusClass(s?: string) {
 
 export default function CaseStudiesView({ studies }: { studies: CaseStudy[] }) {
   const [scheme, setScheme] = useState<"original" | "rainbow" | "bold" | "stamps">("original");
+  const [showAll, setShowAll] = useState(false);
 
   return (
     <section className="b" id="work">
@@ -80,6 +81,8 @@ export default function CaseStudiesView({ studies }: { studies: CaseStudy[] }) {
 
         <div className="work-grid" data-scheme={scheme}>
           {studies.map((c, i) => {
+            // Collapse: only the first 6 (2 featured + 4 standard) show by default.
+            if (i >= 6 && !showAll) return null;
             const size = SIZE_MAP[i] || "mini";
             const idx = `CS · ${String(i + 1).padStart(2, "0")}`;
             const stClass = statusClass(c.status || (c.type === "product" ? "PRODUCT" : "LIVE"));
@@ -130,6 +133,27 @@ export default function CaseStudiesView({ studies }: { studies: CaseStudy[] }) {
             );
           })}
         </div>
+
+        {studies.length > 6 && (
+          <div className="show-more-row">
+            <button
+              className="show-more"
+              onClick={() => {
+                setShowAll((v) => !v);
+                track("work_show_all_toggled", { expanded: !showAll });
+              }}
+            >
+              {showAll ? (
+                <>Show less <span className="arr">↑</span></>
+              ) : (
+                <>
+                  Show all <span className="c">{studies.length}</span> projects{" "}
+                  <span className="arr">↓</span>
+                </>
+              )}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

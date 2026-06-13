@@ -105,9 +105,8 @@ export const story = {
     by: "DEV RAJPUT // THE THROUGHLINE",
   },
   paragraphs: [
-    'I came up the long way. A <b>BA in Philosophy</b>. Then an <b>MBA in Innovation &amp; Entrepreneurship</b>. Then three years running real-estate operations — <strong>300+ residential units, 7 towers</strong>, the kind of work where a missed email costs someone their home.',
-    "AI changed the equation. Not as a buzzword — as a <strong>genuine leverage multiplier</strong>. I stopped using other people's tools and started building my own. n8n workflows. WhatsApp automations. AI lead scoring. A local voice assistant. An autonomous knowledge system. Trading agents. A content engine. <b>Zero CS background.</b> Pure systems thinking.",
-    "Right now, I'm pivoting full-time into <strong>AI Operations &amp; Automation</strong> — building daily, shipping in public, and writing about every step. Each project here is one I built, one I broke, and one I'd build again.",
+    'I came up the long way — a <b>BA in Philosophy</b>, an <b>MBA in Innovation &amp; Entrepreneurship</b>, then three years running real-estate operations across <strong>300+ units and 7 towers</strong>, where a missed email costs someone their home. The thinking was sharp. The arena never felt right.',
+    "AI changed that. I stopped using other people's tools and started building my own — n8n workflows, a local voice assistant, an autonomous knowledge system, trading agents, a content engine. <b>Zero CS background, pure systems thinking.</b> Now I'm pivoting full-time into <strong>AI Operations &amp; Automation</strong>: building daily, shipping in public, documenting every step.",
   ],
   athleteLabel: "OFF THE <em>CLOCK</em>.",
   athleteCaption: "// Same operating system. Stage, then court, then field. Systems thinking shows up everywhere.",
