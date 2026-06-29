@@ -78,6 +78,19 @@ export const slabs = [
 // Pivot anchor date — used for "Days since pivot" live counter.
 export const pivotDate = "2025-05-01T00:00:00Z";
 
+// Night Shift band — the after-hours identity statement.
+// `anchor` drives the live "nights building" counter; edit copy freely.
+export const nightShift = {
+  anchor: "2025-05-01T00:00:00Z", // when the after-hours building started
+  tag: "// THE NIGHT SHIFT",
+  // <em> renders red. Keep it short and punchy.
+  statement: "Every system here was shipped <em>after</em> the 9-to-5.",
+  // The big live number's label + suffix
+  counterLabel: "nights building",
+  // Right-side supporting stat
+  sub: "Day job by day. Builder by night. No days off.",
+};
+
 // Story — Act II
 export const story = {
   act: "01",

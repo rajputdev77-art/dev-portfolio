@@ -1,6 +1,7 @@
 import Topbar from "@/components/Topbar";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import NightShift from "@/components/NightShift";
 import Story from "@/components/Story";
 import CaseStudiesView from "@/components/CaseStudies";
 import Vault from "@/components/Vault";
@@ -20,6 +21,7 @@ export default function Home() {
       <Topbar />
       <Nav />
       <Hero />
+      <NightShift />
       <Story />
       <CaseStudiesView studies={studies} />
       <Vault />
