@@ -31,6 +31,7 @@ export const nav = {
     { label: "03 VAULT", href: "#vault" },
     { label: "04 NOW", href: "#now" },
     { label: "05 CV", href: "#path" },
+    { label: "STACK ↗", href: "/stack" },
   ],
   cta: { label: "CONNECT ↗", href: "#connect" },
 };
