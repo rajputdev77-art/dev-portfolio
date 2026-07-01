@@ -34,6 +34,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://dev-portfolio-dun-theta.vercel.app"),
   title: "DEV RAJPUT // NOW I BUILD //",
   description:
     "AI Operations & Automation. Philosophy + MBA + Ops + AI. Self-taught builder shipping agents, workflows, and systems from scratch. Building in public, available globally.",
@@ -41,7 +42,39 @@ export const metadata: Metadata = {
     title: "DEV RAJPUT // NOW I BUILD //",
     description:
       "AI Operations & Automation. Philosophy + MBA + Ops + AI. Self-taught builder shipping agents, workflows, and systems from scratch.",
+    type: "website",
+    url: "https://dev-portfolio-dun-theta.vercel.app",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "DEV RAJPUT // NOW I BUILD //",
+    description:
+      "AI Operations & Automation. Self-taught builder shipping agents, workflows, and systems from scratch.",
+  },
+};
+
+// JSON-LD Person schema — helps Google show a rich result. Invisible on-page.
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Dev Rajput",
+  url: "https://dev-portfolio-dun-theta.vercel.app",
+  jobTitle: "AI Operations & Automation",
+  description:
+    "Self-taught AI builder shipping agents, workflows, and systems. Philosophy + MBA + real-estate ops + AI.",
+  sameAs: [
+    "https://www.linkedin.com/in/devrajput07/",
+    "https://github.com/rajputdev77-art",
+  ],
+  knowsAbout: [
+    "AI Operations",
+    "Automation",
+    "n8n",
+    "Claude",
+    "Python",
+    "Prompt Engineering",
+    "AI Agents",
+  ],
 };
 
 export default function RootLayout({
@@ -57,6 +90,12 @@ export default function RootLayout({
       className={`${anton.variable} ${archivoBlack.variable} ${spaceGrotesk.variable} ${jetBrainsMono.variable}`}
     >
       <body>
+        {/* JSON-LD structured data for search engines. Renders nothing visible. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+
         {children}
 
         {/* Vercel Analytics — page views, top pages, referrers, country, device.
