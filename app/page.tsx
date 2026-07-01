@@ -11,6 +11,8 @@ import Contact from "@/components/Contact";
 import ClocksBar from "@/components/ClocksBar";
 import BuildEasterEgg from "@/components/BuildEasterEgg";
 import SectionTracker from "@/components/SectionTracker";
+import ModeToggle from "@/components/ModeToggle";
+import ReferrerBanner from "@/components/ReferrerBanner";
 import { getCaseStudies } from "@/lib/markdown";
 
 export default function Home() {
@@ -20,6 +22,7 @@ export default function Home() {
     <>
       <Topbar />
       <Nav />
+      <ReferrerBanner />
       <Hero />
       <NightShift />
       <Story />
@@ -31,6 +34,7 @@ export default function Home() {
       <ClocksBar />
       <BuildEasterEgg />
       <SectionTracker />
+      <ModeToggle />
     </>
   );
 }

@@ -1184,3 +1184,65 @@ body.glitch { animation: glitch 0.55s steps(4); }
   .stack-grid { grid-template-columns: 1fr; }
   .stack-wrap { padding: 24px 16px; }
 }
+
+/* ===== CALM MODE — opt-in via toggle. Default (no .calm) is LOUD, unchanged. ===== */
+body.calm::before { opacity: 0.03; }
+body.calm::after { animation: none; opacity: 0.04; inset: 0; }
+body.calm .ticker .marquee { animation-duration: 140s; }
+body.calm .ticker:hover .marquee { animation-play-state: paused; }
+body.calm .secbody::before {
+  font-size: clamp(100px, 14vw, 220px); opacity: 0.04;
+  -webkit-text-stroke-width: 2px; top: -24px; left: -1vw;
+}
+body.calm .clocks { border-top-width: 2px; opacity: 0.9; }
+body.calm .clocks .ck { padding-top: 5px; padding-bottom: 5px; }
+body.calm .clocks .ck.act { background: color-mix(in oklch, var(--yellow) 55%, var(--paper)); }
+body.calm .clocks .ck .t .sec { display: none; }
+body.calm .polo { width: 160px; flex-basis: 160px; }
+/* calm reverts the crosshair cursor to native */
+body.calm { cursor: auto; }
+body.calm a, body.calm button, body.calm [role=button],
+body.calm .ws, body.calm .vc, body.calm .deck-card,
+body.calm .polo, body.calm .tl-headline .arr { cursor: pointer; }
+
+/* ===== MODE TOGGLE (fixed pill; the toggle IS an addition, default LOUD) ===== */
+.mode-toggle {
+  position: fixed; right: 16px; bottom: 46px; z-index: 95;
+  display: flex; border: 3px solid var(--black);
+  background: var(--paper); box-shadow: 3px 3px 0 var(--black);
+}
+.mode-toggle button {
+  appearance: none; border: none; background: transparent;
+  border-right: 3px solid var(--black);
+  font-family: var(--f-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 6px 10px; cursor: pointer; color: var(--black); min-width: 46px;
+}
+.mode-toggle button:last-child { border-right: none; }
+.mode-toggle button.on { background: var(--black); color: var(--yellow); }
+@media (max-width: 680px) {
+  .mode-toggle { bottom: 66px; }
+}
+
+/* ===== REFERRER BANNER (appears only for known referrers; additive) ===== */
+.refbar {
+  background: var(--red); color: var(--paper);
+  border-bottom: 4px solid var(--black);
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 9px 40px 9px 16px;
+  font-family: var(--f-mono); font-size: 12px;
+  letter-spacing: 0.06em; text-transform: uppercase; flex-wrap: wrap;
+  position: relative; z-index: 60;
+}
+.refbar b { font-family: var(--f-blk); font-weight: 400; }
+.refbar a {
+  color: var(--paper); text-decoration: underline; text-underline-offset: 3px;
+  font-family: var(--f-blk); font-weight: 400;
+}
+.refbar a:hover { color: var(--black); }
+.refbar .x {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  cursor: pointer; background: transparent; border: none; color: var(--paper);
+  font-size: 18px; line-height: 1; padding: 0 4px;
+}
+.refbar .x:hover { color: var(--black); }
