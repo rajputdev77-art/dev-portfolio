@@ -55,6 +55,10 @@ export default async function CaseStudyPage({
     ? study.tag.split(/\s*·\s*/).filter(Boolean)
     : [];
 
+  // Optional proof media (AU#5) — renders only when a field is present.
+  const images = study.images || [];
+  const hasMedia = !!(study.demo || study.repo || study.video || images.length);
+
   return (
     <>
       <Topbar />
@@ -96,6 +100,53 @@ export default async function CaseStudyPage({
             </div>
           ))}
         </div>
+      )}
+
+      {hasMedia && (
+        <>
+          <div className="sline">
+            <div className="lhs">
+              <span className="n">◆</span>
+              <span className="t">RECEIPTS</span>
+            </div>
+            <span className="r">// PROOF IT'S REAL</span>
+          </div>
+          <div className="cs-media">
+            {study.video && (
+              <div className="cs-media-video">
+                <iframe
+                  src={study.video}
+                  title={`${study.title} demo`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+            )}
+            {images.length > 0 && (
+              <div className="cs-media-shots">
+                {images.map((src, i) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img key={i} src={src} alt={`${study.title} screenshot ${i + 1}`} loading="lazy" />
+                ))}
+              </div>
+            )}
+            {(study.demo || study.repo) && (
+              <div className="cs-media-links">
+                {study.demo && (
+                  <a className="home" href={study.demo} target="_blank" rel="noreferrer">
+                    LIVE DEMO ↗
+                  </a>
+                )}
+                {study.repo && (
+                  <a className="home" href={study.repo} target="_blank" rel="noreferrer">
+                    SOURCE CODE ↗
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        </>
       )}
 
       <div className="sline">

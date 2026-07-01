@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Topbar from "@/components/Topbar";
 import ClocksBar from "@/components/ClocksBar";
+import GitHubActivity from "@/components/GitHubActivity";
 import { stackMeta, stackGroups } from "@/content/stack";
+import { githubUser } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "The Stack — Dev Rajput",
@@ -57,6 +59,17 @@ export default function StackPage() {
           ))}
         </div>
       </main>
+
+      <div className="sline">
+        <div className="lhs">
+          <span className="n">02</span>
+          <span className="t">ACTIVELY BUILDING</span>
+        </div>
+        <span className="r">// LIVE FROM GITHUB</span>
+      </div>
+      <div className="stack-wrap">
+        <GitHubActivity user={githubUser} />
+      </div>
 
       <div className="csb-back">
         <a className="home" href="/">← BACK TO SITE</a>

@@ -21,6 +21,11 @@ export interface CaseStudy {
   type?: "product";
   status?: "Live" | "In Progress" | "Paused" | string;
   link?: string;
+  // Optional proof media (AU#5). Render only when present — no field, no change.
+  demo?: string; // live demo / deployed URL
+  repo?: string; // source code URL
+  video?: string; // Loom / YouTube embed URL
+  images?: string[]; // screenshot paths under /public
 }
 
 export interface Essay {
@@ -68,6 +73,10 @@ export function getCaseStudies(): CaseStudy[] {
       type: data.type,
       status: data.status,
       link: data.link,
+      demo: data.demo,
+      repo: data.repo,
+      video: data.video,
+      images: data.images,
       content,
     };
   });
