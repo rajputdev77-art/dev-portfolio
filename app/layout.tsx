@@ -3,6 +3,7 @@ import { Anton, Archivo_Black, Space_Grotesk, JetBrains_Mono } from "next/font/g
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import CommandPalette from "@/components/CommandPalette";
 import "./globals.css";
 
 const anton = Anton({
@@ -97,6 +98,9 @@ export default function RootLayout({
         />
 
         {children}
+
+        {/* ⌘K command palette — hidden until invoked. */}
+        <CommandPalette />
 
         {/* Vercel Analytics — page views, top pages, referrers, country, device.
             Lives in your Vercel dashboard → Analytics tab. */}
