@@ -49,6 +49,14 @@ A pipeline that runs on a local machine with zero monthly cost. Folder structure
 
 Pending: enabling autostart on the n8n service, finishing the 15-day no-reply follow-up watcher, and wiring the Google Sheet service-account credentials end-to-end.
 
+## Update: Sharper filters and an always-on dashboard
+
+June 2026 — tightening the pipeline now that it was running on real volume:
+
+- **Junk-job pre-filter.** Before scoring, the pipeline now drops obvious non-fits (HR, sales, manufacturing roles) so the local LLM never wastes cycles scoring them — plus a Naukri-specific ₹10 LPA salary filter at the scrape stage, cutting noise before it reaches the model.
+- **Persistent dashboard server.** The local HTML dashboard now runs as a persistent Node server with Windows environment variables wired in, instead of being launched by hand — so the application stats are always up when I glance at them.
+- **One-command boot.** Boot scripts now start all four services together — n8n, the helper, the dashboard, and Ollama — so the whole stack comes up with a single action instead of four.
+
 ## What I Learned
 
 - **The migration from Claude API to local Ollama was the single biggest unlock.** Free, private, faster on most scoring tasks. The pipeline became sustainable overnight.

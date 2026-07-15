@@ -64,6 +64,18 @@ The OAuth token issue itself: I added a `reauth.py` script that walks through a 
 
 Live status: [youtube-pipeline-dashboard.vercel.app](https://youtube-pipeline-dashboard.vercel.app) · Channel: AI News Daily.
 
+## Update: V2 cinematic engine, a Shorts lever, and a hard pivot to kids' cartoons
+
+Mid-2026 — two phases of change: first making the pipeline better, then changing what it makes.
+
+**Quality + reach (V2):**
+- **V2 Quality Engine** — a rebuilt, cinematic news assembler. The rebuild also surfaced a real bug worth calling out: the V2 assembler could crash and *silently* fall back to old V1 quality — exactly the kind of quiet degradation this whole system is supposed to prevent — so it now fails loudly instead.
+- **YouTube Shorts pipeline** — a third daily upload as a dedicated growth lever, alongside the long-form video.
+- **Teaching animation that matches the voiceover** instead of playing random motion under the narration — plus continuous-motion animation and subtitle-position fixes for reported quality issues.
+- **Quota made un-exhaustible** — a daily run-guard plus multi-key Groq fallback so hitting the free-tier LLM cap can no longer kill a day's run, and daily token refresh keeps YouTube OAuth alive. Services pinned to IST (`TZ=Asia/Kolkata`) so uploads land at the right local hour.
+
+**The pivot:** the news pipeline had proven the *machinery*, so I repointed it at a more durable niche — **kids' cartoons on a 3-day rotation (CalmSpark)**, replacing the daily-news content entirely. Same autonomous spine (research → script → TTS → visuals → FFmpeg → upload); different, longer-lived output. The pipeline now fails fast when the CalmSpark channel token is missing, with a dedicated reauth helper.
+
 ## What I Learned
 
 - Build-and-forget systems require you to anticipate failure more, not less

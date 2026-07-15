@@ -63,6 +63,17 @@ May 2026 — moved the entire stack off my laptop onto an Oracle Cloud Always Fr
 
 Live URL: [https://rajputdev77.duckdns.org/](https://rajputdev77.duckdns.org/) — control center page with real-time service status, RAM/CPU graphs, and links to all 9 publishing endpoints.
 
+## Update: Faithful posting, warmer reels, and killing the retry storms
+
+Mid-2026 — a run of changes that moved the engine from "technically publishing" to "publishing something I'm actually happy to have under my name":
+
+- **Faithful posting — stop rewriting my story.** The AI expansion was dramatizing and embellishing raw journal entries. I pulled that back so it stays true to what I actually wrote instead of inventing a more cinematic version. A documenting system that fictionalizes the life it documents is worse than useless.
+- **Warm animation style.** Replaced the dark neon "Solo Leveling" look everywhere (shot lists, prompt enhancer, fallback shots) with a warm Ghibli/Shinkai style — softer, more human, better suited to a personal journal than a hype reel.
+- **Reels that read cleanly.** Switched Instagram captions to a short hook + hashtags, added a hook-card intro and a branded outro, and dropped the garbled full-transcript on-screen captions. Subtitles now render via ffmpeg's `drawtext textfile=` so apostrophes stop breaking clips.
+- **Cover images on every post.** Pexels cover images now attach to every blog post (Dev.to `main_image`, Hashnode cover, inline for WordPress/Blogger).
+- **LinkedIn auth, finally solid.** The silent 401s traced to a stale in-memory token — the engine now re-reads the token from `.env` per post. Added one-command re-auth, auto-refresh wiring, and an expiry health check, and killed a retry storm with queue dedup that stops sweeping on token failure. Also fixed a double-publish bug by disabling the daily master-blog publish in favour of per-entry posting.
+- **Cost + resilience:** routed all model calls through the LLM client with an Ollama fallback so a Groq daily cap can't kill a publish, and cut Groq usage where a cheaper path existed.
+
 ## What I Learned
 
 - The hardest part of multi-platform publishing is that every platform has different authentication architecture — OAuth2, API keys, bearer tokens, webhooks, GraphQL — and each one has non-obvious gotchas that only surface at build time

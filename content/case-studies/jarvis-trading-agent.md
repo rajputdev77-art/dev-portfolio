@@ -66,6 +66,15 @@ Plus:
 
 Live dashboard URL still the same: [dashboard-sigma-nine-63.vercel.app](https://dashboard-sigma-nine-63.vercel.app). Laptop can go to sleep now.
 
+## Update: Risk-manager hardening
+
+June 2026 — two subtle, high-consequence bugs surfaced once the bots had real uptime, both in the safety layer:
+
+- **Force-close could open positions.** A defensive "force-close everything" path could, under the wrong state, *open* a position instead of only flattening — the opposite of its job. Fixed, with an anti-stack backstop added so the bot can't pile onto an existing position by accident.
+- **`/account` and `/positions` could hang.** Those endpoints were making unbounded market-data calls that could stall the dashboard. Replaced with a single bounded `all_mids` call so the API always returns promptly.
+
+Both are the kind of bug that only appears after the happy path has been running for weeks — and both live in exactly the risk-isolation code that's supposed to be the trustworthy part, which is why they got fixed before anything else.
+
 ## What I Learned
 
 - **Secret hygiene is not a one-time check.** Mid-build, an API key got committed to a public hosting doc. Caught it, made the repo private, rewrote git history with `git filter-branch`, force-pushed, rotated the key, verified the old SHA returned 404 from `raw.githubusercontent.com`, and saved a permanent "never hardcode secrets" note to memory. The lesson: complacency after a fix is when the next leak happens. Every commit needs a regex scan.
