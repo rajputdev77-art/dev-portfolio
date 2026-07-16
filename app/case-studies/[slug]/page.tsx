@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import Topbar from "@/components/Topbar";
 import Nav from "@/components/Nav";
 import ClocksBar from "@/components/ClocksBar";
+import ProjectSim from "@/components/ProjectSim";
+import { sims } from "@/content/sims";
 
 export async function generateStaticParams() {
   const studies = getCaseStudies();
@@ -59,6 +61,9 @@ export default async function CaseStudyPage({
   const images = study.images || [];
   const hasMedia = !!(study.demo || study.repo || study.video || images.length);
 
+  // Virtual simulation — renders only when a sim is defined for this slug.
+  const sim = sims[study.slug];
+
   return (
     <>
       <Topbar />
@@ -100,6 +105,19 @@ export default async function CaseStudyPage({
             </div>
           ))}
         </div>
+      )}
+
+      {sim && (
+        <>
+          <div className="sline">
+            <div className="lhs">
+              <span className="n">▶</span>
+              <span className="t">VIRTUAL SIMULATION</span>
+            </div>
+            <span className="r">// SEE IT RUN — RIGHT HERE IN YOUR BROWSER</span>
+          </div>
+          <ProjectSim slug={study.slug} sim={sim} />
+        </>
       )}
 
       {hasMedia && (

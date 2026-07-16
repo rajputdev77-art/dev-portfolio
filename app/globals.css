@@ -1400,3 +1400,178 @@ body.calm .polo, body.calm .tl-headline .arr { cursor: pointer; }
   a { text-decoration: none; color: #000; }
   .cv-role { break-inside: avoid; }
 }
+
+/* ═══════════ PROJECT SIMULATIONS (psim) ═══════════ */
+.psim {
+  margin: 0 auto 8px; max-width: 980px; padding: 0 28px 34px;
+}
+.psim-head {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px;
+}
+.psim-head .badge {
+  font-family: var(--f-blk); font-size: 13px; letter-spacing: 0.08em;
+  background: var(--red); color: var(--paper); padding: 4px 10px; border: 3px solid var(--black);
+}
+.psim-head .note {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; opacity: 0.65;
+}
+.psim-intro {
+  font-family: var(--f-mono); font-size: 13.5px; line-height: 1.6; margin: 0 0 14px; max-width: 760px;
+}
+.psim-stagewrap { position: relative; }
+.psim-overlay {
+  position: absolute; inset: 0; z-index: 3; display: flex; align-items: center; justify-content: center;
+}
+.psim-run {
+  font-family: var(--f-blk); font-size: 16px; letter-spacing: 0.06em; cursor: pointer;
+  background: var(--yellow); color: var(--black); border: 3px solid var(--black);
+  padding: 14px 26px; box-shadow: 6px 6px 0 var(--black); transition: transform .08s, box-shadow .08s;
+}
+.psim-run:hover { transform: translate(-2px,-2px); box-shadow: 8px 8px 0 var(--black); }
+.psim-run:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--black); }
+.psim-run.small { font-size: 13px; padding: 10px 16px; box-shadow: 4px 4px 0 var(--black); }
+.psim-run:disabled { opacity: 0.7; cursor: default; }
+.psim .dim { opacity: 0.25; filter: grayscale(0.4); pointer-events: none; }
+
+.psim-finale {
+  margin-top: 14px; border: 3px solid var(--black); background: var(--black); color: var(--yellow);
+  padding: 14px 16px; display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+}
+.psim-finale p { margin: 0; font-family: var(--f-mono); font-size: 13px; line-height: 1.55; }
+.psim-replay {
+  font-family: var(--f-blk); font-size: 13px; cursor: pointer; white-space: nowrap;
+  background: var(--yellow); color: var(--black); border: 3px solid var(--yellow); padding: 8px 14px;
+}
+
+/* pipeline */
+.psim-stages { border: 3px solid var(--black); background: var(--paper); padding: 18px 20px; min-height: 220px; }
+.psim-stage { display: flex; gap: 14px; }
+.psim-stage-rail { display: flex; flex-direction: column; align-items: center; }
+.psim-stage-rail .dot {
+  font-family: var(--f-mono); font-size: 14px; width: 26px; height: 26px; flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center; border: 3px solid var(--black); background: var(--paper);
+}
+.psim-stage.done .dot { background: var(--green); }
+.psim-stage.live .dot { background: var(--yellow); animation: psim-pulse 0.9s infinite; }
+.psim-stage-rail .bar { width: 3px; flex: 1; background: var(--black); min-height: 12px; }
+.psim-stage-body { padding-bottom: 14px; min-width: 0; }
+.psim-stage-body .nm { font-family: var(--f-blk); font-size: 14px; letter-spacing: 0.05em; }
+.psim-stage.wait .nm { opacity: 0.3; }
+.psim-stage-body .lg { font-family: var(--f-mono); font-size: 12.5px; line-height: 1.5; margin-top: 3px; }
+.psim-stage-body .out { font-family: var(--f-mono); font-size: 12px; margin-top: 3px; color: var(--red); font-weight: 700; }
+@keyframes psim-pulse { 50% { transform: scale(1.15); } }
+
+/* terminal */
+.psim-term {
+  border: 3px solid var(--black); background: var(--ink); color: var(--paper);
+  font-family: var(--f-mono); font-size: 12.5px; line-height: 1.7; padding: 16px 18px;
+  min-height: 230px; max-height: 340px; overflow-y: auto;
+}
+.psim-term.inner { min-height: 150px; border-top: none; }
+.psim-term .ln { white-space: pre-wrap; word-break: break-word; }
+.psim-term .ln.ok { color: var(--green); }
+.psim-term .ln.warn { color: var(--yellow); }
+.psim-term .ln.act { color: var(--cyan); }
+.psim-term .ln.dim { opacity: 0.5; }
+.psim-term .ln.cursor { animation: psim-blink 0.7s infinite; }
+@keyframes psim-blink { 50% { opacity: 0; } }
+
+/* chat */
+.psim-chat { border: 3px solid var(--black); background: var(--paper); }
+.psim-chat-log { padding: 18px; max-height: 380px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+.psim-chat .msg { max-width: 82%; }
+.psim-chat .msg.bot { align-self: flex-start; }
+.psim-chat .msg.user { align-self: flex-end; }
+.psim-chat .msg .who { font-family: var(--f-blk); font-size: 10px; letter-spacing: 0.1em; display: block; margin-bottom: 3px; color: var(--red); }
+.psim-chat .msg p {
+  margin: 0; padding: 10px 13px; font-size: 14px; line-height: 1.55; border: 3px solid var(--black);
+}
+.psim-chat .msg.bot p { background: var(--paper); }
+.psim-chat .msg.user p { background: var(--black); color: var(--yellow); font-family: var(--f-mono); font-size: 13px; }
+.psim-chat .msg .typing { letter-spacing: 3px; animation: psim-blink 1s infinite; }
+.psim-chat .msg .footer {
+  margin: 8px 0 0; padding: 10px 12px; border: 3px dashed var(--red); background: #fff2f2;
+  font-family: var(--f-mono); font-size: 11px; line-height: 1.6; white-space: pre-wrap; color: var(--black);
+}
+.psim-chips { border-top: 3px solid var(--black); padding: 12px 14px; display: flex; gap: 10px; flex-wrap: wrap; background: var(--yellow); }
+.psim-chips button {
+  font-family: var(--f-mono); font-size: 12.5px; cursor: pointer; padding: 8px 12px;
+  background: var(--paper); border: 3px solid var(--black); box-shadow: 3px 3px 0 var(--black);
+}
+.psim-chips button:hover:not(:disabled) { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--black); }
+.psim-chips button:disabled { opacity: 0.35; cursor: default; box-shadow: none; }
+.psim-chat-done { font-family: var(--f-mono); font-size: 12.5px; line-height: 1.6; }
+
+/* agents / office */
+.psim-office { border: 3px solid var(--black); background: var(--paper); padding: 14px 16px; min-height: 240px; }
+.psim-office .floor { border-bottom: 2px solid var(--black); padding: 10px 0; }
+.psim-office .fname { font-family: var(--f-blk); font-size: 12px; letter-spacing: 0.06em; margin-bottom: 8px; }
+.psim-office .desks { display: flex; gap: 8px; flex-wrap: wrap; }
+.psim-office .agent {
+  position: relative; font-family: var(--f-mono); font-size: 11px; padding: 5px 9px;
+  border: 2px solid var(--black); background: var(--paper);
+}
+.psim-office .agent.on { background: var(--green); animation: psim-pulse 0.8s infinite; }
+.psim-office .agent .bubble {
+  position: absolute; bottom: calc(100% + 6px); left: 0; z-index: 2; white-space: nowrap;
+  font-style: normal; font-size: 11px; background: var(--black); color: var(--yellow); padding: 4px 8px;
+  border: 2px solid var(--black);
+}
+.psim-artifacts {
+  margin-top: 12px; background: var(--ink); color: var(--paper); font-family: var(--f-mono);
+  font-size: 12px; line-height: 1.7; padding: 10px 14px; min-height: 84px; max-height: 130px; overflow-y: auto;
+}
+.psim-artifacts .ln.ok { color: var(--green); }
+.psim-artifacts .ln.dim { opacity: 0.5; }
+
+/* dashboard */
+.psim-dash { border: 3px solid var(--black); }
+.psim-dash-stats { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--black); gap: 3px; }
+.psim-dash-stats .stat { background: var(--paper); padding: 12px 14px; }
+.psim-dash-stats .l { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.1em; opacity: 0.6; }
+.psim-dash-stats .v { font-family: var(--f-blk); font-size: 20px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+@media (max-width: 700px) { .psim-dash-stats { grid-template-columns: repeat(2, 1fr); } }
+
+/* dictation */
+.psim-dict { border: 3px solid var(--black); background: var(--paper); padding: 18px; display: grid; gap: 16px; }
+.psim-dict-key { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.psim-dict-key .f10 {
+  font-family: var(--f-blk); font-size: 15px; letter-spacing: 0.04em; cursor: pointer;
+  border: 3px solid var(--black); background: var(--yellow); padding: 16px 22px;
+  box-shadow: 0 6px 0 var(--black); user-select: none; touch-action: none;
+}
+.psim-dict-key .f10:active, .psim-dict-key .f10.listen { transform: translateY(4px); box-shadow: 0 2px 0 var(--black); }
+.psim-dict-key .f10.listen { background: var(--red); color: var(--paper); animation: psim-pulse 0.7s infinite; }
+.psim-dict-key .f10.proc { background: var(--cyan); }
+.psim-dict-key .hint { font-family: var(--f-mono); font-size: 11px; opacity: 0.6; }
+.psim-dict-pad { border: 3px solid var(--black); background: #fff; padding: 0 0 14px; min-height: 120px; }
+.psim-dict-pad .padtitle {
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.1em; background: var(--black);
+  color: var(--paper); padding: 5px 10px; margin-bottom: 10px;
+}
+.psim-dict-pad p { margin: 0 14px 8px; font-family: var(--f-mono); font-size: 13.5px; line-height: 1.6; }
+.psim-dict-pad p.ph { opacity: 0.4; }
+.psim-dict-pad .caret { animation: psim-blink 0.7s infinite; }
+
+/* tts */
+.psim-tts { border: 3px solid var(--black); background: var(--paper); padding: 18px; display: grid; gap: 12px; }
+.psim-tts textarea {
+  font-family: var(--f-mono); font-size: 13.5px; line-height: 1.6; padding: 12px;
+  border: 3px solid var(--black); background: #fff; resize: vertical; width: 100%;
+}
+.psim-tts-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.psim-tts select {
+  font-family: var(--f-mono); font-size: 13px; padding: 10px 12px; border: 3px solid var(--black); background: var(--paper);
+}
+.psim-wave { display: flex; align-items: flex-end; gap: 4px; height: 46px; border: 3px solid var(--black); background: var(--ink); padding: 6px 10px; }
+.psim-wave span { flex: 1; background: var(--green); height: 12%; }
+.psim-wave.play span { animation: psim-wave 0.7s ease-in-out infinite alternate; }
+.psim-wave.synth span { animation: psim-wave 1.6s ease-in-out infinite alternate; background: var(--cyan); }
+@keyframes psim-wave { from { height: 8%; } to { height: 92%; } }
+.psim-tts-meta { font-family: var(--f-mono); font-size: 11px; opacity: 0.65; }
+
+@media (max-width: 640px) {
+  .psim { padding: 0 16px 26px; }
+  .psim-chat .msg { max-width: 94%; }
+  .psim-office .agent .bubble { white-space: normal; max-width: 200px; }
+}
