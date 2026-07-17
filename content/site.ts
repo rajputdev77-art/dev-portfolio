@@ -32,6 +32,7 @@ export const nav = {
     { label: "04 NOW", href: "#now" },
     { label: "05 CV", href: "#path" },
     { label: "STACK ↗", href: "/stack" },
+    { label: "LIVE ●", href: "/live" },
   ],
   cta: { label: "CONNECT ↗", href: "#connect" },
 };

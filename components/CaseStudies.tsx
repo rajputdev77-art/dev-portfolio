@@ -1,9 +1,36 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cases } from "@/content/site";
 import { track } from "@/lib/track";
 import type { CaseStudy } from "@/lib/markdown";
+import { sims } from "@/content/sims";
+
+// Featured cards get a tiny auto-playing strip of their simulation's stages —
+// a "watch it run" teaser that clicks through to the full sim on the detail page.
+function FeatSimTeaser({ slug }: { slug: string }) {
+  const sim = sims[slug];
+  const stages = sim && sim.engine === "pipeline" ? sim.stages : null;
+  const [i, setI] = useState(0);
+  const n = stages ? stages.length : 0;
+  useEffect(() => {
+    if (!n) return;
+    const id = setInterval(() => setI((v) => (v + 1) % n), 1300);
+    return () => clearInterval(id);
+  }, [n]);
+  if (!stages) return null;
+  return (
+    <div className="ws-teaser" aria-hidden>
+      <span className="dots">
+        {stages.map((_, k) => (
+          <i key={k} className={k === i ? "on" : ""} />
+        ))}
+      </span>
+      <span className="stg">▶ {stages[i].name}</span>
+      <span className="cta">WATCH IT RUN →</span>
+    </div>
+  );
+}
 
 // 12 case studies — first 2 are featured, next 4 are standard, last 6 are mini.
 const SIZE_MAP: ("feat" | "std" | "mini")[] = [
@@ -124,6 +151,7 @@ export default function CaseStudiesView({ studies }: { studies: CaseStudy[] }) {
                     ))}
                   </div>
                 )}
+                {size === "feat" && <FeatSimTeaser slug={c.slug} />}
                 <p className="ws-desc">{c.outcome}</p>
                 <div className="ws-cta">
                   {size === "mini" ? "READ" : c.type === "product" ? "SEE PRODUCT" : "READ THE BUILD"}

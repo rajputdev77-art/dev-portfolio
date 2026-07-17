@@ -1575,3 +1575,60 @@ body.calm .polo, body.calm .tl-headline .arr { cursor: pointer; }
   .psim-chat .msg { max-width: 94%; }
   .psim-office .agent .bubble { white-space: normal; max-width: 200px; }
 }
+
+/* ── sim finale try-link ── */
+.psim-finale-acts { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.psim-try {
+  font-family: var(--f-blk); font-size: 13px; letter-spacing: 0.04em; white-space: nowrap;
+  background: var(--red); color: var(--paper); border: 3px solid var(--red);
+  padding: 8px 14px; text-decoration: none;
+}
+.psim-try:hover { background: var(--paper); color: var(--red); }
+
+/* ── featured-card sim teaser ── */
+.ws-teaser {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  margin: 10px 0 2px; padding: 7px 10px; border: 2px dashed currentColor; opacity: 0.92;
+}
+.ws-teaser .dots { display: inline-flex; gap: 4px; }
+.ws-teaser .dots i { width: 7px; height: 7px; border: 2px solid currentColor; display: inline-block; }
+.ws-teaser .dots i.on { background: currentColor; }
+.ws-teaser .stg { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.06em; min-width: 150px; }
+.ws-teaser .cta { font-family: var(--f-blk); font-size: 10px; letter-spacing: 0.1em; margin-left: auto; }
+
+/* ── /live page ── */
+.live-grid {
+  max-width: 1180px; margin: 0 auto; padding: 10px 28px 30px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+}
+@media (max-width: 1000px) { .live-grid { grid-template-columns: 1fr; } }
+.live-panel { border: 3px solid var(--black); background: var(--paper); display: flex; flex-direction: column; }
+.live-panel.offline { background: var(--ink); color: var(--paper); }
+.live-title {
+  font-family: var(--f-blk); font-size: 14px; letter-spacing: 0.05em; padding: 12px 14px;
+  border-bottom: 3px solid var(--black); display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.live-panel.offline .live-title { border-color: var(--paper); }
+.live-title .upd { font-family: var(--f-mono); font-size: 10px; font-weight: 400; opacity: 0.55; margin-left: auto; }
+.live-title .mode {
+  font-family: var(--f-mono); font-size: 9px; background: var(--black); color: var(--yellow); padding: 2px 6px;
+}
+.live-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(78px, 1fr)); gap: 2px; background: var(--black); border-bottom: 3px solid var(--black); }
+.live-stats .stat { background: var(--paper); padding: 10px 10px; }
+.live-stats .l { font-family: var(--f-mono); font-size: 9px; letter-spacing: 0.08em; opacity: 0.6; }
+.live-stats .v { font-family: var(--f-blk); font-size: 19px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.live-stats .v.small { font-size: 13px; padding-top: 4px; }
+.live-feedlist { padding: 12px 14px; font-family: var(--f-mono); font-size: 12px; line-height: 1.75; flex: 1; }
+.live-feedlist .fl-title { font-size: 10px; letter-spacing: 0.1em; opacity: 0.6; margin-bottom: 4px; }
+.live-feedlist .fl-ln.dim { opacity: 0.55; }
+.live-off { font-family: var(--f-mono); font-size: 12.5px; line-height: 1.6; padding: 14px; margin: 0; }
+.live-link {
+  display: block; font-family: var(--f-blk); font-size: 12px; letter-spacing: 0.06em;
+  border-top: 3px solid var(--black); padding: 10px 14px; text-decoration: none; color: var(--black);
+}
+.live-link:hover { background: var(--black); color: var(--yellow); }
+.live-foot {
+  max-width: 1180px; margin: 0 auto; padding: 0 28px 34px;
+  font-family: var(--f-mono); font-size: 11.5px; line-height: 1.7; opacity: 0.75;
+}
+@media (max-width: 640px) { .live-grid, .live-foot { padding-left: 16px; padding-right: 16px; } }

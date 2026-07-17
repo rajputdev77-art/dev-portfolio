@@ -8,6 +8,7 @@ import type {
   ChatChip,
   FeedLine,
   StatDef,
+  TryLink,
 } from "@/content/sims";
 
 /**
@@ -38,18 +39,33 @@ function RunOverlay({ onRun, label }: { onRun: () => void; label?: string }) {
   );
 }
 
-function Finale({ text, onReplay }: { text: string; onReplay: () => void }) {
+function Finale({
+  text, onReplay, tryLink, onTry,
+}: { text: string; onReplay: () => void; tryLink?: TryLink; onTry?: () => void }) {
   return (
     <div className="psim-finale">
       <p>{text}</p>
-      <button className="psim-replay" onClick={onReplay}>↻ REPLAY</button>
+      <div className="psim-finale-acts">
+        {tryLink && (
+          <a
+            className="psim-try"
+            href={tryLink.url}
+            target="_blank"
+            rel="noreferrer"
+            onClick={onTry}
+          >
+            {tryLink.label}
+          </a>
+        )}
+        <button className="psim-replay" onClick={onReplay}>↻ REPLAY</button>
+      </div>
     </div>
   );
 }
 
 /* ── engine: pipeline ────────────────────────────────────────────── */
 
-function PipelineSim({ stages, finale, onStart }: { stages: PipelineStage[]; finale: string; onStart: () => void }) {
+function PipelineSim({ stages, finale, onStart, tryLink, onTry }: { stages: PipelineStage[]; finale: string; onStart: () => void; tryLink?: TryLink; onTry?: () => void }) {
   const [step, setStep] = useState(-1); // -1 idle; N = index in flight; stages.length = done
   const running = step >= 0 && step < stages.length;
 
@@ -78,14 +94,14 @@ function PipelineSim({ stages, finale, onStart }: { stages: PipelineStage[]; fin
           );
         })}
       </div>
-      {step >= stages.length && <Finale text={finale} onReplay={() => setStep(0)} />}
+      {step >= stages.length && <Finale text={finale} onReplay={() => setStep(0)} tryLink={tryLink} onTry={onTry} />}
     </div>
   );
 }
 
 /* ── engine: terminal ────────────────────────────────────────────── */
 
-function TerminalSim({ lines, finale, onStart }: { lines: TermLine[]; finale: string; onStart: () => void }) {
+function TerminalSim({ lines, finale, onStart, tryLink, onTry }: { lines: TermLine[]; finale: string; onStart: () => void; tryLink?: TryLink; onTry?: () => void }) {
   const [n, setN] = useState(-1);
   const boxRef = useRef<HTMLDivElement>(null);
   const running = n >= 0 && n < lines.length;
@@ -106,7 +122,7 @@ function TerminalSim({ lines, finale, onStart }: { lines: TermLine[]; finale: st
         ))}
         {running && <div className="ln cursor">▋</div>}
       </div>
-      {n >= lines.length && <Finale text={finale} onReplay={() => setN(0)} />}
+      {n >= lines.length && <Finale text={finale} onReplay={() => setN(0)} tryLink={tryLink} onTry={onTry} />}
     </div>
   );
 }
@@ -178,10 +194,11 @@ function ChatSim({
 /* ── engine: agents (office tick) ────────────────────────────────── */
 
 function AgentsSim({
-  floors, bubbles, artifacts, finale, onStart,
+  floors, bubbles, artifacts, finale, onStart, tryLink, onTry,
 }: {
   floors: { name: string; agents: string[] }[];
   bubbles: string[]; artifacts: string[]; finale: string; onStart: () => void;
+  tryLink?: TryLink; onTry?: () => void;
 }) {
   const TICKS = 16;
   const [tick, setTick] = useState(-1);
@@ -238,7 +255,7 @@ function AgentsSim({
           ))}
         </div>
       </div>
-      {tick >= TICKS && <Finale text={finale} onReplay={start} />}
+      {tick >= TICKS && <Finale text={finale} onReplay={start} tryLink={tryLink} onTry={onTry} />}
     </div>
   );
 }
@@ -246,8 +263,8 @@ function AgentsSim({
 /* ── engine: dashboard ───────────────────────────────────────────── */
 
 function DashboardSim({
-  stats, feed, finale, onStart,
-}: { stats: StatDef[]; feed: FeedLine[]; finale: string; onStart: () => void }) {
+  stats, feed, finale, onStart, tryLink, onTry,
+}: { stats: StatDef[]; feed: FeedLine[]; finale: string; onStart: () => void; tryLink?: TryLink; onTry?: () => void }) {
   const [n, setN] = useState(-1);
   const [vals, setVals] = useState<number[]>(stats.map((s) => s.base));
   const running = n >= 0 && n < feed.length;
@@ -283,7 +300,7 @@ function DashboardSim({
           {running && <div className="ln cursor">▋</div>}
         </div>
       </div>
-      {n >= feed.length && <Finale text={finale} onReplay={start} />}
+      {n >= feed.length && <Finale text={finale} onReplay={start} tryLink={tryLink} onTry={onTry} />}
     </div>
   );
 }
@@ -421,6 +438,10 @@ export default function ProjectSim({ slug, sim }: { slug: string; sim: SimDef })
     track("sim_run", { slug, engine: sim.engine });
   }, [slug, sim.engine]);
 
+  const onTry = useCallback(() => {
+    track("sim_try_clicked", { slug });
+  }, [slug]);
+
   return (
     <section className="psim">
       <div className="psim-head">
@@ -428,16 +449,16 @@ export default function ProjectSim({ slug, sim }: { slug: string; sim: SimDef })
         <span className="note">RUNS IN YOUR BROWSER · NOT WIRED TO THE LIVE SYSTEM</span>
       </div>
       <p className="psim-intro">{sim.intro}</p>
-      {sim.engine === "pipeline" && <PipelineSim stages={sim.stages} finale={sim.finale} onStart={onStart} />}
-      {sim.engine === "terminal" && <TerminalSim lines={sim.lines} finale={sim.finale} onStart={onStart} />}
+      {sim.engine === "pipeline" && <PipelineSim stages={sim.stages} finale={sim.finale} onStart={onStart} tryLink={sim.tryLink} onTry={onTry} />}
+      {sim.engine === "terminal" && <TerminalSim lines={sim.lines} finale={sim.finale} onStart={onStart} tryLink={sim.tryLink} onTry={onTry} />}
       {sim.engine === "chat" && (
         <ChatSim persona={sim.persona} greeting={sim.greeting} chips={sim.chips} done={sim.done} onStart={onStart} />
       )}
       {sim.engine === "agents" && (
-        <AgentsSim floors={sim.floors} bubbles={sim.bubbles} artifacts={sim.artifacts} finale={sim.finale} onStart={onStart} />
+        <AgentsSim floors={sim.floors} bubbles={sim.bubbles} artifacts={sim.artifacts} finale={sim.finale} onStart={onStart} tryLink={sim.tryLink} onTry={onTry} />
       )}
       {sim.engine === "dashboard" && (
-        <DashboardSim stats={sim.stats} feed={sim.feed} finale={sim.finale} onStart={onStart} />
+        <DashboardSim stats={sim.stats} feed={sim.feed} finale={sim.finale} onStart={onStart} tryLink={sim.tryLink} onTry={onTry} />
       )}
       {sim.engine === "dictation" && <DictationSim phrases={sim.phrases} onStart={onStart} />}
       {sim.engine === "tts" && <TtsSim sample={sim.sample} voices={sim.voices} onStart={onStart} />}

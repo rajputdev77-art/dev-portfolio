@@ -20,10 +20,13 @@ export type StatDef = {
   suffix?: string;
 };
 
+// Optional bridge from the simulation to the real, deployed thing.
+export type TryLink = { url: string; label: string };
+
 export type SimDef =
-  | { engine: "pipeline"; intro: string; stages: PipelineStage[]; finale: string }
-  | { engine: "terminal"; intro: string; lines: TermLine[]; finale: string }
-  | { engine: "chat"; intro: string; persona: string; greeting: string; done: string; chips: ChatChip[] }
+  | { engine: "pipeline"; intro: string; stages: PipelineStage[]; finale: string; tryLink?: TryLink }
+  | { engine: "terminal"; intro: string; lines: TermLine[]; finale: string; tryLink?: TryLink }
+  | { engine: "chat"; intro: string; persona: string; greeting: string; done: string; chips: ChatChip[]; tryLink?: TryLink }
   | {
       engine: "agents";
       intro: string;
@@ -31,8 +34,9 @@ export type SimDef =
       bubbles: string[];
       artifacts: string[];
       finale: string;
+      tryLink?: TryLink;
     }
-  | { engine: "dashboard"; intro: string; stats: StatDef[]; feed: FeedLine[]; finale: string }
+  | { engine: "dashboard"; intro: string; stats: StatDef[]; feed: FeedLine[]; finale: string; tryLink?: TryLink }
   | { engine: "dictation"; intro: string; phrases: string[] }
   | { engine: "tts"; intro: string; sample: string; voices: string[] };
 
@@ -147,6 +151,7 @@ export const sims: Record<string, SimDef> = {
       { text: "cycle complete · next in 3600s · full reasoning logged for replay", kind: "ok" },
     ],
     finale: "Paper-only by class boundary: the live Exchange class is never imported. The LLM proposes; deterministic risk code disposes.",
+    tryLink: { url: "https://dashboard-sigma-nine-63.vercel.app", label: "OPEN THE REAL DASHBOARD ↗" },
   },
 
   /* ── 06 · International Panel Event ──────────────────────────────── */
@@ -217,6 +222,7 @@ export const sims: Record<string, SimDef> = {
       { name: "PUBLISH ×9", log: "LinkedIn ✓ Dev.to ✓ Hashnode ✓ WordPress ✓ Blogger ✓ IG ✓ YT Short ✓ YT ✓ Medium→queue", out: "8 auto + 1 queued · 67s" },
     ],
     finale: "One Word file in, nine platforms out. Health agent re-checks the whole chain every 30 minutes.",
+    tryLink: { url: "https://rajputdev77.duckdns.org/", label: "OPEN THE LIVE CONTROL CENTER ↗" },
   },
 
   /* ── 11 · Job Application Agent ──────────────────────────────────── */
@@ -245,6 +251,7 @@ export const sims: Record<string, SimDef> = {
       { name: "UPLOAD", log: "YouTube resumable chunks + backoff · status pushed → live-data repo", out: "live · dashboard green" },
     ],
     finale: "~4m22s per video IRL, $0.00 per video, checkpointed so a crash resumes mid-pipeline — never from scratch.",
+    tryLink: { url: "https://youtube-pipeline-dashboard.vercel.app", label: "OPEN THE LIVE STATUS PAGE ↗" },
   },
 
   /* ── 13 · Second Brain ───────────────────────────────────────────── */
